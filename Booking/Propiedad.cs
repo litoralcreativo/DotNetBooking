@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booking
 {
+    [Serializable]
     public class Propiedad
     {
         public readonly int _ref;
@@ -14,7 +15,8 @@ namespace Booking
         public string Direccion { get; set; }
         public string Localidad { get; set; }
         public double Precio { get; set; }
-        public List<string> Imagenes;
+        public List<string> imagenes;
+        private List<Servicio> servicios;
         public Propiedad(int _ref, string nombre, int plazas, string dir, string loc, double precio)
         {
             this._ref = _ref;
@@ -23,8 +25,35 @@ namespace Booking
             Direccion = dir;
             Localidad = loc;
             Precio = precio;
-            Imagenes = new List<string>();
+            imagenes = new List<string>();
+            servicios = new List<Servicio>();
         }
-
+        public void ActualizarServicios(List<Servicio> ser)
+        {
+            servicios = ser;
+        }
+        public void AgregarImagen(string path)
+        {
+            imagenes.Add(path);
+        }
+        public List<string> ListarImagenes()
+        {
+            return imagenes;
+        }
+        public double presupuestar(DateTime ingreso, DateTime salida)
+        {
+            return 0;
+        }
     }
+    [Serializable]
+    public enum Servicio
+    {
+        Desayuno,
+        Piscina,
+        Wifi,
+        Ac,
+        Cochera,
+        Mascotas
+    }
+
 }
