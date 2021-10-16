@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +12,14 @@ using System.Windows.Forms;
 
 namespace Booking
 {
-    public partial class Form1 : Form
+    public partial class FromPrincipal : Form
     {
         Empresa empresa;
         FileStream archivo;
         BinaryFormatter binaryFormatter;
         string miArchivo = Application.StartupPath + "\\info.dat"; // archivo serializado
 
-        public Form1()
+        public FromPrincipal()
         {
             InitializeComponent();
         }
@@ -47,6 +46,7 @@ namespace Booking
             /****TEST****/
 
             ActualizarMenuStrip();
+            iniciarSesionToolStripMenuItem.PerformClick();
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -88,7 +88,6 @@ namespace Booking
                 guardarToolStripMenuItem.Enabled = false;
                 buscarToolStripMenuItem.Enabled = false;
                 crearToolStripMenuItem.Enabled = false;
-                editarToolStripMenuItem.Enabled = false;
                 añadirPropietarioToolStripMenuItem.Enabled = false;
             }
             else
@@ -104,7 +103,6 @@ namespace Booking
                             guardarToolStripMenuItem.Enabled = true;
                             buscarToolStripMenuItem.Enabled = true;
                             crearToolStripMenuItem.Enabled = false;
-                            editarToolStripMenuItem.Enabled = false;
                             añadirPropietarioToolStripMenuItem.Enabled = false;
                             break;
                     }
@@ -117,7 +115,6 @@ namespace Booking
                             guardarToolStripMenuItem.Enabled = true;
                             buscarToolStripMenuItem.Enabled = true;
                             crearToolStripMenuItem.Enabled = true;
-                            editarToolStripMenuItem.Enabled = true;
                             añadirPropietarioToolStripMenuItem.Enabled = true;
                             break;
                         }
@@ -199,6 +196,25 @@ namespace Booking
                 {
                     MessageBox.Show("Ya existe un propietario con este dni", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+            }
+        }
+
+        private void crearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RegistroEdicionPropiedad regPropiedad = new RegistroEdicionPropiedad();
+            // agregar lista de propietarios
+            for (int i = 0; i < empresa.propietarios.Count; i++)
+            {
+                regPropiedad.cbPropietario.Items.Add(empresa.propietarios[i].ToString());
+            }
+            // Agregar localidades
+            for (int i = 0; i < empresa.Localidades.Count; i++)
+            {
+                regPropiedad.cbLocalidad.Items.Add(empresa.Localidades[i].ToString());
+            }
+            if (regPropiedad.ShowDialog() == DialogResult.OK)
+            {
+
             }
         }
     }

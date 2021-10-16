@@ -12,7 +12,15 @@ namespace Booking
         static int _ref = 0;
         public List<Usuario> usuarios = new List<Usuario>();
         public List<Propietario> propietarios = new List<Propietario>();
+        public List<string> Localidades = new List<string>();
         public Usuario Sesion;
+        public void AgregarLocalidad(string loc)
+        {
+            if (!Localidades.Contains(loc))
+            {
+                Localidades.Add(loc);
+            }
+        }
         public bool AgregarUsuario(Usuario user)
         {
             Usuario encontrado = usuarios.Find(x => x.Username == user.Username);

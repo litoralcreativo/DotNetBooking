@@ -27,13 +27,22 @@ namespace Booking
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
+        bool cancel = false;
         private void NuevoPropietarioForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tbApellido.Text == "" || tbNombre.Text == "" || tbDni.Text == "" || tbTelefono.Text == "")
+            if (!cancel)
             {
-                MessageBox.Show("Todos los campos son obligatorios", "Registro", MessageBoxButtons.OK);
-                e.Cancel = true;
+                if (tbApellido.Text == "" || tbNombre.Text == "" || tbDni.Text == "" || tbTelefono.Text == "")
+                {
+                    MessageBox.Show("Todos los campos son obligatorios", "Registro", MessageBoxButtons.OK);
+                    e.Cancel = true;
+                }
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            cancel = true;
         }
     }
 }
