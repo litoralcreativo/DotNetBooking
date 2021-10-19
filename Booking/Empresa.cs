@@ -9,28 +9,13 @@ namespace Booking
     [Serializable]
     public class Empresa
     {
-        static int _ref = 0;
+        public static int _ref = 0;
         public List<Usuario> usuarios = new List<Usuario>();
-        public List<Propietario> propietarios = new List<Propietario>();
-        public List<string> Localidades = new List<string>();
+        private List<Propietario> propietarios = new List<Propietario>();
+        private List<Propiedad> propiedades = new List<Propiedad>();
+        public List<string> localidades = new List<string>();
         public Usuario Sesion;
-        public void AgregarLocalidad(string loc)
-        {
-            if (!Localidades.Contains(loc))
-            {
-                Localidades.Add(loc);
-            }
-        }
-        public bool AgregarUsuario(Usuario user)
-        {
-            Usuario encontrado = usuarios.Find(x => x.Username == user.Username);
-            if (encontrado == null)
-            {
-                usuarios.Add(user);
-                return true;
-            }
-            return false;
-        }
+        
         public bool AgregarPropietario(Propietario prop)
         {
             Propietario encontrado = propietarios.Find(x => x.Dni == prop.Dni);
@@ -41,6 +26,46 @@ namespace Booking
             }
             return false;
         }
+        public List<Propietario> ListarPropietarios()
+        {
+            return propietarios;
+        }
+        
+        
+        public void AgregarLocalidad(string loc)
+        {
+            if (!localidades.Contains(loc))
+            {
+                localidades.Add(loc);
+            }
+        }
+        public List<string> ListarLocalidades()
+        {
+            return localidades;
+        }
+        
+        public bool AgregarUsuario(Usuario user)
+        {
+            Usuario encontrado = usuarios.Find(x => x.Username == user.Username);
+            if (encontrado == null)
+            {
+                usuarios.Add(user);
+                return true;
+            }
+            return false;
+        }
+
+        public void AgregarPropiedad(Propiedad prop, int propietarioIndex)
+        {
+           prop.AgregarPropietario(propietarios[propietarioIndex]);
+           propietarios[propietarioIndex].AgregarPropiedad(prop);
+           propiedades.Add(prop);
+        }
+        public List<Propiedad> ListarPropiedades()
+        {
+            return propiedades;
+        }
+
 
         public Usuario Login(string uName, string uPass)
         {

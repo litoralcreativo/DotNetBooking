@@ -17,6 +17,7 @@ namespace Booking
         public double Precio { get; set; }
         public List<string> imagenes;
         private List<Servicio> servicios;
+        private Propietario propietario;
         public Propiedad(int _ref, string nombre, int plazas, string dir, string loc, double precio)
         {
             this._ref = _ref;
@@ -43,6 +44,18 @@ namespace Booking
         public double presupuestar(DateTime ingreso, DateTime salida)
         {
             return 0;
+        }
+        public void AgregarPropietario(Propietario prop)
+        {
+            propietario = prop;
+        }
+        public string tipo()
+        {
+            return "Propiedad abstracta";
+        }
+        public Propietario getPropietario()
+        {
+            return propietario;
         }
     }
     [Serializable]

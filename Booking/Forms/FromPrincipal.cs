@@ -22,7 +22,10 @@ namespace Booking
         public FromPrincipal()
         {
             InitializeComponent();
+            Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.OldLace;
         }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             if (File.Exists(miArchivo))
@@ -36,13 +39,15 @@ namespace Booking
             {
                 empresa = new Empresa();
             }
-            
+
             /****TEST****
             Usuario u = new Usuario("admin", "admin");
             u.Nombre = "administrador";
             u.Apellido = "administrador";
             u.Categoria = CategoriaUsuario.Administrador;
             empresa.AgregarUsuario(u);
+            empresa.localidades = new List<string>();
+            empresa.propiedades = new List<Propiedad>();
             /****TEST****/
 
             ActualizarMenuStrip();
@@ -125,7 +130,6 @@ namespace Booking
         }
 
 
-
         private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
@@ -202,20 +206,38 @@ namespace Booking
         private void crearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegistroEdicionPropiedad regPropiedad = new RegistroEdicionPropiedad();
-            // agregar lista de propietarios
-            for (int i = 0; i < empresa.propietarios.Count; i++)
+            List<Propietario> propietarios = empresa.ListarPropietarios();
+            for (int i = 0; i < propietarios.Count; i++)
             {
-                regPropiedad.cbPropietario.Items.Add(empresa.propietarios[i].ToString());
+                regPropiedad.cbPropietario.Items.Add(propietarios[i].ToString());
             }
-            // Agregar localidades
-            for (int i = 0; i < empresa.Localidades.Count; i++)
-            {
-                regPropiedad.cbLocalidad.Items.Add(empresa.Localidades[i].ToString());
-            }
+            regPropiedad.setEmpresa(ref empresa);
+            regPropiedad.updateLocations();
+            
             if (regPropiedad.ShowDialog() == DialogResult.OK)
             {
-
+                int propietarioIndex = regPropiedad.cbPropietario.SelectedIndex;
+                TipoPropiedad tipoPropiedad = regPropiedad.tipoPropiedad;
+                string nombre = regPropiedad.tbNombre.Text;
+                string localidad = regPropiedad.cbLocalidad.Text;
+                string direccion = regPropiedad.tbDireccion.Text;
+                int plazas = Convert.ToInt32(regPropiedad.nudPlazas.Value);
+                double precio = Convert.ToDouble(regPropiedad.nudPrecioBase.Value);
+                Propiedad propiedad = new Propiedad(++Empresa._ref, nombre, plazas, direccion, localidad, precio);
+                empresa.AgregarPropiedad(propiedad, propietarioIndex);
             }
+        }
+
+        private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PropiedadesForm propForm = new PropiedadesForm();
+            propForm.MdiParent = this;
+            propForm.WindowState = FormWindowState.Maximized;
+
+            propForm.ListarPropiedades(empresa.ListarPropiedades());
+
+            propForm.Show();
+            buscarToolStripMenuItem.Enabled = false;
         }
     }
 }

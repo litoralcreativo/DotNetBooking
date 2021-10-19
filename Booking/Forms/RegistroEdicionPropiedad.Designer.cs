@@ -402,7 +402,6 @@ namespace Booking
             // 
             this.btnNewLocal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewLocal.BackColor = System.Drawing.Color.OldLace;
-            this.btnNewLocal.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnNewLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewLocal.Location = new System.Drawing.Point(283, 176);
             this.btnNewLocal.Name = "btnNewLocal";

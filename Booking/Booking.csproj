@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Empresa.cs" />
+    <Compile Include="Forms\AddLocationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddLocationForm.Designer.cs">
+      <DependentUpon>AddLocationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FromPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,12 @@
     </Compile>
     <Compile Include="Forms\NuevoPropietarioForm.Designer.cs">
       <DependentUpon>NuevoPropietarioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PropiedadesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PropiedadesForm.Designer.cs">
+      <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +96,9 @@
     </Compile>
     <Compile Include="Sesion.cs" />
     <Compile Include="Usuario.cs" />
+    <EmbeddedResource Include="Forms\AddLocationForm.resx">
+      <DependentUpon>AddLocationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FromPrincipal.resx">
       <DependentUpon>FromPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NuevoPropietarioForm.resx">
       <DependentUpon>NuevoPropietarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PropiedadesForm.resx">
+      <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

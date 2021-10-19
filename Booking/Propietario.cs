@@ -26,6 +26,7 @@ namespace Booking
 
         public void AgregarPropiedad(Propiedad prop)
         {
+            if (propiedades == null) propiedades = new List<Propiedad>();
             propiedades.Add(prop);
         }
 
