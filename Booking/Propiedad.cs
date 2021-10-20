@@ -57,6 +57,11 @@ namespace Booking
         {
             return propietario;
         }
+        public abstract TipoPropiedad getTipo();
+        public List<Servicio> getServicios()
+        {
+            return servicios;
+        }
     }
     [Serializable]
     public enum Servicio

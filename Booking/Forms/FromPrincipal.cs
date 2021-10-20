@@ -14,7 +14,7 @@ namespace Booking
 {
     public partial class FromPrincipal : Form
     {
-        Empresa empresa;
+        public Empresa empresa;
         FileStream archivo;
         BinaryFormatter binaryFormatter;
         string miArchivo = Application.StartupPath + "\\info.dat"; // archivo serializado
@@ -238,7 +238,12 @@ namespace Booking
                         propiedad = new CasaFinDeSemana(++empresa._ref, nombre, plazas, direccion, localidad, precio);
                         break;
                 }
+                propiedad.ActualizarServicios(regPropiedad.servicios);
                 empresa.AgregarPropiedad(propiedad, propietarioIndex);
+            }
+            if (MdiChildren.Length == 1 && MdiChildren[0] is PropiedadesForm) // actualizar el form mdichidren si esta abierto
+            {
+                ((PropiedadesForm)MdiChildren[0]).ActualizarLista();
             }
         }
 

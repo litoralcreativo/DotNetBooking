@@ -441,6 +441,7 @@ namespace Booking
             this.Name = "RegistroEdicionPropiedad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Registro";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegistroEdicionPropiedad_FormClosing);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).EndInit();

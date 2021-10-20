@@ -74,7 +74,30 @@ namespace Booking
         {
             return propiedades;
         }
-
+        
+        public List<Propiedad> Filter(List<TipoPropiedad> tipo = null, List<Servicio> servicios = null, int precioMaximo = 999999)
+        {
+            List<Propiedad> resultadoPropietarios = new List<Propiedad>();
+            // filtrar por propieadad
+            for (int i = 0; i < tipo.Count; i++)
+            {
+                resultadoPropietarios.AddRange(propiedades.Where(x => x.getTipo() == tipo[i]).ToList());
+            }
+            List<Propiedad> resultadoServicios = new List<Propiedad>();
+            // remover si no tienen servicio
+            for (int i = 0; i < resultadoPropietarios.Count; i++)
+            {
+                int c = 0;
+                bool inPrice = false;
+                for (int j = 0; j < servicios.Count; j++)
+                {
+                    if (resultadoPropietarios[i].getServicios().Contains(servicios[j])) c++;
+                }
+                inPrice = resultadoPropietarios[i].Precio <= precioMaximo;
+                if (c == servicios.Count && inPrice) resultadoServicios.Add(resultadoPropietarios[i]);
+            }
+            return resultadoServicios;
+        }
 
         public Usuario Login(string uName, string uPass)
         {

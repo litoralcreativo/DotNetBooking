@@ -87,6 +87,18 @@ namespace Booking
         {
             actualizarNombre();
         }
+
+        public List<Servicio> servicios = new List<Servicio>();
+
+        private void RegistroEdicionPropiedad_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (ckbAC.Checked) servicios.Add(Servicio.Ac);
+            if (ckbCochera.Checked) servicios.Add(Servicio.Cochera);
+            if (ckbDesayuno.Checked) servicios.Add(Servicio.Desayuno);
+            if (ckbMascotas.Checked) servicios.Add(Servicio.Mascotas);
+            if (ckbPiscina.Checked) servicios.Add(Servicio.Piscina);
+            if (ckbWifi.Checked) servicios.Add(Servicio.Wifi);
+        }
     }
 
 }

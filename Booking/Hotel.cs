@@ -12,8 +12,13 @@ namespace Booking
         public Hotel(int _ref, string nombre, int plazas, string dir, string loc, double precio) 
             : base(_ref, nombre, plazas, dir, loc, precio)
         {
-            
         }
+
+        public override TipoPropiedad getTipo()
+        {
+            return TipoPropiedad.Hotel;
+        }
+
         public override string Tipo()
         {
             return "Hotel";

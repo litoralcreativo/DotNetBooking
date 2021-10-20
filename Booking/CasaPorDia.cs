@@ -14,6 +14,11 @@ namespace Booking
         {
 
         }
+
+        public override TipoPropiedad getTipo()
+        {
+            return TipoPropiedad.CasaPorDia;
+        }
         public override string Tipo()
         {
             return "Casa por día";
