@@ -9,12 +9,21 @@ namespace Booking
     [Serializable]
     public class Empresa
     {
-        public static int _ref = 0;
-        public List<Usuario> usuarios = new List<Usuario>();
-        private List<Propietario> propietarios = new List<Propietario>();
-        private List<Propiedad> propiedades = new List<Propiedad>();
-        public List<string> localidades = new List<string>();
+        public int _ref;
+        public List<Usuario> usuarios;
+        private List<Propietario> propietarios;
+        private List<Propiedad> propiedades;
+        public List<string> localidades;
         public Usuario Sesion;
+
+        public Empresa()
+        {
+            _ref = 0;
+            usuarios = new List<Usuario>();
+            propietarios = new List<Propietario>();
+            propiedades = new List<Propiedad>();
+            localidades = new List<string>();
+        }
         
         public bool AgregarPropietario(Propietario prop)
         {

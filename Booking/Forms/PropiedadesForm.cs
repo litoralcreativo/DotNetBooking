@@ -28,7 +28,7 @@ namespace Booking
             {
                 Propiedad prop = propiedades[i];
                 string _ref = prop._ref.ToString();
-                string tipo = prop.tipo();
+                string tipo = prop.Tipo();
                 double precio = prop.Precio;
                 int plazas = prop.Plazas;
                 string local = prop.Localidad;

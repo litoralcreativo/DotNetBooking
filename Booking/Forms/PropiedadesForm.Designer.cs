@@ -31,16 +31,19 @@ namespace Booking
         {
             this.headerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgv = new System.Windows.Forms.DataGridView();
-            this.refColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.plazasColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.localidadColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.dirColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.localidadColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.plazasColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.refColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerPanel
@@ -50,7 +53,7 @@ namespace Booking
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(810, 28);
+            this.headerPanel.Size = new System.Drawing.Size(1244, 28);
             this.headerPanel.TabIndex = 3;
             // 
             // label1
@@ -63,12 +66,79 @@ namespace Booking
             this.label1.TabIndex = 2;
             this.label1.Text = "PROPIEDADES";
             // 
+            // monthCalendar
+            // 
+            this.monthCalendar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.monthCalendar.AnnuallyBoldedDates = new System.DateTime[] {
+        new System.DateTime(2021, 10, 17, 0, 0, 0, 0)};
+            this.monthCalendar.CalendarDimensions = new System.Drawing.Size(2, 1);
+            this.monthCalendar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monthCalendar.Location = new System.Drawing.Point(9, 12);
+            this.monthCalendar.MaxDate = new System.DateTime(2022, 12, 31, 0, 0, 0, 0);
+            this.monthCalendar.MaximumSize = new System.Drawing.Size(388, 162);
+            this.monthCalendar.MaxSelectionCount = 365;
+            this.monthCalendar.MinDate = new System.DateTime(2021, 1, 1, 0, 0, 0, 0);
+            this.monthCalendar.MinimumSize = new System.Drawing.Size(388, 162);
+            this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.ShowToday = false;
+            this.monthCalendar.ShowTodayCircle = false;
+            this.monthCalendar.TabIndex = 6;
+            this.monthCalendar.TitleBackColor = System.Drawing.Color.DarkOrange;
+            this.monthCalendar.TitleForeColor = System.Drawing.SystemColors.Control;
+            this.monthCalendar.TrailingForeColor = System.Drawing.Color.Gray;
+            // 
+            // dirColumn
+            // 
+            this.dirColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dirColumn.HeaderText = "Direccion";
+            this.dirColumn.Name = "dirColumn";
+            this.dirColumn.ReadOnly = true;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.HeaderText = "Nombre";
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.ReadOnly = true;
+            this.nameColumn.Width = 150;
+            // 
+            // localidadColumn
+            // 
+            this.localidadColumn.HeaderText = "Localidad";
+            this.localidadColumn.Name = "localidadColumn";
+            this.localidadColumn.ReadOnly = true;
+            // 
+            // plazasColumn
+            // 
+            this.plazasColumn.HeaderText = "Plazas";
+            this.plazasColumn.Name = "plazasColumn";
+            this.plazasColumn.ReadOnly = true;
+            this.plazasColumn.Width = 50;
+            // 
+            // priceColumn
+            // 
+            this.priceColumn.HeaderText = "Precio";
+            this.priceColumn.Name = "priceColumn";
+            this.priceColumn.ReadOnly = true;
+            // 
+            // typeColumn
+            // 
+            this.typeColumn.HeaderText = "Tipo";
+            this.typeColumn.Name = "typeColumn";
+            this.typeColumn.ReadOnly = true;
+            this.typeColumn.Width = 150;
+            // 
+            // refColumn
+            // 
+            this.refColumn.HeaderText = "ref";
+            this.refColumn.MinimumWidth = 40;
+            this.refColumn.Name = "refColumn";
+            this.refColumn.ReadOnly = true;
+            this.refColumn.Width = 40;
+            // 
             // dgv
             // 
             this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv.AllowUserToResizeRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.OldLace;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -79,66 +149,30 @@ namespace Booking
             this.localidadColumn,
             this.nameColumn,
             this.dirColumn});
-            this.dgv.Location = new System.Drawing.Point(12, 34);
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgv.Location = new System.Drawing.Point(0, 28);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
-            this.dgv.Size = new System.Drawing.Size(786, 345);
+            this.dgv.Size = new System.Drawing.Size(837, 421);
             this.dgv.TabIndex = 4;
             // 
-            // refColumn
+            // panel1
             // 
-            this.refColumn.HeaderText = "ref";
-            this.refColumn.MinimumWidth = 40;
-            this.refColumn.Name = "refColumn";
-            this.refColumn.ReadOnly = true;
-            this.refColumn.Width = 40;
-            // 
-            // typeColumn
-            // 
-            this.typeColumn.HeaderText = "Tipo";
-            this.typeColumn.Name = "typeColumn";
-            this.typeColumn.ReadOnly = true;
-            // 
-            // priceColumn
-            // 
-            this.priceColumn.HeaderText = "Precio";
-            this.priceColumn.Name = "priceColumn";
-            this.priceColumn.ReadOnly = true;
-            // 
-            // plazasColumn
-            // 
-            this.plazasColumn.HeaderText = "Plazas";
-            this.plazasColumn.Name = "plazasColumn";
-            this.plazasColumn.ReadOnly = true;
-            this.plazasColumn.Width = 50;
-            // 
-            // localidadColumn
-            // 
-            this.localidadColumn.HeaderText = "Localidad";
-            this.localidadColumn.Name = "localidadColumn";
-            this.localidadColumn.ReadOnly = true;
-            // 
-            // nameColumn
-            // 
-            this.nameColumn.HeaderText = "Nombre";
-            this.nameColumn.Name = "nameColumn";
-            this.nameColumn.ReadOnly = true;
-            this.nameColumn.Width = 150;
-            // 
-            // dirColumn
-            // 
-            this.dirColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dirColumn.HeaderText = "Direccion";
-            this.dirColumn.Name = "dirColumn";
-            this.dirColumn.ReadOnly = true;
+            this.panel1.Controls.Add(this.monthCalendar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(837, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(407, 421);
+            this.panel1.TabIndex = 7;
             // 
             // PropiedadesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
-            this.ClientSize = new System.Drawing.Size(810, 391);
+            this.ClientSize = new System.Drawing.Size(1244, 449);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.headerPanel);
             this.Name = "PropiedadesForm";
@@ -147,6 +181,7 @@ namespace Booking
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -155,13 +190,15 @@ namespace Booking
 
         private System.Windows.Forms.Panel headerPanel;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.DataGridView dgv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn refColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn plazasColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn localidadColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+        private System.Windows.Forms.MonthCalendar monthCalendar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dirColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn localidadColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn plazasColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn refColumn;
+        public System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -88,11 +88,5 @@ namespace Booking
             actualizarNombre();
         }
     }
-    public enum TipoPropiedad 
-    { 
-        Hotel,
-        CasaFinDeSemana,
-        CasaPorDia
-    }
 
 }

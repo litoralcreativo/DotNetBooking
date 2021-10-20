@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Booking
 {
     [Serializable]
-    public class Propiedad
+    public abstract class Propiedad
     {
         public readonly int _ref;
         public string Nombre { get; set; }
@@ -49,7 +49,7 @@ namespace Booking
         {
             propietario = prop;
         }
-        public string tipo()
+        public virtual string Tipo()
         {
             return "Propiedad abstracta";
         }
@@ -69,4 +69,10 @@ namespace Booking
         Mascotas
     }
 
+    public enum TipoPropiedad
+    {
+        Hotel,
+        CasaFinDeSemana,
+        CasaPorDia
+    }
 }

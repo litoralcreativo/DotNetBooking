@@ -39,15 +39,17 @@ namespace Booking
             {
                 empresa = new Empresa();
             }
-
-            /****TEST****
-            Usuario u = new Usuario("admin", "admin");
-            u.Nombre = "administrador";
-            u.Apellido = "administrador";
-            u.Categoria = CategoriaUsuario.Administrador;
-            empresa.AgregarUsuario(u);
-            empresa.localidades = new List<string>();
-            empresa.propiedades = new List<Propiedad>();
+            if (empresa.usuarios == null || empresa.usuarios.Count == 0)
+            {
+                Usuario u = new Usuario("admin", "admin");
+                u.Nombre = "administrador";
+                u.Apellido = "administrador";
+                u.Categoria = CategoriaUsuario.Administrador;
+                empresa.AgregarUsuario(u);
+            }
+            /****TEST****/
+            //empresa.localidades = new List<string>();
+            //empresa.propiedades = new List<Propiedad>();
             /****TEST****/
 
             ActualizarMenuStrip();
@@ -223,7 +225,19 @@ namespace Booking
                 string direccion = regPropiedad.tbDireccion.Text;
                 int plazas = Convert.ToInt32(regPropiedad.nudPlazas.Value);
                 double precio = Convert.ToDouble(regPropiedad.nudPrecioBase.Value);
-                Propiedad propiedad = new Propiedad(++Empresa._ref, nombre, plazas, direccion, localidad, precio);
+                Propiedad propiedad = null;
+                switch (tipoPropiedad)
+                {
+                    case TipoPropiedad.Hotel:
+                        propiedad = new Hotel(++empresa._ref, nombre, plazas, direccion, localidad, precio);
+                        break;
+                    case TipoPropiedad.CasaPorDia:
+                        propiedad = new CasaPorDia(++empresa._ref, nombre, plazas, direccion, localidad, precio);
+                        break;
+                    case TipoPropiedad.CasaFinDeSemana:
+                        propiedad = new CasaFinDeSemana(++empresa._ref, nombre, plazas, direccion, localidad, precio);
+                        break;
+                }
                 empresa.AgregarPropiedad(propiedad, propietarioIndex);
             }
         }
