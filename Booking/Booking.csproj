@@ -56,6 +56,7 @@
     <Compile Include="Forms\AddLocationForm.Designer.cs">
       <DependentUpon>AddLocationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Cliente.cs" />
     <Compile Include="Forms\FormMonth.cs">
       <SubType>Form</SubType>
     </Compile>
