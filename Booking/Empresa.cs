@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -74,29 +75,52 @@ namespace Booking
         {
             return propiedades;
         }
+        public Propiedad GetPropiedad(int _ref)
+        {
+            propiedades.Sort();
+            Propiedad otro = new Hotel(_ref,"otro",1,"dir","loc",0);
+            int index = propiedades.BinarySearch(otro);
+            if (index >= 0)
+            {
+                return propiedades[index];
+            }
+            return null;
+        }
         
-        public List<Propiedad> Filter(List<TipoPropiedad> tipo = null, List<Servicio> servicios = null, int precioMaximo = 999999)
+        public List<Propiedad> Filter(Query query)
         {
             List<Propiedad> resultadoPropietarios = new List<Propiedad>();
-            // filtrar por propieadad
-            for (int i = 0; i < tipo.Count; i++)
+            List<Propiedad> resultado = new List<Propiedad>();
+            
+            // filtrar por propieadad(es)
+            for (int i = 0; i < query.tipo.Count; i++)
             {
-                resultadoPropietarios.AddRange(propiedades.Where(x => x.getTipo() == tipo[i]).ToList());
+                resultadoPropietarios.AddRange(propiedades.Where(x => x.getTipo() == query.tipo[i]).ToList());
             }
-            List<Propiedad> resultadoServicios = new List<Propiedad>();
-            // remover si no tienen servicio
+            
+            // resto de filtros
             for (int i = 0; i < resultadoPropietarios.Count; i++)
             {
-                int c = 0;
-                bool inPrice = false;
-                for (int j = 0; j < servicios.Count; j++)
+                int servCont = 0;
+                Propiedad prop = resultadoPropietarios[i];
+                bool inPrice = prop.Precio <= query.precioMaximo && prop.Precio >= query.precioMinimo;
+                int numPlazas = prop.Plazas;
+
+                // cherquear q tenga todos los servicios
+                for (int j = 0; j < query.servicios.Count; j++)
                 {
-                    if (resultadoPropietarios[i].getServicios().Contains(servicios[j])) c++;
+                    if (prop.getServicios().Contains(query.servicios[j])) servCont++;
                 }
-                inPrice = resultadoPropietarios[i].Precio <= precioMaximo;
-                if (c == servicios.Count && inPrice) resultadoServicios.Add(resultadoPropietarios[i]);
+
+                if (
+                    servCont == query.servicios.Count &&        // tiene todos los servicios
+                    inPrice &&                                  // esta en precio
+                    (query.exactPlazas ?                        // numero de plazas es
+                        (numPlazas == query.plazas) :             // igual
+                        (numPlazas >= query.plazas))               // o mayor
+                    ) resultado.Add(prop);
             }
-            return resultadoServicios;
+            return resultado;
         }
 
         public Usuario Login(string uName, string uPass)

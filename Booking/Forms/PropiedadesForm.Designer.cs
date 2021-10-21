@@ -32,21 +32,6 @@ namespace Booking
             this.headerPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ckbDesayuno = new System.Windows.Forms.CheckBox();
-            this.ckbPiscina = new System.Windows.Forms.CheckBox();
-            this.ckbCochera = new System.Windows.Forms.CheckBox();
-            this.ckbWifi = new System.Windows.Forms.CheckBox();
-            this.ckbAC = new System.Windows.Forms.CheckBox();
-            this.ckbMascotas = new System.Windows.Forms.CheckBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ckbHotel = new System.Windows.Forms.CheckBox();
-            this.ckbCasaFDS = new System.Windows.Forms.CheckBox();
-            this.ckbCasaPorDia = new System.Windows.Forms.CheckBox();
             this.refColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,19 +45,45 @@ namespace Booking
             this.columnWifi = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.columnCochera = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.columnPiscina = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDisponibilidad = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rbPlazasMinimas = new System.Windows.Forms.RadioButton();
+            this.lblPlazas = new System.Windows.Forms.Label();
+            this.rbPlazasExactas = new System.Windows.Forms.RadioButton();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.nudMaxValue = new System.Windows.Forms.NumericUpDown();
+            this.nudMinValue = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblPrecioMaximo = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ckbDesayuno = new System.Windows.Forms.CheckBox();
+            this.ckbPiscina = new System.Windows.Forms.CheckBox();
+            this.ckbCochera = new System.Windows.Forms.CheckBox();
+            this.ckbWifi = new System.Windows.Forms.CheckBox();
+            this.ckbAC = new System.Windows.Forms.CheckBox();
+            this.ckbMascotas = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ckbHotel = new System.Windows.Forms.CheckBox();
+            this.ckbCasaFDS = new System.Windows.Forms.CheckBox();
+            this.ckbCasaPorDia = new System.Windows.Forms.CheckBox();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinValue)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerPanel
@@ -82,7 +93,7 @@ namespace Booking
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1264, 28);
+            this.headerPanel.Size = new System.Drawing.Size(1224, 28);
             this.headerPanel.TabIndex = 3;
             // 
             // label1
@@ -97,6 +108,7 @@ namespace Booking
             // 
             // dgv
             // 
+            this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.AllowUserToResizeRows = false;
             this.dgv.BackgroundColor = System.Drawing.Color.OldLace;
@@ -117,186 +129,13 @@ namespace Booking
             this.columnPiscina});
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(0, 28);
+            this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
-            this.dgv.Size = new System.Drawing.Size(857, 469);
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgv.Size = new System.Drawing.Size(858, 469);
             this.dgv.TabIndex = 4;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(857, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(407, 469);
-            this.panel1.TabIndex = 7;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 7);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(383, 279);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtrar Propiedad";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(9, 74);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(368, 80);
-            this.groupBox3.TabIndex = 11;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Servicios";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.ckbDesayuno);
-            this.flowLayoutPanel1.Controls.Add(this.ckbPiscina);
-            this.flowLayoutPanel1.Controls.Add(this.ckbCochera);
-            this.flowLayoutPanel1.Controls.Add(this.ckbWifi);
-            this.flowLayoutPanel1.Controls.Add(this.ckbAC);
-            this.flowLayoutPanel1.Controls.Add(this.ckbMascotas);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 17);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(362, 60);
-            this.flowLayoutPanel1.TabIndex = 10;
-            // 
-            // ckbDesayuno
-            // 
-            this.ckbDesayuno.AutoSize = true;
-            this.ckbDesayuno.Location = new System.Drawing.Point(3, 3);
-            this.ckbDesayuno.Name = "ckbDesayuno";
-            this.ckbDesayuno.Size = new System.Drawing.Size(81, 19);
-            this.ckbDesayuno.TabIndex = 0;
-            this.ckbDesayuno.Text = "Desayuno";
-            this.ckbDesayuno.UseVisualStyleBackColor = true;
-            this.ckbDesayuno.CheckedChanged += new System.EventHandler(this.ckbDesayuno_CheckedChanged);
-            // 
-            // ckbPiscina
-            // 
-            this.ckbPiscina.AutoSize = true;
-            this.ckbPiscina.Location = new System.Drawing.Point(90, 3);
-            this.ckbPiscina.Name = "ckbPiscina";
-            this.ckbPiscina.Size = new System.Drawing.Size(66, 19);
-            this.ckbPiscina.TabIndex = 0;
-            this.ckbPiscina.Text = "Piscina";
-            this.ckbPiscina.UseVisualStyleBackColor = true;
-            this.ckbPiscina.CheckedChanged += new System.EventHandler(this.ckbPiscina_CheckedChanged);
-            // 
-            // ckbCochera
-            // 
-            this.ckbCochera.AutoSize = true;
-            this.ckbCochera.Location = new System.Drawing.Point(162, 3);
-            this.ckbCochera.Name = "ckbCochera";
-            this.ckbCochera.Size = new System.Drawing.Size(72, 19);
-            this.ckbCochera.TabIndex = 2;
-            this.ckbCochera.Text = "Cochera";
-            this.ckbCochera.UseVisualStyleBackColor = true;
-            this.ckbCochera.CheckedChanged += new System.EventHandler(this.ckbCochera_CheckedChanged);
-            // 
-            // ckbWifi
-            // 
-            this.ckbWifi.AutoSize = true;
-            this.ckbWifi.Location = new System.Drawing.Point(240, 3);
-            this.ckbWifi.Name = "ckbWifi";
-            this.ckbWifi.Size = new System.Drawing.Size(46, 19);
-            this.ckbWifi.TabIndex = 0;
-            this.ckbWifi.Text = "Wifi";
-            this.ckbWifi.UseVisualStyleBackColor = true;
-            this.ckbWifi.CheckedChanged += new System.EventHandler(this.ckbWifi_CheckedChanged);
-            // 
-            // ckbAC
-            // 
-            this.ckbAC.AutoSize = true;
-            this.ckbAC.Location = new System.Drawing.Point(292, 3);
-            this.ckbAC.Name = "ckbAC";
-            this.ckbAC.Size = new System.Drawing.Size(41, 19);
-            this.ckbAC.TabIndex = 1;
-            this.ckbAC.Text = "AC";
-            this.ckbAC.UseVisualStyleBackColor = true;
-            this.ckbAC.CheckedChanged += new System.EventHandler(this.ckbAC_CheckedChanged);
-            // 
-            // ckbMascotas
-            // 
-            this.ckbMascotas.AutoSize = true;
-            this.ckbMascotas.Location = new System.Drawing.Point(3, 28);
-            this.ckbMascotas.Name = "ckbMascotas";
-            this.ckbMascotas.Size = new System.Drawing.Size(79, 19);
-            this.ckbMascotas.TabIndex = 3;
-            this.ckbMascotas.Text = "Mascotas";
-            this.ckbMascotas.UseVisualStyleBackColor = true;
-            this.ckbMascotas.CheckedChanged += new System.EventHandler(this.ckbMascotas_CheckedChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.flowLayoutPanel2);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(6, 19);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(371, 49);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tipo de Propiedad";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.ckbHotel);
-            this.flowLayoutPanel2.Controls.Add(this.ckbCasaFDS);
-            this.flowLayoutPanel2.Controls.Add(this.ckbCasaPorDia);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 17);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(365, 29);
-            this.flowLayoutPanel2.TabIndex = 12;
-            // 
-            // ckbHotel
-            // 
-            this.ckbHotel.AutoSize = true;
-            this.ckbHotel.Checked = true;
-            this.ckbHotel.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbHotel.Location = new System.Drawing.Point(3, 3);
-            this.ckbHotel.Name = "ckbHotel";
-            this.ckbHotel.Size = new System.Drawing.Size(55, 19);
-            this.ckbHotel.TabIndex = 0;
-            this.ckbHotel.Text = "Hotel";
-            this.ckbHotel.UseVisualStyleBackColor = true;
-            this.ckbHotel.CheckedChanged += new System.EventHandler(this.ckbHotel_CheckedChanged);
-            // 
-            // ckbCasaFDS
-            // 
-            this.ckbCasaFDS.AutoSize = true;
-            this.ckbCasaFDS.Checked = true;
-            this.ckbCasaFDS.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbCasaFDS.Location = new System.Drawing.Point(64, 3);
-            this.ckbCasaFDS.Name = "ckbCasaFDS";
-            this.ckbCasaFDS.Size = new System.Drawing.Size(152, 19);
-            this.ckbCasaFDS.TabIndex = 1;
-            this.ckbCasaFDS.Text = "Casa de fin de semana";
-            this.ckbCasaFDS.UseVisualStyleBackColor = true;
-            this.ckbCasaFDS.CheckedChanged += new System.EventHandler(this.ckbCasaFDS_CheckedChanged);
-            // 
-            // ckbCasaPorDia
-            // 
-            this.ckbCasaPorDia.AutoSize = true;
-            this.ckbCasaPorDia.Checked = true;
-            this.ckbCasaPorDia.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbCasaPorDia.Location = new System.Drawing.Point(222, 3);
-            this.ckbCasaPorDia.Name = "ckbCasaPorDia";
-            this.ckbCasaPorDia.Size = new System.Drawing.Size(95, 19);
-            this.ckbCasaPorDia.TabIndex = 2;
-            this.ckbCasaPorDia.Text = "Casa por día";
-            this.ckbCasaPorDia.UseVisualStyleBackColor = true;
-            this.ckbCasaPorDia.CheckedChanged += new System.EventHandler(this.ckbCasaPorDia_CheckedChanged);
             // 
             // refColumn
             // 
@@ -393,66 +232,373 @@ namespace Booking
             this.columnPiscina.ReadOnly = true;
             this.columnPiscina.Width = 35;
             // 
-            // trackBar1
+            // panel1
             // 
-            this.trackBar1.LargeChange = 100;
-            this.trackBar1.Location = new System.Drawing.Point(6, 19);
-            this.trackBar1.Maximum = 5000;
-            this.trackBar1.Minimum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(292, 45);
-            this.trackBar1.SmallChange = 100;
-            this.trackBar1.TabIndex = 12;
-            this.trackBar1.Value = 5000;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.panel1.Controls.Add(this.btnDisponibilidad);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(858, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(366, 469);
+            this.panel1.TabIndex = 7;
+            // 
+            // btnDisponibilidad
+            // 
+            this.btnDisponibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDisponibilidad.BackColor = System.Drawing.Color.OldLace;
+            this.btnDisponibilidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDisponibilidad.Location = new System.Drawing.Point(237, 264);
+            this.btnDisponibilidad.Name = "btnDisponibilidad";
+            this.btnDisponibilidad.Size = new System.Drawing.Size(117, 26);
+            this.btnDisponibilidad.TabIndex = 8;
+            this.btnDisponibilidad.Text = "Ver Disponibilidad";
+            this.btnDisponibilidad.UseVisualStyleBackColor = false;
+            this.btnDisponibilidad.Click += new System.EventHandler(this.btnDisponibilidad_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.groupBox5);
+            this.groupBox1.Controls.Add(this.groupBox4);
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Location = new System.Drawing.Point(12, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(342, 251);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filtrar Propiedad";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.rbPlazasMinimas);
+            this.groupBox5.Controls.Add(this.lblPlazas);
+            this.groupBox5.Controls.Add(this.rbPlazasExactas);
+            this.groupBox5.Controls.Add(this.trackBar2);
+            this.groupBox5.Location = new System.Drawing.Point(184, 160);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(148, 78);
+            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Plazas";
+            // 
+            // rbPlazasMinimas
+            // 
+            this.rbPlazasMinimas.AutoSize = true;
+            this.rbPlazasMinimas.Checked = true;
+            this.rbPlazasMinimas.Location = new System.Drawing.Point(75, 49);
+            this.rbPlazasMinimas.Name = "rbPlazasMinimas";
+            this.rbPlazasMinimas.Size = new System.Drawing.Size(63, 17);
+            this.rbPlazasMinimas.TabIndex = 14;
+            this.rbPlazasMinimas.TabStop = true;
+            this.rbPlazasMinimas.Text = "Minimas";
+            this.rbPlazasMinimas.UseVisualStyleBackColor = true;
+            this.rbPlazasMinimas.CheckedChanged += new System.EventHandler(this.rbPlazasMinimas_CheckedChanged);
+            // 
+            // lblPlazas
+            // 
+            this.lblPlazas.AutoSize = true;
+            this.lblPlazas.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.lblPlazas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlazas.Location = new System.Drawing.Point(124, 23);
+            this.lblPlazas.Name = "lblPlazas";
+            this.lblPlazas.Size = new System.Drawing.Size(14, 13);
+            this.lblPlazas.TabIndex = 13;
+            this.lblPlazas.Text = "1";
+            // 
+            // rbPlazasExactas
+            // 
+            this.rbPlazasExactas.AutoSize = true;
+            this.rbPlazasExactas.Location = new System.Drawing.Point(6, 49);
+            this.rbPlazasExactas.Name = "rbPlazasExactas";
+            this.rbPlazasExactas.Size = new System.Drawing.Size(63, 17);
+            this.rbPlazasExactas.TabIndex = 14;
+            this.rbPlazasExactas.Text = "Exactas";
+            this.rbPlazasExactas.UseVisualStyleBackColor = true;
+            this.rbPlazasExactas.CheckedChanged += new System.EventHandler(this.rbPlazasExactas_CheckedChanged);
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.LargeChange = 2;
+            this.trackBar2.Location = new System.Drawing.Point(6, 19);
+            this.trackBar2.Minimum = 1;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(112, 45);
+            this.trackBar2.TabIndex = 12;
+            this.trackBar2.Value = 1;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.nudMaxValue);
+            this.groupBox4.Controls.Add(this.nudMinValue);
+            this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.lblPrecioMaximo);
-            this.groupBox4.Controls.Add(this.trackBar1);
             this.groupBox4.Location = new System.Drawing.Point(12, 160);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(365, 72);
+            this.groupBox4.Size = new System.Drawing.Size(166, 78);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Precio Maximo";
+            this.groupBox4.Text = "Precio";
+            // 
+            // nudMaxValue
+            // 
+            this.nudMaxValue.Increment = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.nudMaxValue.Location = new System.Drawing.Point(50, 47);
+            this.nudMaxValue.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nudMaxValue.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudMaxValue.Name = "nudMaxValue";
+            this.nudMaxValue.Size = new System.Drawing.Size(106, 20);
+            this.nudMaxValue.TabIndex = 14;
+            this.nudMaxValue.Value = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nudMaxValue.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            // 
+            // nudMinValue
+            // 
+            this.nudMinValue.Increment = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.nudMinValue.Location = new System.Drawing.Point(50, 21);
+            this.nudMinValue.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudMinValue.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nudMinValue.Name = "nudMinValue";
+            this.nudMinValue.Size = new System.Drawing.Size(106, 20);
+            this.nudMinValue.TabIndex = 14;
+            this.nudMinValue.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nudMinValue.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(17, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Max:";
             // 
             // lblPrecioMaximo
             // 
             this.lblPrecioMaximo.AutoSize = true;
-            this.lblPrecioMaximo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblPrecioMaximo.Location = new System.Drawing.Point(304, 19);
+            this.lblPrecioMaximo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioMaximo.Location = new System.Drawing.Point(17, 23);
             this.lblPrecioMaximo.Name = "lblPrecioMaximo";
-            this.lblPrecioMaximo.Size = new System.Drawing.Size(48, 17);
+            this.lblPrecioMaximo.Size = new System.Drawing.Size(27, 13);
             this.lblPrecioMaximo.TabIndex = 13;
-            this.lblPrecioMaximo.Text = "$5000";
+            this.lblPrecioMaximo.Text = "Min:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(9, 74);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(326, 80);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Servicios";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.ckbDesayuno);
+            this.flowLayoutPanel1.Controls.Add(this.ckbPiscina);
+            this.flowLayoutPanel1.Controls.Add(this.ckbCochera);
+            this.flowLayoutPanel1.Controls.Add(this.ckbWifi);
+            this.flowLayoutPanel1.Controls.Add(this.ckbAC);
+            this.flowLayoutPanel1.Controls.Add(this.ckbMascotas);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(320, 60);
+            this.flowLayoutPanel1.TabIndex = 10;
+            // 
+            // ckbDesayuno
+            // 
+            this.ckbDesayuno.AutoSize = true;
+            this.ckbDesayuno.Location = new System.Drawing.Point(3, 3);
+            this.ckbDesayuno.Name = "ckbDesayuno";
+            this.ckbDesayuno.Size = new System.Drawing.Size(81, 19);
+            this.ckbDesayuno.TabIndex = 0;
+            this.ckbDesayuno.Text = "Desayuno";
+            this.ckbDesayuno.UseVisualStyleBackColor = true;
+            this.ckbDesayuno.CheckedChanged += new System.EventHandler(this.ckbDesayuno_CheckedChanged);
+            // 
+            // ckbPiscina
+            // 
+            this.ckbPiscina.AutoSize = true;
+            this.ckbPiscina.Location = new System.Drawing.Point(90, 3);
+            this.ckbPiscina.Name = "ckbPiscina";
+            this.ckbPiscina.Size = new System.Drawing.Size(66, 19);
+            this.ckbPiscina.TabIndex = 0;
+            this.ckbPiscina.Text = "Piscina";
+            this.ckbPiscina.UseVisualStyleBackColor = true;
+            this.ckbPiscina.CheckedChanged += new System.EventHandler(this.ckbPiscina_CheckedChanged);
+            // 
+            // ckbCochera
+            // 
+            this.ckbCochera.AutoSize = true;
+            this.ckbCochera.Location = new System.Drawing.Point(162, 3);
+            this.ckbCochera.Name = "ckbCochera";
+            this.ckbCochera.Size = new System.Drawing.Size(72, 19);
+            this.ckbCochera.TabIndex = 2;
+            this.ckbCochera.Text = "Cochera";
+            this.ckbCochera.UseVisualStyleBackColor = true;
+            this.ckbCochera.CheckedChanged += new System.EventHandler(this.ckbCochera_CheckedChanged);
+            // 
+            // ckbWifi
+            // 
+            this.ckbWifi.AutoSize = true;
+            this.ckbWifi.Location = new System.Drawing.Point(240, 3);
+            this.ckbWifi.Name = "ckbWifi";
+            this.ckbWifi.Size = new System.Drawing.Size(46, 19);
+            this.ckbWifi.TabIndex = 0;
+            this.ckbWifi.Text = "Wifi";
+            this.ckbWifi.UseVisualStyleBackColor = true;
+            this.ckbWifi.CheckedChanged += new System.EventHandler(this.ckbWifi_CheckedChanged);
+            // 
+            // ckbAC
+            // 
+            this.ckbAC.AutoSize = true;
+            this.ckbAC.Location = new System.Drawing.Point(3, 28);
+            this.ckbAC.Name = "ckbAC";
+            this.ckbAC.Size = new System.Drawing.Size(41, 19);
+            this.ckbAC.TabIndex = 1;
+            this.ckbAC.Text = "AC";
+            this.ckbAC.UseVisualStyleBackColor = true;
+            this.ckbAC.CheckedChanged += new System.EventHandler(this.ckbAC_CheckedChanged);
+            // 
+            // ckbMascotas
+            // 
+            this.ckbMascotas.AutoSize = true;
+            this.ckbMascotas.Location = new System.Drawing.Point(50, 28);
+            this.ckbMascotas.Name = "ckbMascotas";
+            this.ckbMascotas.Size = new System.Drawing.Size(79, 19);
+            this.ckbMascotas.TabIndex = 3;
+            this.ckbMascotas.Text = "Mascotas";
+            this.ckbMascotas.UseVisualStyleBackColor = true;
+            this.ckbMascotas.CheckedChanged += new System.EventHandler(this.ckbMascotas_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.flowLayoutPanel2);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(6, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(329, 49);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Tipo de Propiedad";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.ckbHotel);
+            this.flowLayoutPanel2.Controls.Add(this.ckbCasaFDS);
+            this.flowLayoutPanel2.Controls.Add(this.ckbCasaPorDia);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 17);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(323, 29);
+            this.flowLayoutPanel2.TabIndex = 12;
+            // 
+            // ckbHotel
+            // 
+            this.ckbHotel.AutoSize = true;
+            this.ckbHotel.Checked = true;
+            this.ckbHotel.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbHotel.Location = new System.Drawing.Point(3, 3);
+            this.ckbHotel.Name = "ckbHotel";
+            this.ckbHotel.Size = new System.Drawing.Size(55, 19);
+            this.ckbHotel.TabIndex = 0;
+            this.ckbHotel.Text = "Hotel";
+            this.ckbHotel.UseVisualStyleBackColor = true;
+            this.ckbHotel.CheckedChanged += new System.EventHandler(this.ckbHotel_CheckedChanged);
+            // 
+            // ckbCasaFDS
+            // 
+            this.ckbCasaFDS.AutoSize = true;
+            this.ckbCasaFDS.Checked = true;
+            this.ckbCasaFDS.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbCasaFDS.Location = new System.Drawing.Point(64, 3);
+            this.ckbCasaFDS.Name = "ckbCasaFDS";
+            this.ckbCasaFDS.Size = new System.Drawing.Size(152, 19);
+            this.ckbCasaFDS.TabIndex = 1;
+            this.ckbCasaFDS.Text = "Casa de fin de semana";
+            this.ckbCasaFDS.UseVisualStyleBackColor = true;
+            this.ckbCasaFDS.CheckedChanged += new System.EventHandler(this.ckbCasaFDS_CheckedChanged);
+            // 
+            // ckbCasaPorDia
+            // 
+            this.ckbCasaPorDia.AutoSize = true;
+            this.ckbCasaPorDia.Checked = true;
+            this.ckbCasaPorDia.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbCasaPorDia.Location = new System.Drawing.Point(222, 3);
+            this.ckbCasaPorDia.Name = "ckbCasaPorDia";
+            this.ckbCasaPorDia.Size = new System.Drawing.Size(95, 19);
+            this.ckbCasaPorDia.TabIndex = 2;
+            this.ckbCasaPorDia.Text = "Casa por día";
+            this.ckbCasaPorDia.UseVisualStyleBackColor = true;
+            this.ckbCasaPorDia.CheckedChanged += new System.EventHandler(this.ckbCasaPorDia_CheckedChanged);
             // 
             // PropiedadesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
-            this.ClientSize = new System.Drawing.Size(1264, 497);
+            this.ClientSize = new System.Drawing.Size(1224, 497);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.headerPanel);
             this.Name = "PropiedadesForm";
             this.Text = "PropiedadesForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PropiedadesForm_FormClosing);
+            this.Load += new System.EventHandler(this.PropiedadesForm_Load);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinValue)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -490,8 +636,16 @@ namespace Booking
         private System.Windows.Forms.DataGridViewCheckBoxColumn columnWifi;
         private System.Windows.Forms.DataGridViewCheckBoxColumn columnCochera;
         private System.Windows.Forms.DataGridViewCheckBoxColumn columnPiscina;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label lblPlazas;
+        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.RadioButton rbPlazasMinimas;
+        private System.Windows.Forms.RadioButton rbPlazasExactas;
+        private System.Windows.Forms.NumericUpDown nudMaxValue;
+        private System.Windows.Forms.NumericUpDown nudMinValue;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPrecioMaximo;
+        private System.Windows.Forms.Button btnDisponibilidad;
     }
 }

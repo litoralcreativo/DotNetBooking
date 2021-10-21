@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Booking
 {
     [Serializable]
-    public abstract class Propiedad
+    public abstract class Propiedad : IComparable
     {
         public readonly int _ref;
         public string Nombre { get; set; }
@@ -18,6 +18,8 @@ namespace Booking
         public List<string> imagenes;
         private List<Servicio> servicios;
         private Propietario propietario;
+        private List<DateTime> fechasReservadas;
+
         public Propiedad(int _ref, string nombre, int plazas, string dir, string loc, double precio)
         {
             this._ref = _ref;
@@ -28,6 +30,7 @@ namespace Booking
             Precio = precio;
             imagenes = new List<string>();
             servicios = new List<Servicio>();
+            fechasReservadas = new List<DateTime>();
         }
         public void ActualizarServicios(List<Servicio> ser)
         {
@@ -62,7 +65,26 @@ namespace Booking
         {
             return servicios;
         }
+        public List<DateTime> FechasReservadas()
+        {
+            return fechasReservadas;
+        }
+        public void ReservarFechas(List<DateTime> fechas)
+        {
+            fechasReservadas.AddRange(fechas);
+        }
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Propiedad otherProp = obj as Propiedad;
+            if (otherProp != null)
+                return this._ref.CompareTo(otherProp._ref);
+            else
+                throw new ArgumentException("El objeto no es una Propiedad");
+        }
     }
+    
     [Serializable]
     public enum Servicio
     {
@@ -73,7 +95,8 @@ namespace Booking
         Cochera,
         Mascotas
     }
-
+    
+    [Serializable]
     public enum TipoPropiedad
     {
         Hotel,
