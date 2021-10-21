@@ -45,7 +45,7 @@ namespace Booking
         public void UpdateCalendar()
         {
             lblMonth.Text = $"{dt.ToString("MMMM")}, {dt.Year}";
-            DateTime firstDayOfMonth = dt.AddDays(-dt.Day+1);
+            DateTime firstDayOfMonth = dt.AddDays(-dt.Day+1); // 21/10 --> 1/10
             int offset;
             switch (firstDayOfMonth.DayOfWeek)
             {
@@ -103,7 +103,9 @@ namespace Booking
                 {
                     if (dayOfCalendar.Month == dt.Month)
                     {
-                        if (dayOfCalendar.DayOfWeek == DayOfWeek.Saturday || dayOfCalendar.DayOfWeek == DayOfWeek.Sunday)
+                        if (dayOfCalendar.DayOfWeek == DayOfWeek.Friday
+                            || dayOfCalendar.DayOfWeek == DayOfWeek.Saturday
+                            || dayOfCalendar.DayOfWeek == DayOfWeek.Sunday)
                         disponible = true;
                         else
                         disponible = false;
@@ -119,6 +121,12 @@ namespace Booking
                 PaintDayOfCalendar(daysControls[i], thisMonth, dayOfCalendar.Day, textoSecundario, today, reservado, disponible, selected);
                 dayOfCalendar = dayOfCalendar.AddDays(1);
             }
+            UpdatePresupuesto();
+        }
+
+        private void UpdatePresupuesto()
+        {
+            
         }
 
         public void PaintDayOfCalendar(Control control, bool thisMonth, int number, string text = "", bool today = false, bool reservado = true, bool disponible = true, bool selected = false)
@@ -171,8 +179,74 @@ namespace Booking
             if (noDisponibles.Contains(dtSelected)) canSelect = false;
             if (canSelect) // si es una fecha seleccionable
             {
-                if (selectedDates.Contains(dtSelected)) selectedDates.Remove(dtSelected);
-                else selectedDates.Add(dtSelected);
+                if (selectedDates.Contains(dtSelected))
+                {
+                    if (propiedad is CasaFinDeSemana) // seleccionar todo los dias
+                    {
+                        switch (dtSelected.DayOfWeek)
+                        {
+                            case DayOfWeek.Friday:
+                                {
+                                    selectedDates.Remove(dtSelected);
+                                    if(selectedDates.Contains(dtSelected.AddDays(1))) selectedDates.Remove(dtSelected.AddDays(1));
+                                    if(selectedDates.Contains(dtSelected.AddDays(2))) selectedDates.Remove(dtSelected.AddDays(2));
+                                    break;
+                                }
+                            case DayOfWeek.Saturday:
+                                {
+                                    selectedDates.Remove(dtSelected);
+                                    if (selectedDates.Contains(dtSelected.AddDays(-1))) selectedDates.Remove(dtSelected.AddDays(-1));
+                                    if (selectedDates.Contains(dtSelected.AddDays(1))) selectedDates.Remove(dtSelected.AddDays(1));
+                                    break;
+                                }
+                            case DayOfWeek.Sunday:
+                                {
+                                    selectedDates.Remove(dtSelected);
+                                    if (selectedDates.Contains(dtSelected.AddDays(-1))) selectedDates.Remove(dtSelected.AddDays(-1));
+                                    if (selectedDates.Contains(dtSelected.AddDays(-2))) selectedDates.Remove(dtSelected.AddDays(-2));
+                                    break;
+                                }
+                        }
+                    } 
+                    else
+                    {
+                        selectedDates.Remove(dtSelected);
+                    }
+                }
+                else
+                {
+                    if (propiedad is CasaFinDeSemana) // seleccionar todo los dias
+                    {
+                        switch (dtSelected.DayOfWeek)
+                        {
+                            case DayOfWeek.Friday:
+                                {
+                                    selectedDates.Add(dtSelected);
+                                    selectedDates.Add(dtSelected.AddDays(1));
+                                    selectedDates.Add(dtSelected.AddDays(2));
+                                    break;
+                                }
+                            case DayOfWeek.Saturday:
+                                {
+                                    selectedDates.Add(dtSelected.AddDays(-1));
+                                    selectedDates.Add(dtSelected);
+                                    selectedDates.Add(dtSelected.AddDays(1));
+                                    break;
+                                }
+                            case DayOfWeek.Sunday:
+                                {
+                                    selectedDates.Add(dtSelected);
+                                    selectedDates.Add(dtSelected.AddDays(-1));
+                                    selectedDates.Add(dtSelected.AddDays(-2));
+                                    break;
+                                }
+                        }
+                    } 
+                    else
+                    {
+                        selectedDates.Add(dtSelected);
+                    }
+                }
             }
             UpdateCalendar();
         }
@@ -208,6 +282,5 @@ namespace Booking
             dragging = false;
         }
         #endregion
-
     }
 }

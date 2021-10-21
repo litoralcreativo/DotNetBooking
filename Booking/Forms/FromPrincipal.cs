@@ -229,10 +229,10 @@ namespace Booking
                 switch (tipoPropiedad)
                 {
                     case TipoPropiedad.Hotel:
-                        propiedad = new Hotel(++empresa._ref, nombre, plazas, direccion, localidad, precio);
+                        propiedad = new Hotel(++empresa._ref, nombre, plazas, direccion, localidad, precio, 5);
                         break;
                     case TipoPropiedad.CasaPorDia:
-                        propiedad = new CasaPorDia(++empresa._ref, nombre, plazas, direccion, localidad, precio);
+                        propiedad = new CasaPorDia(++empresa._ref, nombre, plazas, direccion, localidad, precio, 5);
                         break;
                     case TipoPropiedad.CasaFinDeSemana:
                         propiedad = new CasaFinDeSemana(++empresa._ref, nombre, plazas, direccion, localidad, precio);

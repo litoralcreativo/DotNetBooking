@@ -56,7 +56,7 @@
     <Compile Include="Forms\AddLocationForm.Designer.cs">
       <DependentUpon>AddLocationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Cliente.cs" />
+    <Compile Include="Cliente.cs" />
     <Compile Include="Forms\FormMonth.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,7 +87,8 @@
     <Compile Include="Forms\PropiedadesForm.Designer.cs">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Query.cs" />
+    <Compile Include="Query.cs" />
+    <Compile Include="Reserva.cs" />
     <Compile Include="Hotel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

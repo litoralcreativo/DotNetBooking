@@ -78,7 +78,7 @@ namespace Booking
         public Propiedad GetPropiedad(int _ref)
         {
             propiedades.Sort();
-            Propiedad otro = new Hotel(_ref,"otro",1,"dir","loc",0);
+            Propiedad otro = new Hotel(_ref,"otro",1,"dir","loc",0, 5);
             int index = propiedades.BinarySearch(otro);
             if (index >= 0)
             {

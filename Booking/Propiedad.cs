@@ -44,10 +44,7 @@ namespace Booking
         {
             return imagenes;
         }
-        public double presupuestar(DateTime ingreso, DateTime salida)
-        {
-            return 0;
-        }
+        public abstract double Presupuestar(int unitarios);
         public void AgregarPropietario(Propietario prop)
         {
             propietario = prop;
@@ -83,6 +80,7 @@ namespace Booking
             else
                 throw new ArgumentException("El objeto no es una Propiedad");
         }
+
     }
     
     [Serializable]

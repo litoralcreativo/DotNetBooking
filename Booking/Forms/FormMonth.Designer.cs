@@ -175,6 +175,18 @@ namespace Booking
             this.btnOk = new System.Windows.Forms.Button();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label94 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.lblIngreso = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
+            this.lblPresupuesto = new System.Windows.Forms.Label();
+            this.label97 = new System.Windows.Forms.Label();
+            this.lblSalida = new System.Windows.Forms.Label();
+            this.lblDiasTotales = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -223,6 +235,9 @@ namespace Booking
             this.p1.SuspendLayout();
             this.tlpDaysOfWeek.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -232,7 +247,7 @@ namespace Booking
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(585, 47);
+            this.panel1.Size = new System.Drawing.Size(799, 47);
             this.panel1.TabIndex = 4;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
@@ -2000,12 +2015,172 @@ namespace Booking
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.OldLace;
+            this.panel5.Controls.Add(this.groupBox1);
+            this.panel5.Controls.Add(this.button2);
+            this.panel5.Location = new System.Drawing.Point(579, 54);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(5);
+            this.panel5.Size = new System.Drawing.Size(208, 419);
+            this.panel5.TabIndex = 8;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Location = new System.Drawing.Point(8, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox1.Size = new System.Drawing.Size(192, 154);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Reserva";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.63158F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.36842F));
+            this.tableLayoutPanel1.Controls.Add(this.label94, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label96, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblIngreso, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label95, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblPresupuesto, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label97, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblSalida, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiasTotales, 1, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 23);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(172, 121);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.BackColor = System.Drawing.Color.OldLace;
+            this.label94.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(4, 91);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(82, 29);
+            this.label94.TabIndex = 6;
+            this.label94.Text = "Presupuesto:";
+            this.label94.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.BackColor = System.Drawing.Color.OldLace;
+            this.label96.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label96.Location = new System.Drawing.Point(4, 61);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(82, 29);
+            this.label96.TabIndex = 4;
+            this.label96.Text = "Dias: ";
+            this.label96.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblIngreso
+            // 
+            this.lblIngreso.AutoSize = true;
+            this.lblIngreso.BackColor = System.Drawing.Color.OldLace;
+            this.lblIngreso.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblIngreso.Location = new System.Drawing.Point(93, 1);
+            this.lblIngreso.Name = "lblIngreso";
+            this.lblIngreso.Size = new System.Drawing.Size(75, 29);
+            this.lblIngreso.TabIndex = 0;
+            this.lblIngreso.Text = "12/10/2021";
+            this.lblIngreso.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.BackColor = System.Drawing.Color.OldLace;
+            this.label95.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label95.Location = new System.Drawing.Point(4, 1);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(82, 29);
+            this.label95.TabIndex = 3;
+            this.label95.Text = "Ingreso: ";
+            this.label95.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPresupuesto
+            // 
+            this.lblPresupuesto.AutoSize = true;
+            this.lblPresupuesto.BackColor = System.Drawing.Color.OldLace;
+            this.lblPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPresupuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPresupuesto.Location = new System.Drawing.Point(93, 91);
+            this.lblPresupuesto.Name = "lblPresupuesto";
+            this.lblPresupuesto.Size = new System.Drawing.Size(75, 29);
+            this.lblPresupuesto.TabIndex = 1;
+            this.lblPresupuesto.Text = "$ 1.560";
+            this.lblPresupuesto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.BackColor = System.Drawing.Color.OldLace;
+            this.label97.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label97.Location = new System.Drawing.Point(4, 31);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(82, 29);
+            this.label97.TabIndex = 5;
+            this.label97.Text = "Salida";
+            this.label97.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblSalida
+            // 
+            this.lblSalida.AutoSize = true;
+            this.lblSalida.BackColor = System.Drawing.Color.OldLace;
+            this.lblSalida.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSalida.Location = new System.Drawing.Point(93, 31);
+            this.lblSalida.Name = "lblSalida";
+            this.lblSalida.Size = new System.Drawing.Size(75, 29);
+            this.lblSalida.TabIndex = 0;
+            this.lblSalida.Text = "15/10/2021";
+            this.lblSalida.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblDiasTotales
+            // 
+            this.lblDiasTotales.AutoSize = true;
+            this.lblDiasTotales.BackColor = System.Drawing.Color.OldLace;
+            this.lblDiasTotales.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDiasTotales.Location = new System.Drawing.Point(93, 61);
+            this.lblDiasTotales.Name = "lblDiasTotales";
+            this.lblDiasTotales.Size = new System.Drawing.Size(75, 29);
+            this.lblDiasTotales.TabIndex = 0;
+            this.lblDiasTotales.Text = "3";
+            this.lblDiasTotales.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.OldLace;
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(8, 367);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(192, 44);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Reservar";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
             // FormMonth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Wheat;
-            this.ClientSize = new System.Drawing.Size(585, 485);
+            this.ClientSize = new System.Drawing.Size(799, 485);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOk);
@@ -2107,6 +2282,10 @@ namespace Booking
             this.tlpDaysOfWeek.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2259,5 +2438,17 @@ namespace Booking
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lblIngreso;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.Label lblDiasTotales;
+        private System.Windows.Forms.Label lblSalida;
+        private System.Windows.Forms.Label lblPresupuesto;
+        private System.Windows.Forms.Button button2;
     }
 }

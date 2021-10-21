@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booking.Forms
+namespace Booking
 {
-    class Cliente
+    public class Cliente
     {
         private long dni;
         private long telefono;
