@@ -67,7 +67,24 @@ namespace Booking
                 //DataGridViewRow row = (DataGridViewRow)dgv.Rows[0].Clone();
                 dgv.Rows.Add(_ref, tipo, precio, plazas, local, nombre, direc, sAc,sDes, sMasc, sWifi, sCoch, sPisc);
             }
+            if (dgv.SelectedCells.Count >= 1)
+            {
+                int index = dgv.SelectedCells[0].RowIndex;
+                Propiedad prop = filtrado[index];
+                ShowImages(prop.getImages());
+            } else
+            {
+                string[] empty = { null, null };
+                ShowImages(empty);
+            }
         }
+
+        private void ShowImages(string[] images)
+        {
+            pbPrimera.ImageLocation = images[0];
+            pbSegunda.ImageLocation = images[1];
+        }
+
         public void ActualizarLista()
         {
             query = new Query(filtroTipo,filtroServicio,minPrice,maxPrice,plazas,plazasExactas);
@@ -79,28 +96,28 @@ namespace Booking
         {
             if (((CheckBox)sender).Checked && !filtroTipo.Contains(TipoPropiedad.Hotel)) filtroTipo.Add(TipoPropiedad.Hotel);
             else if (!((CheckBox)sender).Checked && filtroTipo.Contains(TipoPropiedad.Hotel)) filtroTipo.Remove(TipoPropiedad.Hotel);
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void ckbCasaFDS_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked && !filtroTipo.Contains(TipoPropiedad.CasaFinDeSemana)) filtroTipo.Add(TipoPropiedad.CasaFinDeSemana);
             else if (!((CheckBox)sender).Checked && filtroTipo.Contains(TipoPropiedad.CasaFinDeSemana)) filtroTipo.Remove(TipoPropiedad.CasaFinDeSemana);
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void ckbCasaPorDia_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked && !filtroTipo.Contains(TipoPropiedad.CasaPorDia)) filtroTipo.Add(TipoPropiedad.CasaPorDia);
             else if (!((CheckBox)sender).Checked && filtroTipo.Contains(TipoPropiedad.CasaPorDia)) filtroTipo.Remove(TipoPropiedad.CasaPorDia);
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         public void ToogleServicio(object sender, Servicio serv)
         {
             if (((CheckBox)sender).Checked && !filtroServicio.Contains(serv)) filtroServicio.Add(serv);
             else if (!((CheckBox)sender).Checked && filtroServicio.Contains(serv)) filtroServicio.Remove(serv);
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void ckbDesayuno_CheckedChanged(object sender, EventArgs e)
@@ -143,60 +160,86 @@ namespace Booking
         {
             plazas = trackBar2.Value;
             lblPlazas.Text = $"{plazas}";
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void rbPlazasMinimas_CheckedChanged(object sender, EventArgs e)
         {
             plazasExactas = rbPlazasExactas.Checked;
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void rbPlazasExactas_CheckedChanged(object sender, EventArgs e)
         {
             plazasExactas = rbPlazasExactas.Checked;
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void trackBar1_MouseUp(object sender, MouseEventArgs e)
         {
             //precioMaximo = trackBar1.Value;
             lblPrecioMaximo.Text = $"${precioMaximo}";
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             minPrice = Convert.ToInt32(nudMinValue.Value);
             nudMaxValue.Minimum = minPrice;
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             maxPrice = Convert.ToInt32(nudMaxValue.Value);
             nudMinValue.Maximum = maxPrice;
-            ActualizarLista();
+            //ActualizarLista();
         }
 
         private void btnDisponibilidad_Click(object sender, EventArgs e)
         {
-            FormMonth formMes = new FormMonth();
-            Propiedad prop = filtrado[dgv.SelectedCells[0].RowIndex];
-            formMes.propiedad = prop;
-            if (formMes.ShowDialog() == DialogResult.OK)
+            try
             {
-                if (formMes.selectedDates.Count > 0)
+                FormMonth formMes = new FormMonth();
+                Propiedad prop = filtrado[dgv.SelectedCells[0].RowIndex];
+                formMes.propiedad = prop;
+                if (formMes.ShowDialog() == DialogResult.OK)
                 {
-                    /********   SISTEMA PROVISORIO   *********/
-                    ((FromPrincipal)ParentForm).empresa.GetPropiedad(prop._ref).ReservarFechas(formMes.selectedDates);
+                    if (formMes.sr.selectedDates.Count > 0)
+                    {
+                        ((FromPrincipal)ParentForm).empresa.GetPropiedad(prop._ref).ReservarFechas(formMes.sr.selectedDates);
+                    }
                 }
+            }
+            catch (ArgumentOutOfRangeException ee)
+            {
+                MessageBox.Show("Error: No existen propiedades cargadas");
             }
         }
 
         private void PropiedadesForm_Load(object sender, EventArgs e)
         {
             ActualizarLista();
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            ActualizarLista();
+        }
+
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv.SelectedCells.Count >= 1)
+            {
+                int index = dgv.SelectedCells[0].RowIndex;
+                Propiedad prop = filtrado[index];
+                ShowImages(prop.getImages());
+            }
+            else
+            {
+                string[] empty = { null, null };
+                ShowImages(empty);
+            }
         }
     }
 }

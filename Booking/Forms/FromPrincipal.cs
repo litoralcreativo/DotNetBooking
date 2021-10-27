@@ -147,6 +147,7 @@ namespace Booking
                 } else
                 {
                     empresa.Sesion.MarcarEntrada();
+                    //MessageBox.Show("Bienvenido "+ empresa.Sesion.Nombre, "Sesion", MessageBoxButtons.OK);
                 }
             }
             ActualizarMenuStrip();
@@ -165,10 +166,18 @@ namespace Booking
                 usuarioNuevo.Nombre = nombre;
                 usuarioNuevo.Apellido = apellido;
                 usuarioNuevo.Categoria = admin ? CategoriaUsuario.Administrador : CategoriaUsuario.Empleado;
-                bool registro = empresa.AgregarUsuario(usuarioNuevo);
-                if (!registro)
+                if (nombre == "" || apellido == "" || uName == "" || uPass == "")
                 {
-                    MessageBox.Show("Ya existe un usuario con estos datos", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Todos los campos son obligatorios", "Registro", MessageBoxButtons.OK);
+                } else { 
+                    bool registro = empresa.AgregarUsuario(usuarioNuevo);
+                    if (!registro)
+                    {
+                        MessageBox.Show("Ya existe un usuario con estos datos", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    } else
+                    {
+                        MessageBox.Show("Registro realizado con exito", "Registro", MessageBoxButtons.OK);
+                    }
                 }
             }
         }
@@ -201,10 +210,12 @@ namespace Booking
                 if (!registro)
                 {
                     MessageBox.Show("Ya existe un propietario con este dni", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                } else
+                {
+                    MessageBox.Show("Registro realizado con exito", "Registro", MessageBoxButtons.OK);
                 }
             }
         }
-
         private void crearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegistroEdicionPropiedad regPropiedad = new RegistroEdicionPropiedad();
@@ -225,21 +236,25 @@ namespace Booking
                 string direccion = regPropiedad.tbDireccion.Text;
                 int plazas = Convert.ToInt32(regPropiedad.nudPlazas.Value);
                 double precio = Convert.ToDouble(regPropiedad.nudPrecioBase.Value);
+                string[] imagesPath = { regPropiedad.pbPrimera.ImageLocation, regPropiedad.pbSegunda.ImageLocation };
                 Propiedad propiedad = null;
                 switch (tipoPropiedad)
                 {
                     case TipoPropiedad.Hotel:
-                        propiedad = new Hotel(++empresa._ref, nombre, plazas, direccion, localidad, precio, 5);
+                        int categoria = Convert.ToInt32(regPropiedad.nudCategoriaHotel.Value);
+                        propiedad = new Hotel(++empresa._ref, nombre, plazas, direccion, localidad, precio, imagesPath, categoria);
                         break;
                     case TipoPropiedad.CasaPorDia:
-                        propiedad = new CasaPorDia(++empresa._ref, nombre, plazas, direccion, localidad, precio, 5);
+                        int minimos = Convert.ToInt32(regPropiedad.nudDiasMinimos.Value);
+                        propiedad = new CasaPorDia(++empresa._ref, nombre, plazas, direccion, localidad, precio, imagesPath, minimos);
                         break;
                     case TipoPropiedad.CasaFinDeSemana:
-                        propiedad = new CasaFinDeSemana(++empresa._ref, nombre, plazas, direccion, localidad, precio);
+                        propiedad = new CasaFinDeSemana(++empresa._ref, nombre, plazas, direccion, localidad, precio, imagesPath);
                         break;
                 }
                 propiedad.ActualizarServicios(regPropiedad.servicios);
                 empresa.AgregarPropiedad(propiedad, propietarioIndex);
+                
             }
             if (MdiChildren.Length == 1 && MdiChildren[0] is PropiedadesForm) // actualizar el form mdichidren si esta abierto
             {
@@ -252,9 +267,7 @@ namespace Booking
             PropiedadesForm propForm = new PropiedadesForm();
             propForm.MdiParent = this;
             propForm.WindowState = FormWindowState.Maximized;
-
             propForm.ListarPropiedades(empresa.ListarPropiedades());
-
             propForm.Show();
             buscarToolStripMenuItem.Enabled = false;
         }

@@ -176,6 +176,8 @@ namespace Booking
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblNumDays = new System.Windows.Forms.Label();
+            this.nudNumeroDeDias = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label94 = new System.Windows.Forms.Label();
@@ -187,6 +189,7 @@ namespace Booking
             this.lblSalida = new System.Windows.Forms.Label();
             this.lblDiasTotales = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -236,6 +239,7 @@ namespace Booking
             this.tlpDaysOfWeek.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumeroDeDias)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -1998,7 +2002,7 @@ namespace Booking
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(94, 26);
             this.btnSeleccionar.TabIndex = 7;
-            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.Text = "Select";
             this.btnSeleccionar.UseVisualStyleBackColor = false;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
@@ -2018,6 +2022,8 @@ namespace Booking
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.OldLace;
+            this.panel5.Controls.Add(this.lblNumDays);
+            this.panel5.Controls.Add(this.nudNumeroDeDias);
             this.panel5.Controls.Add(this.groupBox1);
             this.panel5.Controls.Add(this.button2);
             this.panel5.Location = new System.Drawing.Point(579, 54);
@@ -2025,6 +2031,38 @@ namespace Booking
             this.panel5.Padding = new System.Windows.Forms.Padding(5);
             this.panel5.Size = new System.Drawing.Size(208, 419);
             this.panel5.TabIndex = 8;
+            // 
+            // lblNumDays
+            // 
+            this.lblNumDays.AutoSize = true;
+            this.lblNumDays.Location = new System.Drawing.Point(15, 174);
+            this.lblNumDays.Name = "lblNumDays";
+            this.lblNumDays.Size = new System.Drawing.Size(81, 13);
+            this.lblNumDays.TabIndex = 9;
+            this.lblNumDays.Text = "Numero de dias";
+            // 
+            // nudNumeroDeDias
+            // 
+            this.nudNumeroDeDias.Location = new System.Drawing.Point(124, 172);
+            this.nudNumeroDeDias.Maximum = new decimal(new int[] {
+            365,
+            0,
+            0,
+            0});
+            this.nudNumeroDeDias.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumeroDeDias.Name = "nudNumeroDeDias";
+            this.nudNumeroDeDias.Size = new System.Drawing.Size(76, 20);
+            this.nudNumeroDeDias.TabIndex = 8;
+            this.nudNumeroDeDias.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumeroDeDias.ValueChanged += new System.EventHandler(this.nudNumeroDeDias_ValueChanged);
             // 
             // groupBox1
             // 
@@ -2174,6 +2212,18 @@ namespace Booking
             this.button2.Text = "Reservar";
             this.button2.UseVisualStyleBackColor = false;
             // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.BackColor = System.Drawing.Color.OldLace;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Location = new System.Drawing.Point(112, 447);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(94, 26);
+            this.btnClear.TabIndex = 7;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            // 
             // FormMonth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2181,6 +2231,7 @@ namespace Booking
             this.BackColor = System.Drawing.Color.Wheat;
             this.ClientSize = new System.Drawing.Size(799, 485);
             this.Controls.Add(this.panel5);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOk);
@@ -2283,6 +2334,8 @@ namespace Booking
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumeroDeDias)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -2450,5 +2503,8 @@ namespace Booking
         private System.Windows.Forms.Label lblSalida;
         private System.Windows.Forms.Label lblPresupuesto;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblNumDays;
+        private System.Windows.Forms.NumericUpDown nudNumeroDeDias;
+        private System.Windows.Forms.Button btnClear;
     }
 }

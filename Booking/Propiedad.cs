@@ -15,12 +15,13 @@ namespace Booking
         public string Direccion { get; set; }
         public string Localidad { get; set; }
         public double Precio { get; set; }
-        public List<string> imagenes;
+        private string[] ImagesPath = new string[2];
+
         private List<Servicio> servicios;
         private Propietario propietario;
         private List<DateTime> fechasReservadas;
 
-        public Propiedad(int _ref, string nombre, int plazas, string dir, string loc, double precio)
+        public Propiedad(int _ref, string nombre, int plazas, string dir, string loc, double precio, string[] imagesPath)
         {
             this._ref = _ref;
             Nombre = nombre;
@@ -28,22 +29,15 @@ namespace Booking
             Direccion = dir;
             Localidad = loc;
             Precio = precio;
-            imagenes = new List<string>();
             servicios = new List<Servicio>();
             fechasReservadas = new List<DateTime>();
+            this.ImagesPath = imagesPath;
         }
         public void ActualizarServicios(List<Servicio> ser)
         {
             servicios = ser;
         }
-        public void AgregarImagen(string path)
-        {
-            imagenes.Add(path);
-        }
-        public List<string> ListarImagenes()
-        {
-            return imagenes;
-        }
+        
         public abstract double Presupuestar(int unitarios);
         public void AgregarPropietario(Propietario prop)
         {
@@ -58,6 +52,14 @@ namespace Booking
             return propietario;
         }
         public abstract TipoPropiedad getTipo();
+        public string[] getImages()
+        {
+            return ImagesPath;
+        }
+        public void setImages(string[] ImagesPath)
+        {
+            this.ImagesPath = ImagesPath;
+        }
         public List<Servicio> getServicios()
         {
             return servicios;

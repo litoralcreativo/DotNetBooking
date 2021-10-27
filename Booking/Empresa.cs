@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -78,7 +79,8 @@ namespace Booking
         public Propiedad GetPropiedad(int _ref)
         {
             propiedades.Sort();
-            Propiedad otro = new Hotel(_ref,"otro",1,"dir","loc",0, 5);
+            string[] path = { "asd", "asdas" };
+            Propiedad otro = new Hotel(_ref, "otro", 1, "dir", "loc", 0, path, 5);
             int index = propiedades.BinarySearch(otro);
             if (index >= 0)
             {
@@ -89,20 +91,20 @@ namespace Booking
         
         public List<Propiedad> Filter(Query query)
         {
-            List<Propiedad> resultadoPropietarios = new List<Propiedad>();
+            List<Propiedad> propiedadesTipo = new List<Propiedad>();
             List<Propiedad> resultado = new List<Propiedad>();
             
             // filtrar por propieadad(es)
             for (int i = 0; i < query.tipo.Count; i++)
             {
-                resultadoPropietarios.AddRange(propiedades.Where(x => x.getTipo() == query.tipo[i]).ToList());
+                propiedadesTipo.AddRange(propiedades.Where(x => x.getTipo() == query.tipo[i]).ToList());
             }
             
             // resto de filtros
-            for (int i = 0; i < resultadoPropietarios.Count; i++)
+            for (int i = 0; i < propiedadesTipo.Count; i++)
             {
                 int servCont = 0;
-                Propiedad prop = resultadoPropietarios[i];
+                Propiedad prop = propiedadesTipo[i];
                 bool inPrice = prop.Precio <= query.precioMaximo && prop.Precio >= query.precioMinimo;
                 int numPlazas = prop.Plazas;
 

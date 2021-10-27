@@ -87,6 +87,7 @@
     <Compile Include="Forms\PropiedadesForm.Designer.cs">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SistemaReservas.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="Reserva.cs" />
     <Compile Include="Hotel.cs" />

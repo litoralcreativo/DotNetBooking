@@ -21,10 +21,12 @@ namespace Booking
 
         private void RegistroForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tbNombre.Text == "" || tbApellido.Text == "" || tbUsername.Text == "" || tbPassword.Text == "") {
-                MessageBox.Show("Todos los campos son obligatorios", "Registro", MessageBoxButtons.OK);
-                e.Cancel = true;
-            }
+            
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

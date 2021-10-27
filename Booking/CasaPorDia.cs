@@ -11,8 +11,8 @@ namespace Booking
     {
         private int diasMinimos;
 
-        public CasaPorDia(int _ref, string nombre, int plazas, string dir, string loc, double precio, int minimos)
-            : base(_ref, nombre, plazas, dir, loc, precio)
+        public CasaPorDia(int _ref, string nombre, int plazas, string dir, string loc, double precio, string[] images, int minimos)
+            : base(_ref, nombre, plazas, dir, loc, precio, images)
         {
             this.diasMinimos = minimos;
         }

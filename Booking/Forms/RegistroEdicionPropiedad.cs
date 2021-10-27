@@ -23,6 +23,7 @@ namespace Booking
         private void rbHotel_CheckedChanged(object sender, EventArgs e)
         {
             tipoPropiedad = TipoPropiedad.Hotel;
+            
             actualizarNombre();
         }
 
@@ -41,6 +42,8 @@ namespace Booking
 
         private void actualizarNombre()
         {
+            nudCategoriaHotel.Enabled = rbHotel.Checked;
+            nudDiasMinimos.Enabled = rbCPD.Checked;
             switch (tipoPropiedad)
             {
                 case TipoPropiedad.Hotel:
@@ -99,6 +102,67 @@ namespace Booking
             if (ckbPiscina.Checked) servicios.Add(Servicio.Piscina);
             if (ckbWifi.Checked) servicios.Add(Servicio.Wifi);
         }
-    }
 
+        private void btBuscarImg_Click(object sender, EventArgs e)
+        {
+            oFDImg.Title = "Buscar imagen";
+            oFDImg.Filter = " Imagenes (*.JPG; *.BMP) | *.jpg;*.bmp";
+            if (oFDImg.ShowDialog() == DialogResult.OK)
+            {
+                if (pbPrimera.ImageLocation == null)
+                pbPrimera.ImageLocation = oFDImg.FileName;
+                else if (pbSegunda.ImageLocation == null)
+                pbSegunda.ImageLocation = oFDImg.FileName;
+            }
+            checkImages();
+        }
+
+        private void btnRemoveFirst_Click(object sender, EventArgs e)
+        {
+            pbPrimera.ImageLocation = null;
+            checkImages();
+        }
+
+        private void btnRemoveSecond_Click(object sender, EventArgs e)
+        {
+            pbSegunda.ImageLocation = null;
+            checkImages();
+        }
+
+        private void RegistroEdicionPropiedad_Load(object sender, EventArgs e)
+        {
+            checkImages();
+            actualizarNombre();
+        }
+
+        private void checkImages()
+        {
+            if (pbPrimera.ImageLocation == null || pbSegunda.ImageLocation == null)
+                btnBuscarImg.Enabled = true;
+            else
+                btnBuscarImg.Enabled = false;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbPropietario.SelectedIndex == -1) throw new Exception("Debe seleccionar un propietario");
+                if (tbNombre.Text == "") throw new Exception("Debe indicar el nombre de la propiedad");
+                if (cbLocalidad.SelectedIndex == -1) throw new Exception("Debe seleccionar una localidad");
+                if (tbDireccion.Text == "") throw new Exception("Debe indicar la direccion de la propiedad");
+                if (pbPrimera.ImageLocation == null || pbSegunda.ImageLocation == null) throw new Exception("Debe seleccionar dos imagenes");
+
+                string message = "Desea guardar esta propiedad?";
+                if (MessageBox.Show(message, "Confirmacion", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    }
 }
+
+

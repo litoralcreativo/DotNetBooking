@@ -14,246 +14,76 @@ namespace Booking
     {
         
 
-        List<Control> daysControls;
-        DateTime dt;
-        public List<DateTime> reservedDates;
-        public List<DateTime> selectedDates;
-        List<DateTime> showingDates;
-        List<DateTime> noDisponibles;
-
         public Propiedad propiedad;
-        bool selecting = false;
+        public SistemaReservas sr;
+
         public FormMonth()
         {
             InitializeComponent();
-            
         }
 
         private void FormMonth_Load(object sender, EventArgs e)
         {
-            daysControls = new List<Control>();
+            List<Control> daysControls = new List<Control>();
             daysControls.AddRange(tlpDays.Controls.Cast<Control>());
             daysControls.Reverse();
-            dt = DateTime.Now;
-            showingDates = new List<DateTime>();
-            reservedDates = propiedad.FechasReservadas();
-            noDisponibles = new List<DateTime>();
-            selectedDates = new List<DateTime>();
-            UpdateCalendar();
+            sr = new SistemaReservas(propiedad, daysControls);
+            sr.UpdateCalendar();
+            if (sr.propiedad is CasaFinDeSemana) nudNumeroDeDias.Enabled = false;
+            else if (sr.propiedad is CasaPorDia) nudNumeroDeDias.Minimum = ((CasaPorDia)sr.propiedad).GetDiasMinimos();
+            UpdatePresupuesto();
         }
 
         public void UpdateCalendar()
         {
-            lblMonth.Text = $"{dt.ToString("MMMM")}, {dt.Year}";
-            DateTime firstDayOfMonth = dt.AddDays(-dt.Day+1); // 21/10 --> 1/10
-            int offset;
-            switch (firstDayOfMonth.DayOfWeek)
-            {
-                default:
-                case DayOfWeek.Monday:
-                    {
-                        offset = 0;
-                        break;
-                    }
-                case DayOfWeek.Tuesday:
-                    {
-                        offset = 1;
-                        break;
-                    }
-                case DayOfWeek.Wednesday:
-                    {
-                        offset = 2;
-                        break;
-                    }
-                case DayOfWeek.Thursday:
-                    {
-                        offset = 3;
-                        break;
-                    }
-                case DayOfWeek.Friday:
-                    {
-                        offset = 4;
-                        break;
-                    }
-                case DayOfWeek.Saturday:
-                    {
-                        offset = 5;
-                        break;
-                    }
-                case DayOfWeek.Sunday:
-                    {
-                        offset = 6;
-                        break;
-                    }
-            }
-            DateTime dayOfCalendar = firstDayOfMonth.AddDays(-offset);
-            showingDates.Clear();
-            noDisponibles.Clear();
-            for (int i = 0; i < daysControls.Count; i++)
-            {
-                showingDates.Add(dayOfCalendar);
-                Color c = dayOfCalendar.Month != dt.Month ? Color.Silver : Color.Wheat;
-                bool thisMonth = dayOfCalendar.Month == dt.Month;
-                bool today = dayOfCalendar.Date == DateTime.Today;
-                bool reservado = false;
-                bool disponible = true;
-                bool selected = selectedDates.Contains(dayOfCalendar);
-
-                if (propiedad is CasaFinDeSemana)
-                {
-                    if (dayOfCalendar.Month == dt.Month)
-                    {
-                        if (dayOfCalendar.DayOfWeek == DayOfWeek.Friday
-                            || dayOfCalendar.DayOfWeek == DayOfWeek.Saturday
-                            || dayOfCalendar.DayOfWeek == DayOfWeek.Sunday)
-                        disponible = true;
-                        else
-                        disponible = false;
-                    }
-                }
-                if (dayOfCalendar.Date < DateTime.Today) disponible = false; // no podemos reservar antes de hoy
-                for (int j = 0; j < reservedDates.Count; j++) // chequeamos q no haya reservas este dia
-                {
-                    if (reservedDates[j].Date == dayOfCalendar.Date) reservado = true;
-                }
-                if (!disponible || !thisMonth || reservado) noDisponibles.Add(dayOfCalendar);
-                string textoSecundario = "";
-                PaintDayOfCalendar(daysControls[i], thisMonth, dayOfCalendar.Day, textoSecundario, today, reservado, disponible, selected);
-                dayOfCalendar = dayOfCalendar.AddDays(1);
-            }
-            UpdatePresupuesto();
+            lblMonth.Text = $"{sr.dt.ToString("MMMM")}, {sr.dt.Year}";
+            sr.UpdateCalendar();
         }
 
         private void UpdatePresupuesto()
         {
-            
-        }
-
-        public void PaintDayOfCalendar(Control control, bool thisMonth, int number, string text = "", bool today = false, bool reservado = true, bool disponible = true, bool selected = false)
-        {
-            Color color = !thisMonth ? Color.Silver : Color.Wheat;
-            control.BackColor = selected ? (thisMonth ? Color.LimeGreen : Color.CadetBlue) : color;
-            control.Controls[1].Text = number.ToString();                       // texto dia del mes
-            control.Controls[0].Text = text;                                    // texto secundario
-            
-            ((Panel)control).BorderStyle = today ? BorderStyle.FixedSingle : BorderStyle.None;  // recuadro si es hoy
-            
-            if (selecting)
+            if (sr.selectedDates.Count >= 1)
             {
-                if (reservado || !disponible || !thisMonth) control.Cursor = Cursors.No;        // cursor inabilitado si esta reservado o no dispo
-                else control.Cursor = Cursors.Hand;                                             // cursor clickeable
-            }
-            else control.Cursor = Cursors.Default;                                              // cursor normal
-
-            if (reservado) control.BackColor = thisMonth ? Color.Tomato : Color.DarkSalmon;
-
-            if (!disponible && thisMonth)
+                lblIngreso.Text = sr.selectedDates.First().ToShortDateString();
+                lblSalida.Text = sr.selectedDates.Last().ToShortDateString();
+                lblDiasTotales.Text = sr.selectedDates.Count.ToString();
+                int unitarios = sr.selectedDates.Count;
+                if (sr.propiedad is CasaFinDeSemana) unitarios = 1;
+                lblPresupuesto.Text = String.Format("$ {0:N2}", sr.propiedad.Presupuestar(unitarios));
+            } else
             {
-                control.BackColor = Color.Gray;
+                lblIngreso.Text = "-";
+                lblSalida.Text = "-";
+                lblDiasTotales.Text = "-";
+                lblPresupuesto.Text = "-";
+
             }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            dt = dt.AddMonths(1);
+            sr.dt = sr.dt.AddMonths(1);
             UpdateCalendar();
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            dt = dt.AddMonths(-1);
+            sr.dt = sr.dt.AddMonths(-1);
             UpdateCalendar();
         }
 
         private void DayClick(object sender, MouseEventArgs e)
         {
             Control p = sender is Panel ? (Control)sender : ((Control)sender).Parent;
-            if (selecting) SelectDate(p);
+            if (sr.selecting) sr.SelectDate(p);
+            UpdatePresupuesto();
         }
 
-        public void SelectDate(Control control)
-        {
-            int index = daysControls.IndexOf(control);
-            DateTime dtSelected = showingDates[index];
-            bool canSelect = true;
-            if (noDisponibles.Contains(dtSelected)) canSelect = false;
-            if (canSelect) // si es una fecha seleccionable
-            {
-                if (selectedDates.Contains(dtSelected))
-                {
-                    if (propiedad is CasaFinDeSemana) // seleccionar todo los dias
-                    {
-                        switch (dtSelected.DayOfWeek)
-                        {
-                            case DayOfWeek.Friday:
-                                {
-                                    selectedDates.Remove(dtSelected);
-                                    if(selectedDates.Contains(dtSelected.AddDays(1))) selectedDates.Remove(dtSelected.AddDays(1));
-                                    if(selectedDates.Contains(dtSelected.AddDays(2))) selectedDates.Remove(dtSelected.AddDays(2));
-                                    break;
-                                }
-                            case DayOfWeek.Saturday:
-                                {
-                                    selectedDates.Remove(dtSelected);
-                                    if (selectedDates.Contains(dtSelected.AddDays(-1))) selectedDates.Remove(dtSelected.AddDays(-1));
-                                    if (selectedDates.Contains(dtSelected.AddDays(1))) selectedDates.Remove(dtSelected.AddDays(1));
-                                    break;
-                                }
-                            case DayOfWeek.Sunday:
-                                {
-                                    selectedDates.Remove(dtSelected);
-                                    if (selectedDates.Contains(dtSelected.AddDays(-1))) selectedDates.Remove(dtSelected.AddDays(-1));
-                                    if (selectedDates.Contains(dtSelected.AddDays(-2))) selectedDates.Remove(dtSelected.AddDays(-2));
-                                    break;
-                                }
-                        }
-                    } 
-                    else
-                    {
-                        selectedDates.Remove(dtSelected);
-                    }
-                }
-                else
-                {
-                    if (propiedad is CasaFinDeSemana) // seleccionar todo los dias
-                    {
-                        switch (dtSelected.DayOfWeek)
-                        {
-                            case DayOfWeek.Friday:
-                                {
-                                    selectedDates.Add(dtSelected);
-                                    selectedDates.Add(dtSelected.AddDays(1));
-                                    selectedDates.Add(dtSelected.AddDays(2));
-                                    break;
-                                }
-                            case DayOfWeek.Saturday:
-                                {
-                                    selectedDates.Add(dtSelected.AddDays(-1));
-                                    selectedDates.Add(dtSelected);
-                                    selectedDates.Add(dtSelected.AddDays(1));
-                                    break;
-                                }
-                            case DayOfWeek.Sunday:
-                                {
-                                    selectedDates.Add(dtSelected);
-                                    selectedDates.Add(dtSelected.AddDays(-1));
-                                    selectedDates.Add(dtSelected.AddDays(-2));
-                                    break;
-                                }
-                        }
-                    } 
-                    else
-                    {
-                        selectedDates.Add(dtSelected);
-                    }
-                }
-            }
-            UpdateCalendar();
-        }
-        
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            selecting = !selecting;
+            sr.selecting = !sr.selecting;
+            btnSeleccionar.BackColor = sr.selecting ? Color.Lime : Color.OldLace;
+            btnSeleccionar.Text = sr.selecting ? "Selecting" : "Select";
             UpdateCalendar();
         }
 
@@ -282,5 +112,19 @@ namespace Booking
             dragging = false;
         }
         #endregion
+
+        private void nudNumeroDeDias_ValueChanged(object sender, EventArgs e)
+        {
+            if (sr.selectedDates.Count >= 1)
+            {
+                bool sePudo = sr.SetNumberOfDaysDays(Convert.ToInt32(nudNumeroDeDias.Value));
+                UpdatePresupuesto();
+                if (!sePudo)
+                {
+                    nudNumeroDeDias.Value = sr.selectedDates.Count;
+                    MessageBox.Show("No se puede reservar esta fecha","Fecha no disponible");
+                }
+            }
+        }
     }
 }

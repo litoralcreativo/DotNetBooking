@@ -46,8 +46,12 @@ namespace Booking
             this.columnCochera = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.columnPiscina = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnDisponibilidad = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.pbSegunda = new System.Windows.Forms.PictureBox();
+            this.pbPrimera = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.rbPlazasMinimas = new System.Windows.Forms.RadioButton();
             this.lblPlazas = new System.Windows.Forms.Label();
@@ -75,6 +79,9 @@ namespace Booking
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSegunda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrimera)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -136,6 +143,7 @@ namespace Booking
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgv.Size = new System.Drawing.Size(858, 469);
             this.dgv.TabIndex = 4;
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // refColumn
             // 
@@ -234,6 +242,7 @@ namespace Booking
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnFiltrar);
             this.panel1.Controls.Add(this.btnDisponibilidad);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -242,12 +251,25 @@ namespace Booking
             this.panel1.Size = new System.Drawing.Size(366, 469);
             this.panel1.TabIndex = 7;
             // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFiltrar.BackColor = System.Drawing.Color.OldLace;
+            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltrar.Location = new System.Drawing.Point(12, 431);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(117, 26);
+            this.btnFiltrar.TabIndex = 8;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = false;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
             // btnDisponibilidad
             // 
             this.btnDisponibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisponibilidad.BackColor = System.Drawing.Color.OldLace;
             this.btnDisponibilidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisponibilidad.Location = new System.Drawing.Point(237, 264);
+            this.btnDisponibilidad.Location = new System.Drawing.Point(237, 431);
             this.btnDisponibilidad.Name = "btnDisponibilidad";
             this.btnDisponibilidad.Size = new System.Drawing.Size(117, 26);
             this.btnDisponibilidad.TabIndex = 8;
@@ -257,16 +279,50 @@ namespace Booking
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(12, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(342, 251);
+            this.groupBox1.Size = new System.Drawing.Size(342, 418);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar Propiedad";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.pbSegunda);
+            this.groupBox6.Controls.Add(this.pbPrimera);
+            this.groupBox6.Location = new System.Drawing.Point(12, 244);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(320, 161);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Imagenes";
+            // 
+            // pbSegunda
+            // 
+            this.pbSegunda.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbSegunda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbSegunda.Location = new System.Drawing.Point(162, 19);
+            this.pbSegunda.Name = "pbSegunda";
+            this.pbSegunda.Size = new System.Drawing.Size(146, 130);
+            this.pbSegunda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbSegunda.TabIndex = 15;
+            this.pbSegunda.TabStop = false;
+            // 
+            // pbPrimera
+            // 
+            this.pbPrimera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbPrimera.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbPrimera.Location = new System.Drawing.Point(10, 19);
+            this.pbPrimera.Name = "pbPrimera";
+            this.pbPrimera.Size = new System.Drawing.Size(146, 130);
+            this.pbPrimera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPrimera.TabIndex = 15;
+            this.pbPrimera.TabStop = false;
             // 
             // groupBox5
             // 
@@ -586,6 +642,9 @@ namespace Booking
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbSegunda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPrimera)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
@@ -647,5 +706,9 @@ namespace Booking
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPrecioMaximo;
         private System.Windows.Forms.Button btnDisponibilidad;
+        private System.Windows.Forms.GroupBox groupBox6;
+        public System.Windows.Forms.PictureBox pbSegunda;
+        public System.Windows.Forms.PictureBox pbPrimera;
+        private System.Windows.Forms.Button btnFiltrar;
     }
 }
