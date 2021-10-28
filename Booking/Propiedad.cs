@@ -19,7 +19,7 @@ namespace Booking
 
         private List<Servicio> servicios;
         private Propietario propietario;
-        private List<DateTime> fechasReservadas;
+        private List<Reserva> reservas;
 
         public Propiedad(int _ref, string nombre, int plazas, string dir, string loc, double precio, string[] imagesPath)
         {
@@ -30,7 +30,7 @@ namespace Booking
             Localidad = loc;
             Precio = precio;
             servicios = new List<Servicio>();
-            fechasReservadas = new List<DateTime>();
+            reservas = new List<Reserva>();
             this.ImagesPath = imagesPath;
         }
         public void ActualizarServicios(List<Servicio> ser)
@@ -66,11 +66,20 @@ namespace Booking
         }
         public List<DateTime> FechasReservadas()
         {
-            return fechasReservadas;
+            List<DateTime> dates = new List<DateTime>();
+            
+            foreach (Reserva r in reservas)
+            {
+                for (int i = 0; i < r.DiasTotales(); i++)
+                {
+                    dates.Add(r.entrada.AddDays(i));
+                }
+            }
+            return dates;
         }
-        public void ReservarFechas(List<DateTime> fechas)
+        public void AgregarReserva(Reserva r)
         {
-            fechasReservadas.AddRange(fechas);
+            reservas.Add(r);
         }
         public int CompareTo(object obj)
         {

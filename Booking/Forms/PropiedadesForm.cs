@@ -205,9 +205,26 @@ namespace Booking
                 formMes.propiedad = prop;
                 if (formMes.ShowDialog() == DialogResult.OK)
                 {
-                    if (formMes.sr.selectedDates.Count > 0)
+                    if (formMes.sr.selectedDates.Count > 0) // Hay dias por reservar
                     {
-                        ((FromPrincipal)ParentForm).empresa.GetPropiedad(prop._ref).ReservarFechas(formMes.sr.selectedDates);
+                        // ((FromPrincipal)ParentForm).empresa.GetPropiedad(prop._ref).ReservarFechas(formMes.sr.selectedDates);
+                        ClienteForm cf = new ClienteForm();
+                        if (cf.ShowDialog() == DialogResult.OK)
+                        {
+                            string nombre = cf.tbNombre.Text;
+                            long dni = Convert.ToInt64(cf.tbDni.Text);
+                            long tel = Convert.ToInt64(cf.tbTelefono.Text);
+                            string direc = cf.tbDireccion.Text;
+                            int personas = Convert.ToInt32(cf.nudSeAlojan.Value);
+                            Cliente c = new Cliente(dni, tel, nombre, direc, personas);
+                            ((FromPrincipal)ParentForm).empresa.Reservar(c, prop, formMes.sr.selectedDates.First(), formMes.sr.selectedDates.Last());
+                            MessageBox.Show("La reserva se realizo con exito!", "Reserva");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo realizar la reserva", "Reserva");
+                        }
+
                     }
                 }
             }

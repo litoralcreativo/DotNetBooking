@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booking
 {
+    [Serializable]
     public class Reserva
     {
         public readonly Cliente cliente;
@@ -21,6 +22,10 @@ namespace Booking
             this.propiedad = propiedad;
         }
         
+        public int DiasTotales()
+        {
+            return (int)(salida - entrada).TotalDays;
+        }
         public string ImprimirReserva()
         {
             propiedad.Presupuestar(5);

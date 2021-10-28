@@ -57,6 +57,12 @@
       <DependentUpon>AddLocationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Cliente.cs" />
+    <Compile Include="Forms\ClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ClienteForm.Designer.cs">
+      <DependentUpon>ClienteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormMonth.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,7 +93,7 @@
     <Compile Include="Forms\PropiedadesForm.Designer.cs">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SistemaReservas.cs" />
+    <Compile Include="SistemaReservas.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="Reserva.cs" />
     <Compile Include="Hotel.cs" />
@@ -111,6 +117,9 @@
     <Compile Include="Usuario.cs" />
     <EmbeddedResource Include="Forms\AddLocationForm.resx">
       <DependentUpon>AddLocationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ClienteForm.resx">
+      <DependentUpon>ClienteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMonth.resx">
       <DependentUpon>FormMonth.cs</DependentUpon>

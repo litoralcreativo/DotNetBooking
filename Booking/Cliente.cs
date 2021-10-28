@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booking
 {
+    [Serializable]
     public class Cliente
     {
         private long dni;

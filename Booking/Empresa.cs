@@ -17,6 +17,7 @@ namespace Booking
         private List<Propiedad> propiedades;
         public List<string> localidades;
         public Usuario Sesion;
+        public List<Reserva> reservas;
 
         public Empresa()
         {
@@ -25,6 +26,7 @@ namespace Booking
             propietarios = new List<Propietario>();
             propiedades = new List<Propiedad>();
             localidades = new List<string>();
+            reservas = new List<Reserva>();
         }
         
         public bool AgregarPropietario(Propietario prop)
@@ -136,6 +138,13 @@ namespace Booking
             {
                 return encontrado;
             }
+        }
+
+        internal void Reservar(Cliente c, Propiedad p, DateTime e, DateTime s)
+        {
+            Reserva nueva = new Reserva(c, e, s, p);
+            reservas.Add(nueva);
+            p.AgregarReserva(nueva);
         }
     }
 }
