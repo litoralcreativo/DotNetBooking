@@ -44,6 +44,16 @@ namespace Booking
             return propietarios;
         }
         
+        public void AgregarPropiedad(Propiedad prop, int propietarioIndex)
+        {
+           prop.AgregarPropietario(propietarios[propietarioIndex]);
+           propietarios[propietarioIndex].AgregarPropiedad(prop);
+           propiedades.Add(prop);
+        }
+        public List<Propiedad> ListarPropiedades()
+        {
+            return propiedades;
+        }
         
         public void AgregarLocalidad(string loc)
         {
@@ -68,17 +78,6 @@ namespace Booking
             return false;
         }
 
-        public void AgregarPropiedad(Propiedad prop, int propietarioIndex)
-        {
-           prop.AgregarPropietario(propietarios[propietarioIndex]);
-           propietarios[propietarioIndex].AgregarPropiedad(prop);
-           propiedades.Add(prop);
-        }
-
-        public List<Propiedad> ListarPropiedades()
-        {
-            return propiedades;
-        }
         public Propiedad GetPropiedad(int _ref)
         {
             propiedades.Sort();

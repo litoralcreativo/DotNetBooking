@@ -18,7 +18,7 @@ namespace Booking
         {
             return Precio * unitarios;
         }
-
+            
         public override TipoPropiedad getTipo()
         {
             return TipoPropiedad.CasaFinDeSemana;

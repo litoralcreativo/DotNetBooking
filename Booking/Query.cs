@@ -8,12 +8,12 @@ namespace Booking
 {
     public class Query
     {
-        public List<TipoPropiedad> tipo = null;
-        public List<Servicio> servicios = null;
-        public int precioMinimo = 100;
-        public int precioMaximo = 999999;
-        public int plazas = 1;
-        public bool exactPlazas = false;
+        public List<TipoPropiedad> tipo;
+        public List<Servicio> servicios;
+        public int precioMinimo;
+        public int precioMaximo;
+        public int plazas;
+        public bool exactPlazas;
         public Query(List<TipoPropiedad> tipo, List<Servicio> servicios, int precioMinimo, int precioMaximo, int plazas, bool exactPlazas)
         {
             this.tipo = tipo;
