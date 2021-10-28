@@ -138,6 +138,8 @@ namespace Booking
                 buscarToolStripMenuItem.Enabled = false;
                 crearToolStripMenuItem.Enabled = false;
                 añadirPropietarioToolStripMenuItem.Enabled = false;
+                añadirPropietarioToolStripMenuItem.Enabled = false;
+                listarPropietariosToolStripMenuItem.Enabled = false;
             }
             else
             {
@@ -153,8 +155,9 @@ namespace Booking
                             buscarToolStripMenuItem.Enabled = true;
                             crearToolStripMenuItem.Enabled = false;
                             añadirPropietarioToolStripMenuItem.Enabled = false;
+                            listarPropietariosToolStripMenuItem.Enabled = true;
                             break;
-                    }
+                        }
                     case CategoriaUsuario.Administrador:
                     {
                             iniciarSesionToolStripMenuItem.Enabled = false;
@@ -165,6 +168,7 @@ namespace Booking
                             buscarToolStripMenuItem.Enabled = true;
                             crearToolStripMenuItem.Enabled = true;
                             añadirPropietarioToolStripMenuItem.Enabled = true;
+                            listarPropietariosToolStripMenuItem.Enabled = true;
                             break;
                         }
                     default:
@@ -312,6 +316,13 @@ namespace Booking
             propForm.ListarPropiedades(empresa.ListarPropiedades());
             propForm.Show();
             buscarToolStripMenuItem.Enabled = false;
+        }
+
+        private void listarPropietariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ListarPropietariosForm lp = new ListarPropietariosForm();
+            lp.propietarios = empresa.ListarPropietarios();
+            lp.ShowDialog();
         }
     }
 }

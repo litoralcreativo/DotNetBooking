@@ -90,7 +90,19 @@ namespace Booking
             }
             return null;
         }
-        
+        public Propietario GetPropietario(long dni)
+        {
+            propietarios.Sort();
+            Propietario otro = new Propietario("nombre", "apell", 123123, 123123);
+            int index = propietarios.BinarySearch(otro);
+            if (index >= 0)
+            {
+                return propietarios[index];
+            }
+            return null;
+        }
+
+
         public List<Propiedad> Filter(Query query)
         {
             List<Propiedad> propiedadesTipo = new List<Propiedad>();

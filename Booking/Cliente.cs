@@ -67,5 +67,9 @@ namespace Booking
         {
             dni = value;
         }
+        public override string ToString()
+        {
+            return "nombre: " + nombre + " - dni: " + dni + " - telefono: " + telefono;
+        }
     }
 }

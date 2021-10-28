@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -80,6 +81,38 @@ namespace Booking
         public void AgregarReserva(Reserva r)
         {
             reservas.Add(r);
+        }
+        public List<Reserva> listarReservas ()
+        {
+            return reservas;
+        }
+        public List<string> Resumen()
+        {
+            List<string> sb = new List<string>();
+            reservas.Sort();
+            string s;
+            sb.Add("________________________________________________________________________________________________________________");
+            s = String.Format("Codigo propiedad: {0}", _ref);
+            sb.Add(s);
+            s = String.Format("Direccion: {0, -50} | plazas: {1}",Localidad +", "+ Direccion, Plazas);
+            sb.Add(s);
+            s = String.Format("Precio base: $ {0, -20}", Precio);
+            sb.Add(s);
+            sb.Add("\n");
+            for (int i = 0; i < reservas.Count; i++)
+            {
+                string entrada = reservas[i].entrada.ToShortDateString();
+                string salida = reservas[i].salida.ToShortDateString();
+                double monto = reservas[i].monto;
+                string cliente = reservas[i].cliente.ToString();
+                s = String.Format("   |Cliente| {0}", cliente);
+                sb.Add(s);
+                s = String.Format("   |Reserva| in: {0} - out: {1} - monto: $ {2}", entrada, salida, monto);
+                sb.Add(s);
+                sb.Add("\n");
+            }
+
+            return sb;
         }
         public int CompareTo(object obj)
         {

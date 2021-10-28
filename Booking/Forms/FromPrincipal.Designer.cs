@@ -41,8 +41,9 @@ namespace Booking
             this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.propietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.añadirPropietarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listarPropietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,8 @@ namespace Booking
             this.menuStrip1.BackColor = System.Drawing.Color.Tan;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
-            this.propiedadesToolStripMenuItem});
+            this.propiedadesToolStripMenuItem,
+            this.propietariosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1315, 24);
@@ -125,38 +127,46 @@ namespace Booking
             // 
             this.propiedadesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buscarToolStripMenuItem,
-            this.crearToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.añadirPropietarioToolStripMenuItem});
+            this.crearToolStripMenuItem});
             this.propiedadesToolStripMenuItem.Name = "propiedadesToolStripMenuItem";
-            this.propiedadesToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.propiedadesToolStripMenuItem.Text = "Props";
+            this.propiedadesToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.propiedadesToolStripMenuItem.Text = "Propiedades";
             // 
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buscarToolStripMenuItem.Text = "Buscar Propiedad";
             this.buscarToolStripMenuItem.Click += new System.EventHandler(this.buscarToolStripMenuItem_Click);
             // 
             // crearToolStripMenuItem
             // 
             this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            this.crearToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.crearToolStripMenuItem.Text = "Crear Propieadad";
             this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
             // 
-            // toolStripSeparator2
+            // propietariosToolStripMenuItem
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
+            this.propietariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.añadirPropietarioToolStripMenuItem,
+            this.listarPropietariosToolStripMenuItem});
+            this.propietariosToolStripMenuItem.Name = "propietariosToolStripMenuItem";
+            this.propietariosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.propietariosToolStripMenuItem.Text = "Propietarios";
             // 
             // añadirPropietarioToolStripMenuItem
             // 
             this.añadirPropietarioToolStripMenuItem.Name = "añadirPropietarioToolStripMenuItem";
             this.añadirPropietarioToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.añadirPropietarioToolStripMenuItem.Text = "Añadir Propietario";
-            this.añadirPropietarioToolStripMenuItem.Click += new System.EventHandler(this.añadirPropietarioToolStripMenuItem_Click);
+            // 
+            // listarPropietariosToolStripMenuItem
+            // 
+            this.listarPropietariosToolStripMenuItem.Name = "listarPropietariosToolStripMenuItem";
+            this.listarPropietariosToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.listarPropietariosToolStripMenuItem.Text = "Listar Propietarios";
+            this.listarPropietariosToolStripMenuItem.Click += new System.EventHandler(this.listarPropietariosToolStripMenuItem_Click);
             // 
             // FromPrincipal
             // 
@@ -192,9 +202,10 @@ namespace Booking
         private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem propiedadesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem crearToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem añadirPropietarioToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem buscarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propietariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem añadirPropietarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listarPropietariosToolStripMenuItem;
     }
 }
 
