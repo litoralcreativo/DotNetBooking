@@ -188,6 +188,7 @@ namespace Booking
                 if (empresa.Sesion == null)
                 {
                     MessageBox.Show("Sus credenciales son incorrectas", "Sesion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    iniciarSesionToolStripMenuItem.PerformClick();
                 } else
                 {
                     empresa.Sesion.MarcarEntrada();
