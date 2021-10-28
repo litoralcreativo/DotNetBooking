@@ -6271,16 +6271,17 @@
 									"model": {
 										"$ref": "AAAAAAF8g/KcJjK52TY="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 330,
+									"left": 279,
 									"top": 1019,
+									"width": 50.22900390625,
 									"height": 13,
-									"alpha": -0.5235987755982988,
-									"distance": 30,
+									"alpha": -1.0232340866087102,
+									"distance": 48.02082881417188,
 									"hostEdge": {
 										"$ref": "AAAAAAF8g/KcJzK7hus="
-									}
+									},
+									"text": "+usuario"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6311,16 +6312,17 @@
 									"model": {
 										"$ref": "AAAAAAF8g/KcJjK52TY="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 357,
+									"left": 360,
 									"top": 1015,
+									"width": 7.22998046875,
 									"height": 13,
-									"alpha": 0.5235987755982988,
-									"distance": 25,
+									"alpha": 0.6857296790167866,
+									"distance": 28.42534080710379,
 									"hostEdge": {
 										"$ref": "AAAAAAF8g/KcJzK7hus="
-									}
+									},
+									"text": "1"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -10390,10 +10392,12 @@
 								"_parent": {
 									"$ref": "AAAAAAF8g/KcJjK3lwc="
 								},
+								"name": "usuario",
 								"reference": {
 									"$ref": "AAAAAAF8gR6Ro0ZehcE="
 								},
-								"aggregation": "shared"
+								"aggregation": "shared",
+								"multiplicity": "1"
 							}
 						}
 					],
