@@ -29,7 +29,7 @@ namespace Booking
         /// </summary>
         private void InitializeComponent()
         {
-            this.headerPanel = new System.Windows.Forms.Panel();
+            this.pnlEncabezado = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbPropietario = new System.Windows.Forms.ComboBox();
@@ -70,7 +70,7 @@ namespace Booking
             this.nudDiasMinimos = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.nudCategoriaHotel = new System.Windows.Forms.NumericUpDown();
-            this.headerPanel.SuspendLayout();
+            this.pnlEncabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioBase)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -84,15 +84,18 @@ namespace Booking
             ((System.ComponentModel.ISupportInitialize)(this.nudCategoriaHotel)).BeginInit();
             this.SuspendLayout();
             // 
-            // headerPanel
+            // pnlEncabezado
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.Wheat;
-            this.headerPanel.Controls.Add(this.label1);
-            this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.headerPanel.Location = new System.Drawing.Point(0, 0);
-            this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(566, 47);
-            this.headerPanel.TabIndex = 2;
+            this.pnlEncabezado.BackColor = System.Drawing.Color.Wheat;
+            this.pnlEncabezado.Controls.Add(this.label1);
+            this.pnlEncabezado.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEncabezado.Location = new System.Drawing.Point(0, 0);
+            this.pnlEncabezado.Name = "pnlEncabezado";
+            this.pnlEncabezado.Size = new System.Drawing.Size(566, 47);
+            this.pnlEncabezado.TabIndex = 2;
+            this.pnlEncabezado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseDown);
+            this.pnlEncabezado.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseMove);
+            this.pnlEncabezado.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseUp);
             // 
             // label1
             // 
@@ -596,15 +599,15 @@ namespace Booking
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbPropietario);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.headerPanel);
+            this.Controls.Add(this.pnlEncabezado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RegistroEdicionPropiedad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Registro";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegistroEdicionPropiedad_FormClosing);
             this.Load += new System.EventHandler(this.RegistroEdicionPropiedad_Load);
-            this.headerPanel.ResumeLayout(false);
-            this.headerPanel.PerformLayout();
+            this.pnlEncabezado.ResumeLayout(false);
+            this.pnlEncabezado.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioBase)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -625,7 +628,7 @@ namespace Booking
 
         #endregion
 
-        private System.Windows.Forms.Panel headerPanel;
+        private System.Windows.Forms.Panel pnlEncabezado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;

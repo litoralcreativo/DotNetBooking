@@ -29,7 +29,7 @@ namespace Booking
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlEncabezado = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
@@ -43,19 +43,22 @@ namespace Booking
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.nudSeAlojan = new System.Windows.Forms.NumericUpDown();
-            this.panel1.SuspendLayout();
+            this.pnlEncabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeAlojan)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlEncabezado
             // 
-            this.panel1.BackColor = System.Drawing.Color.Tan;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(367, 47);
-            this.panel1.TabIndex = 4;
+            this.pnlEncabezado.BackColor = System.Drawing.Color.Tan;
+            this.pnlEncabezado.Controls.Add(this.label1);
+            this.pnlEncabezado.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEncabezado.Location = new System.Drawing.Point(0, 0);
+            this.pnlEncabezado.Name = "pnlEncabezado";
+            this.pnlEncabezado.Size = new System.Drawing.Size(367, 47);
+            this.pnlEncabezado.TabIndex = 4;
+            this.pnlEncabezado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseDown);
+            this.pnlEncabezado.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseMove);
+            this.pnlEncabezado.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseUp);
             // 
             // label1
             // 
@@ -221,12 +224,12 @@ namespace Booking
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbTelefono);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlEncabezado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClienteForm";
             this.Text = "ClienteForm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlEncabezado.ResumeLayout(false);
+            this.pnlEncabezado.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeAlojan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -235,7 +238,7 @@ namespace Booking
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlEncabezado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;

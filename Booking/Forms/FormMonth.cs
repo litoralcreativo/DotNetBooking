@@ -86,6 +86,20 @@ namespace Booking
             btnSeleccionar.Text = sr.selecting ? "Selecting" : "Select";
             UpdateCalendar();
         }
+        
+        private void nudNumeroDeDias_ValueChanged(object sender, EventArgs e)
+        {
+            if (sr.selectedDates.Count >= 1)
+            {
+                bool sePudo = sr.SetNumberOfDaysDays(Convert.ToInt32(nudNumeroDeDias.Value));
+                UpdatePresupuesto();
+                if (!sePudo)
+                {
+                    nudNumeroDeDias.Value = sr.selectedDates.Count;
+                    MessageBox.Show("No se puede reservar esta fecha","Fecha no disponible");
+                }
+            }
+        }
 
         #region draggin del form
         private bool dragging = false;
@@ -113,18 +127,5 @@ namespace Booking
         }
         #endregion
 
-        private void nudNumeroDeDias_ValueChanged(object sender, EventArgs e)
-        {
-            if (sr.selectedDates.Count >= 1)
-            {
-                bool sePudo = sr.SetNumberOfDaysDays(Convert.ToInt32(nudNumeroDeDias.Value));
-                UpdatePresupuesto();
-                if (!sePudo)
-                {
-                    nudNumeroDeDias.Value = sr.selectedDates.Count;
-                    MessageBox.Show("No se puede reservar esta fecha","Fecha no disponible");
-                }
-            }
-        }
     }
 }

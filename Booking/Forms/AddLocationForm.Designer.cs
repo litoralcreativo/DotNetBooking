@@ -29,23 +29,26 @@ namespace Booking.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlEncabezado = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.tbLocation = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.pnlEncabezado.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlEncabezado
             // 
-            this.panel1.BackColor = System.Drawing.Color.Tan;
-            this.panel1.Controls.Add(this.lblTitle);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(382, 47);
-            this.panel1.TabIndex = 3;
+            this.pnlEncabezado.BackColor = System.Drawing.Color.Tan;
+            this.pnlEncabezado.Controls.Add(this.lblTitle);
+            this.pnlEncabezado.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlEncabezado.Location = new System.Drawing.Point(0, 0);
+            this.pnlEncabezado.Name = "pnlEncabezado";
+            this.pnlEncabezado.Size = new System.Drawing.Size(382, 47);
+            this.pnlEncabezado.TabIndex = 3;
+            this.pnlEncabezado.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseDown);
+            this.pnlEncabezado.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseMove);
+            this.pnlEncabezado.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlEncabezado_MouseUp);
             // 
             // lblTitle
             // 
@@ -103,12 +106,13 @@ namespace Booking.Forms
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.tbLocation);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlEncabezado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddLocationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddLocationForm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlEncabezado.ResumeLayout(false);
+            this.pnlEncabezado.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,7 +120,7 @@ namespace Booking.Forms
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlEncabezado;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;

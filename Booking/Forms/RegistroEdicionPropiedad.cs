@@ -161,6 +161,32 @@ namespace Booking
                 MessageBox.Show(ex.Message);
             }
         }
+
+        #region draggin del form
+        private bool dragging = false;
+        private Point startPoint = new Point(0, 0);
+        private void pnlEncabezado_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            startPoint = new Point(e.X, e.Y);
+        }
+
+        private void pnlEncabezado_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point p = PointToScreen(e.Location);
+                Location = new Point(p.X - this.startPoint.X, p.Y - this.startPoint.Y);
+
+            }
+        }
+
+        private void pnlEncabezado_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        #endregion
     }
 }
 
