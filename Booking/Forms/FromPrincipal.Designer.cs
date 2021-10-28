@@ -35,8 +35,6 @@ namespace Booking
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,8 +65,6 @@ namespace Booking
             this.cerrarSesionToolStripMenuItem,
             this.registrarUsuarioToolStripMenuItem,
             this.toolStripSeparator1,
-            this.abrirToolStripMenuItem,
-            this.guardarToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
@@ -102,20 +98,6 @@ namespace Booking
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
             // 
-            // abrirToolStripMenuItem
-            // 
-            this.abrirToolStripMenuItem.Enabled = false;
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            // 
-            // guardarToolStripMenuItem
-            // 
-            this.guardarToolStripMenuItem.Enabled = false;
-            this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.guardarToolStripMenuItem.Text = "Guardar";
-            // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
@@ -135,14 +117,14 @@ namespace Booking
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.buscarToolStripMenuItem.Text = "Buscar Propiedad";
             this.buscarToolStripMenuItem.Click += new System.EventHandler(this.buscarToolStripMenuItem_Click);
             // 
             // crearToolStripMenuItem
             // 
             this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            this.crearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.crearToolStripMenuItem.Text = "Crear Propieadad";
             this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
             // 
@@ -158,13 +140,14 @@ namespace Booking
             // añadirPropietarioToolStripMenuItem
             // 
             this.añadirPropietarioToolStripMenuItem.Name = "añadirPropietarioToolStripMenuItem";
-            this.añadirPropietarioToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.añadirPropietarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.añadirPropietarioToolStripMenuItem.Text = "Añadir Propietario";
+            this.añadirPropietarioToolStripMenuItem.Click += new System.EventHandler(this.añadirPropietarioToolStripMenuItem_Click);
             // 
             // listarPropietariosToolStripMenuItem
             // 
             this.listarPropietariosToolStripMenuItem.Name = "listarPropietariosToolStripMenuItem";
-            this.listarPropietariosToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.listarPropietariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listarPropietariosToolStripMenuItem.Text = "Listar Propietarios";
             this.listarPropietariosToolStripMenuItem.Click += new System.EventHandler(this.listarPropietariosToolStripMenuItem_Click);
             // 
@@ -194,8 +177,6 @@ namespace Booking
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarSesionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

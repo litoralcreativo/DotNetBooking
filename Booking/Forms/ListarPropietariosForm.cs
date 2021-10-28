@@ -32,6 +32,7 @@ namespace Booking
             PrinterSettings ps = new PrinterSettings();
             printDocument1.PrinterSettings = ps;
             printDocument1.PrintPage += Imprimir;
+            
             try
             {
                 printDocument1.Print();
@@ -40,6 +41,7 @@ namespace Booking
             {
                 MessageBox.Show(ex.Message);
             }
+
             /*
                 string s = propietarios[1].Resumen().ToString();
                 try

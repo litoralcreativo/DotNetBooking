@@ -31,6 +31,8 @@ namespace Booking
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            FSplash nuevoSplash = new FSplash();
+            nuevoSplash.ShowDialog();
             if (File.Exists(miArchivo))
             {
                 archivo = new FileStream(miArchivo, FileMode.Open, FileAccess.Read);
@@ -58,6 +60,7 @@ namespace Booking
             //   empresa.usuarios[i].sesiones.Clear();
             //}
             /****TEST****/
+
             ActualizarMenuStrip();
             iniciarSesionToolStripMenuItem.PerformClick();
         }
@@ -108,6 +111,7 @@ namespace Booking
                         sesiones.Add(u.sesiones[i]);
                     }
                 }
+                sesiones.Sort();
                 foreach (Sesion sesion in sesiones)
                 {
                     linea = new StringBuilder();
@@ -133,8 +137,6 @@ namespace Booking
                 iniciarSesionToolStripMenuItem.Enabled = true;
                 cerrarSesionToolStripMenuItem.Enabled = false;
                 registrarUsuarioToolStripMenuItem.Enabled = false;
-                abrirToolStripMenuItem.Enabled = false;
-                guardarToolStripMenuItem.Enabled = false;
                 buscarToolStripMenuItem.Enabled = false;
                 crearToolStripMenuItem.Enabled = false;
                 añadirPropietarioToolStripMenuItem.Enabled = false;
@@ -150,8 +152,6 @@ namespace Booking
                             iniciarSesionToolStripMenuItem.Enabled = false;
                             cerrarSesionToolStripMenuItem.Enabled = true;
                             registrarUsuarioToolStripMenuItem.Enabled = false;
-                            abrirToolStripMenuItem.Enabled = true;
-                            guardarToolStripMenuItem.Enabled = true;
                             buscarToolStripMenuItem.Enabled = true;
                             crearToolStripMenuItem.Enabled = false;
                             añadirPropietarioToolStripMenuItem.Enabled = false;
@@ -163,8 +163,6 @@ namespace Booking
                             iniciarSesionToolStripMenuItem.Enabled = false;
                             cerrarSesionToolStripMenuItem.Enabled = true;
                             registrarUsuarioToolStripMenuItem.Enabled = true;
-                            abrirToolStripMenuItem.Enabled = true;
-                            guardarToolStripMenuItem.Enabled = true;
                             buscarToolStripMenuItem.Enabled = true;
                             crearToolStripMenuItem.Enabled = true;
                             añadirPropietarioToolStripMenuItem.Enabled = true;

@@ -10136,7 +10136,7 @@
 								"reference": {
 									"$ref": "AAAAAAF8gQ+x20HUcLQ="
 								},
-								"aggregation": "composite"
+								"aggregation": "shared"
 							}
 						},
 						{

@@ -38,16 +38,12 @@ namespace Booking
         {
             servicios = ser;
         }
-        
         public abstract double Presupuestar(int unitarios);
         public void AgregarPropietario(Propietario prop)
         {
             propietario = prop;
         }
-        public virtual string Tipo()
-        {
-            return "Propiedad abstracta";
-        }
+        public abstract string Tipo();
         public Propietario getPropietario()
         {
             return propietario;
@@ -124,7 +120,6 @@ namespace Booking
             else
                 throw new ArgumentException("El objeto no es una Propiedad");
         }
-
     }
     
     [Serializable]

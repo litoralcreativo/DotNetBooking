@@ -54,7 +54,7 @@ namespace Booking
             ArrayList result = new ArrayList();
             result.Add("Resumen de reservas");
             result.Add(DateTime.Now.ToString());
-            result.Add("Cliente: "+ToString());
+            result.Add("Propietario: "+ToString());
             for (int i = 0; i < propiedades.Count; i++)
             {
                 if (propiedades[i].listarReservas().Count() != 0)

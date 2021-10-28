@@ -66,9 +66,9 @@ namespace Booking
             this.label1.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 21);
+            this.label1.Size = new System.Drawing.Size(164, 21);
             this.label1.TabIndex = 2;
-            this.label1.Text = "USUARIO";
+            this.label1.Text = "DATOS DEL CLIENTE";
             // 
             // btnCancel
             // 
