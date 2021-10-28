@@ -49,8 +49,26 @@ namespace Booking
         {
             dragging = false;
         }
-        
+
         #endregion
 
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tbNombre.Text == "") throw new Exception("Debe indicar un nombre");
+                if (tbDni.Text == "") throw new Exception("Debe indicar un DNI");
+                if (tbTelefono.Text == "") throw new Exception("Debe indicar un telefono");
+                if (tbDireccion.Text == "") throw new Exception("Debe indicar la direccion");
+
+                string message = "Desea confirmar la reserva?";
+                if (MessageBox.Show(message, "Confirmacion", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

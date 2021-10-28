@@ -87,7 +87,6 @@ namespace Booking
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.OldLace;
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Location = new System.Drawing.Point(258, 219);
             this.btnOk.Name = "btnOk";
@@ -95,6 +94,7 @@ namespace Booking
             this.btnOk.TabIndex = 24;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = false;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // tbDni
             // 
