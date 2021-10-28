@@ -13,6 +13,9 @@ namespace Booking
 {
     public partial class RegistroEdicionPropiedad : Form
     {
+        public Empresa empresa;
+        public Propiedad propiedad;
+
         public RegistroEdicionPropiedad()
         {
             InitializeComponent();
@@ -70,7 +73,6 @@ namespace Booking
             }
         }
 
-        private Empresa empresa;
         public void setEmpresa(ref Empresa e)
         {
             empresa = e;
@@ -187,6 +189,24 @@ namespace Booking
         }
 
         #endregion
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Realmente desea eliminar esta propiedad?", "Propiedades", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+            {
+                bool sePudo = empresa.BorrarPropiedad(propiedad);
+                if (sePudo)
+                {
+                    MessageBox.Show("Se a borrado la propiedad", "Propiedades");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo borrar la propiedad, existen reservas asociadas", "Propiedades");
+                }
+            }
+
+        }
     }
 }
 

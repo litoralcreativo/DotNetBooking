@@ -237,7 +237,5 @@ namespace Booking
             }
             return result;
         }
-        
-
     }
 }

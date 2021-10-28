@@ -265,7 +265,9 @@ namespace Booking
         {
             if (dgv.Rows.Count >= 1)
             {
-                Propiedad editable = filtrado[dgv.SelectedCells[0].RowIndex];
+                int rIndex = dgv.SelectedCells[0].RowIndex;
+                int _ref = Convert.ToInt32(dgv.Rows[rIndex].Cells[0].Value);
+                Propiedad editable = ((FromPrincipal)ParentForm).empresa.GetPropiedad(_ref);
                 RegistroEdicionPropiedad regPropiedad = new RegistroEdicionPropiedad();
                 List<Propietario> propietarios = ((FromPrincipal)ParentForm).empresa.ListarPropietarios();
                 for (int i = 0; i < propietarios.Count; i++)
@@ -328,7 +330,15 @@ namespace Booking
                             break;
                     }
                 }
+                regPropiedad.btnBorrar.Visible = true;
+                
+                regPropiedad.propiedad = ((FromPrincipal)ParentForm).empresa.GetPropiedad(_ref);
 
+
+                if (((FromPrincipal)ParentForm).empresa.Sesion.Categoria == CategoriaUsuario.Empleado)
+                {
+                    regPropiedad.btnBorrar.Enabled = false;
+                }
                 if (regPropiedad.ShowDialog() == DialogResult.OK)
                 {
                     int propietarioIndex = regPropiedad.cbPropietario.SelectedIndex;
@@ -348,8 +358,8 @@ namespace Booking
                     editable.setImages(imagesPath);
                     editable.ActualizarServicios(regPropiedad.servicios);
                     
-                    ActualizarLista();
                 }
+                ActualizarLista();
             }
         }
     }

@@ -235,6 +235,10 @@ namespace Booking
             {
                 empresa.Sesion.MarcarSalida();
                 empresa.Sesion = null;
+                for (int i = 0; i < MdiChildren.Length; i++) // borrar todos los mdi hijos
+                {
+                    MdiChildren[i].Close();
+                }
             }
             ActualizarMenuStrip();
         }

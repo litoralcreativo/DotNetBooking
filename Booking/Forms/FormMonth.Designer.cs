@@ -172,7 +172,6 @@ namespace Booking
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.lblMonth = new System.Windows.Forms.Label();
-            this.btnOk = new System.Windows.Forms.Button();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -1980,19 +1979,6 @@ namespace Booking
             this.lblMonth.TabIndex = 0;
             this.lblMonth.Text = "Month";
             // 
-            // btnOk
-            // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.BackColor = System.Drawing.Color.OldLace;
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(479, 447);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(94, 26);
-            this.btnOk.TabIndex = 7;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = false;
-            // 
             // btnSeleccionar
             // 
             this.btnSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -2012,7 +1998,7 @@ namespace Booking
             this.button1.BackColor = System.Drawing.Color.OldLace;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(379, 447);
+            this.button1.Location = new System.Drawing.Point(479, 447);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 26);
             this.button1.TabIndex = 7;
@@ -2234,7 +2220,6 @@ namespace Booking
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -2400,7 +2385,6 @@ namespace Booking
         private System.Windows.Forms.Panel p4;
         private System.Windows.Forms.Panel p3;
         private System.Windows.Forms.Panel p2;
-        private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label48;

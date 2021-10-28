@@ -157,5 +157,15 @@ namespace Booking
             reservas.Add(nueva);
             p.AgregarReserva(nueva);
         }
+
+        internal bool BorrarPropiedad(Propiedad propiedad)
+        {
+            bool result = false;
+            if (propiedad.listarReservas().Count == 0)
+            {
+                result = propiedades.Remove(propiedad);
+            }
+            return result;
+        }
     }
 }

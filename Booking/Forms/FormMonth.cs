@@ -126,6 +126,5 @@ namespace Booking
             dragging = false;
         }
         #endregion
-
     }
 }

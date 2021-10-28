@@ -70,6 +70,7 @@ namespace Booking
             this.nudDiasMinimos = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.nudCategoriaHotel = new System.Windows.Forms.NumericUpDown();
+            this.btnBorrar = new System.Windows.Forms.Button();
             this.pnlEncabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlazas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecioBase)).BeginInit();
@@ -397,7 +398,7 @@ namespace Booking
             this.btnCancel.BackColor = System.Drawing.Color.OldLace;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(430, 379);
+            this.btnCancel.Location = new System.Drawing.Point(374, 354);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(59, 26);
             this.btnCancel.TabIndex = 11;
@@ -409,7 +410,7 @@ namespace Booking
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.OldLace;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(495, 379);
+            this.btnOk.Location = new System.Drawing.Point(490, 354);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(59, 26);
             this.btnOk.TabIndex = 10;
@@ -438,7 +439,7 @@ namespace Booking
             this.groupBox3.Controls.Add(this.btnBuscarImg);
             this.groupBox3.Location = new System.Drawing.Point(19, 219);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(333, 187);
+            this.groupBox3.Size = new System.Drawing.Size(333, 196);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Imagenes";
@@ -448,7 +449,7 @@ namespace Booking
             this.btnRemoveFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveFirst.BackColor = System.Drawing.Color.OldLace;
             this.btnRemoveFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveFirst.Location = new System.Drawing.Point(147, 19);
+            this.btnRemoveFirst.Location = new System.Drawing.Point(147, 28);
             this.btnRemoveFirst.Name = "btnRemoveFirst";
             this.btnRemoveFirst.Size = new System.Drawing.Size(20, 20);
             this.btnRemoveFirst.TabIndex = 17;
@@ -461,7 +462,7 @@ namespace Booking
             this.btnRemoveSecond.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveSecond.BackColor = System.Drawing.Color.OldLace;
             this.btnRemoveSecond.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveSecond.Location = new System.Drawing.Point(307, 19);
+            this.btnRemoveSecond.Location = new System.Drawing.Point(307, 28);
             this.btnRemoveSecond.Name = "btnRemoveSecond";
             this.btnRemoveSecond.Size = new System.Drawing.Size(20, 20);
             this.btnRemoveSecond.TabIndex = 16;
@@ -496,7 +497,7 @@ namespace Booking
             this.btnBuscarImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscarImg.BackColor = System.Drawing.Color.OldLace;
             this.btnBuscarImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarImg.Location = new System.Drawing.Point(11, 155);
+            this.btnBuscarImg.Location = new System.Drawing.Point(11, 164);
             this.btnBuscarImg.Name = "btnBuscarImg";
             this.btnBuscarImg.Size = new System.Drawing.Size(316, 26);
             this.btnBuscarImg.TabIndex = 14;
@@ -569,6 +570,20 @@ namespace Booking
             0,
             0});
             // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBorrar.BackColor = System.Drawing.Color.Tomato;
+            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrar.Location = new System.Drawing.Point(374, 386);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(175, 29);
+            this.btnBorrar.TabIndex = 11;
+            this.btnBorrar.Text = "Borrar propiedad";
+            this.btnBorrar.UseVisualStyleBackColor = false;
+            this.btnBorrar.Visible = false;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
             // RegistroEdicionPropiedad
             // 
             this.AcceptButton = this.btnOk;
@@ -576,8 +591,9 @@ namespace Booking
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(566, 417);
+            this.ClientSize = new System.Drawing.Size(566, 427);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnNewLocal);
             this.Controls.Add(this.btnOk);
@@ -669,5 +685,6 @@ namespace Booking
         public System.Windows.Forms.NumericUpDown nudDiasMinimos;
         private System.Windows.Forms.Label label9;
         public System.Windows.Forms.NumericUpDown nudCategoriaHotel;
+        public System.Windows.Forms.Button btnBorrar;
     }
 }
