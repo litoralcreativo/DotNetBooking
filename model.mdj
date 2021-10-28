@@ -322,7 +322,7 @@
 											"top": 653,
 											"width": 445.91650390625,
 											"height": 13,
-											"text": "+Reservar(cli: Cliente, prop: Propiedad, ingreso: DateTime, salida: DateTime)",
+											"text": "+Filter(query: Query): List<Propiedad>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -8658,7 +8658,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF8gQ+x20HUcLQ="
 							},
-							"name": "Reservar",
+							"name": "Filter",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -8666,39 +8666,19 @@
 									"_parent": {
 										"$ref": "AAAAAAF8gUfcyeG6QQQ="
 									},
-									"name": "cli",
+									"name": "query",
 									"type": {
-										"$ref": "AAAAAAF8gUptvvaz530="
+										"$ref": "AAAAAAF8xJXLjjzaJlE="
 									}
 								},
 								{
 									"_type": "UMLParameter",
-									"_id": "AAAAAAF8gUhgmeIi3Gk=",
+									"_id": "AAAAAAF8xql/ft6a/Vk=",
 									"_parent": {
 										"$ref": "AAAAAAF8gUfcyeG6QQQ="
 									},
-									"name": "prop",
-									"type": {
-										"$ref": "AAAAAAF8gQ/VcUH/ut4="
-									}
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8gUhgmuIjJXw=",
-									"_parent": {
-										"$ref": "AAAAAAF8gUfcyeG6QQQ="
-									},
-									"name": "ingreso",
-									"type": "DateTime"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAF8gUwPif7g4OQ=",
-									"_parent": {
-										"$ref": "AAAAAAF8gUfcyeG6QQQ="
-									},
-									"name": "salida",
-									"type": "DateTime"
+									"type": "List<Propiedad>",
+									"direction": "return"
 								}
 							]
 						},

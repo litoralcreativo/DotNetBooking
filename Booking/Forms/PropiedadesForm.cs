@@ -201,7 +201,9 @@ namespace Booking
             try
             {
                 FormMonth formMes = new FormMonth();
-                Propiedad prop = filtrado[dgv.SelectedCells[0].RowIndex];
+                int rIndex = dgv.SelectedCells[0].RowIndex;
+                int _ref = Convert.ToInt32(dgv.Rows[rIndex].Cells[0].Value);
+                Propiedad prop = ((FromPrincipal)ParentForm).empresa.GetPropiedad(_ref);
                 formMes.propiedad = prop;
                 if (formMes.ShowDialog() == DialogResult.OK)
                 {
