@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Booking
 {
@@ -16,8 +17,10 @@ namespace Booking
     {
         public Empresa empresa;
         FileStream archivo;
+        StreamWriter sWriter;
         BinaryFormatter binaryFormatter;
         string miArchivo = Application.StartupPath + "\\info.dat"; // archivo serializado
+        string logFile = Application.StartupPath + "\\log.txt"; // archivo serializado
 
         public FromPrincipal()
         {
@@ -50,8 +53,11 @@ namespace Booking
             /****TEST****/
             //empresa.localidades = new List<string>();
             //empresa.propiedades = new List<Propiedad>();
+            //for (int i = 0; i < empresa.usuarios.Count; i++)
+            //{
+            //   empresa.usuarios[i].sesiones.Clear();
+            //}
             /****TEST****/
-
             ActualizarMenuStrip();
             iniciarSesionToolStripMenuItem.PerformClick();
         }
@@ -69,6 +75,10 @@ namespace Booking
                     empresa.Sesion.MarcarSalida();
                     empresa.Sesion = null;
                 }
+
+                // escribir archivo log
+                GuardarLog();
+
                 // serializar datos
                 if (File.Exists(miArchivo))
                     System.IO.File.Delete(miArchivo);
@@ -82,7 +92,39 @@ namespace Booking
                 e.Cancel = true;
             }
         }
-        
+
+        private void GuardarLog()
+        {
+            try
+            {
+                StringBuilder linea;
+                archivo = new FileStream(logFile, FileMode.Create, FileAccess.Write);
+                sWriter = new StreamWriter(archivo);
+                List<Sesion> sesiones = new List<Sesion>();
+                foreach (Usuario u in empresa.usuarios) // listamos sesiones
+                {
+                    for (int i = 0; i < u.sesiones.Count; i++)
+                    {
+                        sesiones.Add(u.sesiones[i]);
+                    }
+                }
+                foreach (Sesion sesion in sesiones)
+                {
+                    linea = new StringBuilder();
+                    linea.Append(sesion.user.Username);
+                    linea.Append(",");
+                    linea.Append(sesion.entrada.ToString());
+                    linea.Append(",");
+                    linea.Append(sesion.salida.ToString());
+                    sWriter.WriteLine(linea);
+                }
+            }
+            finally
+            {
+                if (sWriter != null) sWriter.Close();
+                if (archivo != null) archivo.Dispose();
+            }
+        }
 
         public void ActualizarMenuStrip()
         {

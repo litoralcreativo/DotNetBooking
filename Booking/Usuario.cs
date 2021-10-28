@@ -31,11 +31,11 @@ namespace Booking
         }
         public void MarcarEntrada()
         {
-            sesionActual = new Sesion();
+            sesionActual = new Sesion(this);
         }
         public void MarcarEntrada(DateTime dt)
         {
-            sesionActual = new Sesion(dt);
+            sesionActual = new Sesion(dt, this);
         }
         public void MarcarSalida()
         {
