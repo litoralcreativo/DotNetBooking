@@ -72,6 +72,7 @@ namespace Booking
            propietarios[propietarioIndex].AgregarPropiedad(prop);
            propiedades.Add(prop);
         }
+
         public List<Propiedad> ListarPropiedades()
         {
             return propiedades;

@@ -75,6 +75,7 @@ namespace Booking
             this.ckbHotel = new System.Windows.Forms.CheckBox();
             this.ckbCasaFDS = new System.Windows.Forms.CheckBox();
             this.ckbCasaPorDia = new System.Windows.Forms.CheckBox();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
@@ -141,7 +142,7 @@ namespace Booking
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgv.Size = new System.Drawing.Size(858, 469);
+            this.dgv.Size = new System.Drawing.Size(858, 498);
             this.dgv.TabIndex = 4;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -242,13 +243,13 @@ namespace Booking
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnFiltrar);
+            this.panel1.Controls.Add(this.btnEditar);
             this.panel1.Controls.Add(this.btnDisponibilidad);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(858, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 469);
+            this.panel1.Size = new System.Drawing.Size(366, 498);
             this.panel1.TabIndex = 7;
             // 
             // btnFiltrar
@@ -256,9 +257,9 @@ namespace Booking
             this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFiltrar.BackColor = System.Drawing.Color.OldLace;
             this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFiltrar.Location = new System.Drawing.Point(12, 431);
+            this.btnFiltrar.Location = new System.Drawing.Point(12, 411);
             this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(117, 26);
+            this.btnFiltrar.Size = new System.Drawing.Size(320, 27);
             this.btnFiltrar.TabIndex = 8;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = false;
@@ -269,7 +270,7 @@ namespace Booking
             this.btnDisponibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisponibilidad.BackColor = System.Drawing.Color.OldLace;
             this.btnDisponibilidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisponibilidad.Location = new System.Drawing.Point(237, 431);
+            this.btnDisponibilidad.Location = new System.Drawing.Point(237, 460);
             this.btnDisponibilidad.Name = "btnDisponibilidad";
             this.btnDisponibilidad.Size = new System.Drawing.Size(117, 26);
             this.btnDisponibilidad.TabIndex = 8;
@@ -279,6 +280,7 @@ namespace Booking
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnFiltrar);
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox5);
             this.groupBox1.Controls.Add(this.groupBox4);
@@ -286,7 +288,7 @@ namespace Booking
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Location = new System.Drawing.Point(12, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(342, 418);
+            this.groupBox1.Size = new System.Drawing.Size(342, 444);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar Propiedad";
@@ -624,12 +626,25 @@ namespace Booking
             this.ckbCasaPorDia.UseVisualStyleBackColor = true;
             this.ckbCasaPorDia.CheckedChanged += new System.EventHandler(this.ckbCasaPorDia_CheckedChanged);
             // 
+            // btnEditar
+            // 
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.BackColor = System.Drawing.Color.OldLace;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Location = new System.Drawing.Point(12, 460);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(96, 26);
+            this.btnEditar.TabIndex = 8;
+            this.btnEditar.Text = "Editar Propiedad";
+            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
             // PropiedadesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
-            this.ClientSize = new System.Drawing.Size(1224, 497);
+            this.ClientSize = new System.Drawing.Size(1224, 526);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.headerPanel);
@@ -710,5 +725,6 @@ namespace Booking
         public System.Windows.Forms.PictureBox pbSegunda;
         public System.Windows.Forms.PictureBox pbPrimera;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Button btnEditar;
     }
 }

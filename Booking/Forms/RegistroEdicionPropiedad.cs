@@ -132,7 +132,6 @@ namespace Booking
         private void RegistroEdicionPropiedad_Load(object sender, EventArgs e)
         {
             checkImages();
-            actualizarNombre();
         }
 
         private void checkImages()

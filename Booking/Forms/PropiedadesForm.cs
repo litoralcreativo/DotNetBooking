@@ -241,5 +241,97 @@ namespace Booking
                 ShowImages(empty);
             }
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgv.Rows.Count >= 1)
+            {
+                Propiedad editable = filtrado[dgv.SelectedCells[0].RowIndex];
+                RegistroEdicionPropiedad regPropiedad = new RegistroEdicionPropiedad();
+                List<Propietario> propietarios = ((FromPrincipal)ParentForm).empresa.ListarPropietarios();
+                for (int i = 0; i < propietarios.Count; i++)
+                {
+                    regPropiedad.cbPropietario.Items.Add(propietarios[i].ToString());
+                }
+                regPropiedad.setEmpresa(ref ((FromPrincipal)ParentForm).empresa);
+                regPropiedad.updateLocations();
+                int pIndex = ((FromPrincipal)ParentForm).empresa.ListarPropietarios().IndexOf(editable.getPropietario());
+                regPropiedad.cbPropietario.SelectedIndex = pIndex;
+                regPropiedad.tipoPropiedad = editable.getTipo();
+                regPropiedad.tbNombre.Text = editable.Nombre;
+                regPropiedad.cbLocalidad.Text = editable.Localidad;
+                regPropiedad.tbDireccion.Text = editable.Direccion;
+                regPropiedad.nudPlazas.Value = editable.Plazas;
+                regPropiedad.nudPrecioBase.Value = (decimal)editable.Precio;
+                regPropiedad.pbPrimera.ImageLocation = editable.getImages()[0];
+                regPropiedad.pbSegunda.ImageLocation = editable.getImages()[1];
+                regPropiedad.cbPropietario.Enabled = false; // no cambiar propietario
+                switch (regPropiedad.tipoPropiedad)
+                {
+                    case TipoPropiedad.Hotel:
+                        regPropiedad.rbHotel.Checked = true;
+                        regPropiedad.nudCategoriaHotel.Enabled = true;
+                        regPropiedad.nudDiasMinimos.Enabled = false;
+                        regPropiedad.nudCategoriaHotel.Value = ((Hotel)editable).GetCategoria();
+                        break;
+                    case TipoPropiedad.CasaPorDia:
+                        regPropiedad.rbCPD.Checked = true;
+                        regPropiedad.nudCategoriaHotel.Enabled = false;
+                        regPropiedad.nudDiasMinimos.Enabled = true;
+                        regPropiedad.nudCategoriaHotel.Value = ((CasaPorDia)editable).GetDiasMinimos();
+                        break;
+                    case TipoPropiedad.CasaFinDeSemana:
+                        regPropiedad.rbCFDS.Checked = true;
+                        break;
+                }
+                for (int i = 0; i < editable.getServicios().Count; i++)
+                {
+                    Servicio s = editable.getServicios()[i];
+                    switch (s)
+                    {
+                        case Servicio.Ac: 
+                           regPropiedad.ckbAC.Checked = true;
+                            break;
+                        case Servicio.Cochera:
+                            regPropiedad.ckbAC.Checked = true;
+                            break;
+                        case Servicio.Desayuno:
+                            regPropiedad.ckbDesayuno.Checked = true;
+                            break;
+                        case Servicio.Mascotas:
+                            regPropiedad.ckbMascotas.Checked = true;
+                            break;
+                        case Servicio.Piscina:
+                            regPropiedad.ckbPiscina.Checked = true;
+                            break;
+                        case Servicio.Wifi:
+                            regPropiedad.ckbWifi.Checked = true;
+                            break;
+                    }
+                }
+
+                if (regPropiedad.ShowDialog() == DialogResult.OK)
+                {
+                    int propietarioIndex = regPropiedad.cbPropietario.SelectedIndex;
+                    string nombre = regPropiedad.tbNombre.Text;
+                    string localidad = regPropiedad.cbLocalidad.Text;
+                    string direccion = regPropiedad.tbDireccion.Text;
+                    int plazas = Convert.ToInt32(regPropiedad.nudPlazas.Value);
+                    double precio = Convert.ToDouble(regPropiedad.nudPrecioBase.Value);
+                    string[] imagesPath = { regPropiedad.pbPrimera.ImageLocation, regPropiedad.pbSegunda.ImageLocation };
+
+                    // actualizar
+                    editable.Nombre = nombre;
+                    editable.Localidad = localidad;
+                    editable.Direccion = direccion;
+                    editable.Plazas = plazas;
+                    editable.Precio = precio;
+                    editable.setImages(imagesPath);
+                    editable.ActualizarServicios(regPropiedad.servicios);
+                    
+                    ActualizarLista();
+                }
+            }
+        }
     }
 }
