@@ -105,6 +105,7 @@
     <Compile Include="Forms\PropiedadesForm.Designer.cs">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportacionExportacion.cs" />
     <Compile Include="SistemaReservas.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="Reserva.cs" />
