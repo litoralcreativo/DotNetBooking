@@ -28,7 +28,6 @@ namespace Booking
             Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.OldLace;
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
             FSplash nuevoSplash = new FSplash();
@@ -52,6 +51,7 @@ namespace Booking
                 u.Categoria = CategoriaUsuario.Administrador;
                 empresa.AgregarUsuario(u);
             }
+            
             /****TEST****/
             //empresa.localidades = new List<string>();
             //empresa.propiedades = new List<Propiedad>();
@@ -175,7 +175,6 @@ namespace Booking
             }
         }
 
-
         private void iniciarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
@@ -265,6 +264,7 @@ namespace Booking
                 }
             }
         }
+        
         private void crearToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegistroEdicionPropiedad regPropiedad = new RegistroEdicionPropiedad();

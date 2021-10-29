@@ -37,7 +37,7 @@ namespace Booking
 
         public int DiasTotales()
         {
-            return (int)(salida - entrada).TotalDays;
+            return (int)(salida - entrada).TotalDays+1;
         }
         private double Presupuestar()
         {

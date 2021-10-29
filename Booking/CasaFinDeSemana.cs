@@ -16,7 +16,7 @@ namespace Booking
         }
         public override double Presupuestar(int unitarios)
         {
-            return Precio * unitarios;
+            return Precio * 1;
         }
             
         public override TipoPropiedad getTipo()

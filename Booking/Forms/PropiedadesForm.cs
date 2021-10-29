@@ -209,7 +209,6 @@ namespace Booking
                 {
                     if (formMes.sr.selectedDates.Count > 0) // Hay dias por reservar
                     {
-                        // ((FromPrincipal)ParentForm).empresa.GetPropiedad(prop._ref).ReservarFechas(formMes.sr.selectedDates);
                         ClienteForm cf = new ClienteForm();
                         if (cf.ShowDialog() == DialogResult.OK)
                         {
