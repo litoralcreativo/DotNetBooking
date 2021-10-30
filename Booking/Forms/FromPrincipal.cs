@@ -47,17 +47,7 @@ namespace Booking
                 u.Apellido = "administrador";
                 u.Categoria = CategoriaUsuario.Administrador;
                 empresa.AgregarUsuario(u);
-                Console.WriteLine(u.HashedPass());
             }
-            
-            /****TEST****/
-            //empresa.localidades = new List<string>();
-            //empresa.propiedades = new List<Propiedad>();
-            //for (int i = 0; i < empresa.usuarios.Count; i++)
-            //{
-            //   empresa.usuarios[i].sesiones.Clear();
-            //}
-            /****TEST****/
 
             ActualizarMenuStrip();
             iniciarSesionToolStripMenuItem.PerformClick();

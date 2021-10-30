@@ -11,9 +11,7 @@ namespace Booking
     [Serializable]
     public class Empresa
     {
-        public int users_pk;
-        public int owners_pk;
-        public int properties_pk;
+        public Dictionary<string, int> primaryKeys;
 
         public List<Usuario> usuarios;
         private List<Propietario> propietarios;
@@ -24,12 +22,15 @@ namespace Booking
 
         public Empresa()
         {
-            users_pk = 0;
-            owners_pk = 0;
-            properties_pk = 0;
-            Usuario.pk = users_pk;
-            Propietario.pk = owners_pk;
-            Propiedad.pk = properties_pk;
+            primaryKeys = new Dictionary<string, int>();
+            primaryKeys.Add("usuarios", 0);
+            primaryKeys.Add("propietarios", 0);
+            primaryKeys.Add("propiedades", 0);
+            primaryKeys.Add("reservas", 0);
+            Usuario.pk = primaryKeys["usuarios"];
+            Propietario.pk = primaryKeys["propietarios"];
+            Propiedad.pk = primaryKeys["propiedades"];
+            Reserva.pk = primaryKeys["reservas"];
 
             usuarios = new List<Usuario>();
             propietarios = new List<Propietario>();
@@ -37,14 +38,17 @@ namespace Booking
             localidades = new List<string>();
             reservas = new List<Reserva>();
         }
-        public Empresa(int users_pk, int owners_pk, int properties_pk)
+        public Empresa(int users_pk, int owners_pk, int properties_pk, int reservations_pk)
         {
-            this.users_pk = users_pk;
-            this.owners_pk = owners_pk;
-            this.properties_pk = properties_pk;
-            Usuario.pk = users_pk;
-            Propietario.pk = owners_pk;
-            Propiedad.pk = properties_pk;
+            primaryKeys = new Dictionary<string, int>();
+            primaryKeys.Add("usuarios", users_pk);
+            primaryKeys.Add("propietarios", owners_pk);
+            primaryKeys.Add("propiedades", properties_pk);
+            primaryKeys.Add("reservas", reservations_pk);
+            Usuario.pk = primaryKeys["usuarios"];
+            Propietario.pk = primaryKeys["propietarios"];
+            Propiedad.pk = primaryKeys["propiedades"];
+            Reserva.pk = primaryKeys["reservas"];
 
             usuarios = new List<Usuario>();
             propietarios = new List<Propietario>();
@@ -52,21 +56,23 @@ namespace Booking
             localidades = new List<string>();
             reservas = new List<Reserva>();
         }
-
         public void RefreshPk()
         {
-            Usuario.pk = users_pk;
-            Propietario.pk = owners_pk;
-            Propiedad.pk = properties_pk;
+            Usuario.pk = primaryKeys["usuarios"];
+            Propietario.pk = primaryKeys["propietarios"];
+            Propiedad.pk = primaryKeys["propiedades"];
+            Reserva.pk = primaryKeys["reservas"];
         }
 
+
+        #region Propietarios
         public bool AgregarPropietario(Propietario prop)
         {
             Propietario encontrado = propietarios.Find(x => x.Dni == prop.Dni);
             if (encontrado == null)
             {
                 propietarios.Add(prop);
-                owners_pk = Propietario.pk;
+                primaryKeys["propietarios"] = Propietario.pk;
                 return true;
             }
             return false;
@@ -75,13 +81,27 @@ namespace Booking
         {
             return propietarios;
         }
-        
+        public Propietario GetPropietario(int id)
+        {
+            propietarios.Sort();
+            Propietario otro = new Propietario("nombre", "apell", 123123, 123123, id);
+            int index = propietarios.BinarySearch(otro);
+            if (index >= 0)
+            {
+                return propietarios[index];
+            }
+            return null;
+        }
+        #endregion
+
+
+        #region Propiedades
         public void AgregarPropiedad(Propiedad prop, int propietarioIndex)
         {
             prop.AgregarPropietario(propietarios[propietarioIndex]);
             propietarios[propietarioIndex].AgregarPropiedad(prop);
             propiedades.Add(prop);
-            properties_pk = Propiedad.pk;
+            primaryKeys["propiedades"] = Propiedad.pk;
         }
         public List<Propiedad> ListarPropiedades()
         {
@@ -99,17 +119,14 @@ namespace Booking
             }
             return null;
         }
-        
-        public void AgregarLocalidad(string loc)
+        public bool BorrarPropiedad(Propiedad propiedad)
         {
-            if (!localidades.Contains(loc))
+            bool result = false;
+            if (propiedad.listarReservas().Count == 0)
             {
-                localidades.Add(loc);
+                result = propiedades.Remove(propiedad);
             }
-        }
-        public List<string> ListarLocalidades()
-        {
-            return localidades;
+            return result;
         }
         public List<Propiedad> Filter(Query query)
         {
@@ -146,31 +163,36 @@ namespace Booking
             }
             return resultado;
         }
-        
+        #endregion
+
+
+        #region Localidades
+        public void AgregarLocalidad(string loc)
+        {
+            if (!localidades.Contains(loc))
+            {
+                localidades.Add(loc);
+            }
+        }
+        public List<string> ListarLocalidades()
+        {
+            return localidades;
+        }
+        #endregion
+
+
+        #region Usuarios/Sesiones
         public bool AgregarUsuario(Usuario user)
         {
             Usuario encontrado = usuarios.Find(x => x.Username == user.Username);
             if (encontrado == null)
             {
                 usuarios.Add(user);
-                users_pk = Usuario.pk;
+                primaryKeys["usuarios"] = Usuario.pk;
                 return true;
             }
             return false;
         }
-
-        public Propietario GetPropietario(int id)
-        {
-            propietarios.Sort();
-            Propietario otro = new Propietario("nombre", "apell", 123123, 123123, id);
-            int index = propietarios.BinarySearch(otro);
-            if (index >= 0)
-            {
-                return propietarios[index];
-            }
-            return null;
-        }
-        
         public Usuario Login(string uName, string uPass)
         {
             Usuario encontrado = usuarios.Find(x => x.Username == uName);
@@ -187,21 +209,37 @@ namespace Booking
             Sesion.MarcarSalida();
             Sesion = null;
         }
+        public List<Sesion> ListarSesiones()
+        {
+            List<Sesion> sesiones = new List<Sesion>();
+            foreach (Usuario u in usuarios)
+            {
+                foreach (Sesion s in u.sesiones)
+                {
+                    sesiones.Add(s);
+                }
+            }
+            sesiones.Sort();
+            return sesiones;
+        }
+        public List<Usuario> ListarUsuarios()
+        {
+            return usuarios;
+        }
+        #endregion
 
+
+        #region Reservas
+        public List<Reserva> ListarReservas()
+        {
+            return reservas;
+        }
         public void Reservar(Cliente c, Propiedad p, DateTime e, DateTime s)
         {
             Reserva nueva = new Reserva(c, e, s, p);
             reservas.Add(nueva);
             p.AgregarReserva(nueva);
         }
-        public bool BorrarPropiedad(Propiedad propiedad)
-        {
-            bool result = false;
-            if (propiedad.listarReservas().Count == 0)
-            {
-                result = propiedades.Remove(propiedad);
-            }
-            return result;
-        }
+        #endregion
     }
 }

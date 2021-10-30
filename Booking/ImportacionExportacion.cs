@@ -30,20 +30,17 @@ namespace Booking
                 string linea;
                 file = new FileStream(path, FileMode.Create, FileAccess.Write);
                 streamWriter = new StreamWriter(file);
-                
-                foreach (Usuario u in actual.usuarios)
+
+                foreach (Usuario u in actual.ListarUsuarios())
                 {
                     linea = String.Format("usuario;{0};{1};{2};{3};{4};{5}", u.id, (int)u.Categoria, u.Username, u.HashedPass(), u.Nombre, u.Apellido);
                     streamWriter.WriteLine(linea);
                 }
-
-                foreach (Usuario u in actual.usuarios)
+                
+                foreach (Sesion s in actual.ListarSesiones())
                 {
-                    foreach (Sesion s in u.sesiones)
-                    {
-                        linea = String.Format("sesion;{0};{1};{2}", u.id, s.entrada, s.salida);
-                        streamWriter.WriteLine(linea);
-                    }
+                    linea = String.Format("sesion;{0};{1};{2}", s.user.id, s.entrada, s.salida);
+                    streamWriter.WriteLine(linea);
                 }
 
                 foreach (Propietario p in actual.ListarPropietarios())
@@ -58,7 +55,8 @@ namespace Booking
                     if (p is Hotel) minimos_categoria = ((Hotel)p).GetCategoria();
                     if (p is CasaPorDia) minimos_categoria = ((CasaPorDia)p).GetDiasMinimos();
                     linea = String.Format("propiedad;{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17}",
-                        p.id, p.getPropietario().id,
+                        p.id, 
+                        p.getPropietario().id,
                         (int)p.getTipo(),
                         p.Nombre,
                         p.Plazas,
@@ -78,7 +76,29 @@ namespace Booking
                     streamWriter.WriteLine(linea);
                 }
 
+                foreach (Reserva r in actual.ListarReservas())
+                {
+                    linea = String.Format("reserva;{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10}", 
+                        r.id, 
+                        r.propiedad.id, 
+                        r.entrada, 
+                        r.salida, 
+                        r.monto, 
+                        r.GetStatus() ? 1 : 0,
+                        r.cliente.GetDni(),
+                        r.cliente.GetNombre(),
+                        r.cliente.GetTelefono(),
+                        r.cliente.GetDireccion(),
+                        r.cliente.GetCantidadDePersonas()
+                        );
+                    streamWriter.WriteLine(linea);
+                }
 
+                foreach (string s in actual.localidades)
+                {
+                    linea = String.Format("localidad;{0}", s);
+                    streamWriter.WriteLine(linea);
+                }
 
                 resultado = true;
             }

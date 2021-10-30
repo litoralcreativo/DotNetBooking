@@ -49,7 +49,7 @@ namespace Booking
             servicios = new List<Servicio>();
             reservas = new List<Reserva>();
             this.ImagesPath = imagesPath;
-            this.id = pk;
+            this.id = id;
         }
 
         public void Eliminar()
