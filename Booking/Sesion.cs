@@ -12,9 +12,10 @@ namespace Booking
         public DateTime entrada;
         public DateTime salida;
         public Usuario user;
-        public Sesion(DateTime dt, Usuario user)
+        public Sesion(DateTime e, DateTime s, Usuario user)
         {
-            entrada = dt;
+            entrada = e;
+            salida = s;
             this.user = user;
         }
         public Sesion(Usuario user)
@@ -26,11 +27,7 @@ namespace Booking
         {
             salida = DateTime.Now;
         }
-        public void CerrarSesion(DateTime dt)
-        {
-            salida = dt;
-        }
-
+        
         public int CompareTo(object obj)
         {
             if (obj == null) return 1;

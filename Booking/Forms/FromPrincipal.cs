@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Booking
@@ -317,10 +314,45 @@ namespace Booking
 
         private void exportarSistemaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DateTime dt = DateTime.Now;
+            
+            sfd.FileName = "booking-bkp-"+dt.Day+dt.Month+dt.Year+dt.Hour+dt.Minute+dt.Second;
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                bool resultado = ImportacionExportacion.Exportar(empresa, sfd.FileName);
+                bool result = ImportacionExportacion.Exportar(empresa, sfd.FileName);
+                if (result) MessageBox.Show("El sistema se exporto con exito en la ruta: "+ sfd.FileName, "Exportacion", MessageBoxButtons.OK);
+                else MessageBox.Show("Hubo un problema en la exportacion", "Exportacion", MessageBoxButtons.OK);
+            } 
+            else MessageBox.Show("La exportacion fue cancelada", "Exportacion", MessageBoxButtons.OK);
+        }
+
+        private void importarSistemaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string msg = "Si importa un sistema nuevo su sesion actual se cerra y todos los datos del sistema actual se perderan. Es recomendable previamente realizar un resguardo del sistema actual, desea realizarlo antes de importar el sistema nuevo?";
+            DialogResult resultado = MessageBox.Show(msg, "¡CUIDADO!", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.No)
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    Empresa importada = ImportacionExportacion.ImportarEmpresa(ofd.FileName);
+                    ResetSystem(importada);
+                }
             }
+            else if (resultado == DialogResult.Yes)
+            {
+                exportarSistemaToolStripMenuItem.PerformClick();
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    Empresa importada = ImportacionExportacion.ImportarEmpresa(ofd.FileName);
+                    ResetSystem(importada);
+                }
+            }
+        }
+
+        private void ResetSystem(Empresa empresa)
+        {
+            cerrarSesionToolStripMenuItem.PerformClick();
+            this.empresa = empresa;
         }
     }
 }

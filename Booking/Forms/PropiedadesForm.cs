@@ -30,7 +30,6 @@ namespace Booking
             filtroTipo.Add(TipoPropiedad.CasaFinDeSemana);
             filtroTipo.Add(TipoPropiedad.CasaPorDia);
             filtroServicio = new List<Servicio>();
-            precioMaximo = 5000;
             nudMinValue.Maximum = nudMaxValue.Value;
             nudMaxValue.Minimum = nudMinValue.Value;
             minPrice = Convert.ToInt32(nudMinValue.Value);

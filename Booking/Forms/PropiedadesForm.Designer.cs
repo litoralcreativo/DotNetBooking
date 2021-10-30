@@ -453,7 +453,7 @@ namespace Booking
             0,
             0});
             this.nudMinValue.Minimum = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -461,7 +461,7 @@ namespace Booking
             this.nudMinValue.Size = new System.Drawing.Size(106, 20);
             this.nudMinValue.TabIndex = 14;
             this.nudMinValue.Value = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});

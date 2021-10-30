@@ -27,10 +27,7 @@ namespace Booking
             primaryKeys.Add("propietarios", 0);
             primaryKeys.Add("propiedades", 0);
             primaryKeys.Add("reservas", 0);
-            Usuario.pk = primaryKeys["usuarios"];
-            Propietario.pk = primaryKeys["propietarios"];
-            Propiedad.pk = primaryKeys["propiedades"];
-            Reserva.pk = primaryKeys["reservas"];
+            RefreshPk();
 
             usuarios = new List<Usuario>();
             propietarios = new List<Propietario>();
@@ -45,10 +42,7 @@ namespace Booking
             primaryKeys.Add("propietarios", owners_pk);
             primaryKeys.Add("propiedades", properties_pk);
             primaryKeys.Add("reservas", reservations_pk);
-            Usuario.pk = primaryKeys["usuarios"];
-            Propietario.pk = primaryKeys["propietarios"];
-            Propiedad.pk = primaryKeys["propiedades"];
-            Reserva.pk = primaryKeys["reservas"];
+            RefreshPk();
 
             usuarios = new List<Usuario>();
             propietarios = new List<Propietario>();
@@ -226,6 +220,17 @@ namespace Booking
         {
             return usuarios;
         }
+        public Usuario GetUsuario(int id)
+        {
+            usuarios.Sort();
+            Usuario otro = new Usuario("otro", "otro", id, false);
+            int index = usuarios.BinarySearch(otro);
+            if (index >= 0)
+            {
+                return usuarios[index];
+            }
+            return null;
+        }
         #endregion
 
 
@@ -239,6 +244,11 @@ namespace Booking
             Reserva nueva = new Reserva(c, e, s, p);
             reservas.Add(nueva);
             p.AgregarReserva(nueva);
+        }
+        public void ImportarReserva(Reserva r)
+        {
+            reservas.Add(r);
+            r.propiedad.AgregarReserva(r);
         }
         #endregion
     }

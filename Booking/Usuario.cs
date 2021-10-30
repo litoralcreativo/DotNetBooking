@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Booking
 {
     [Serializable]
-    public class Usuario
+    public class Usuario : IComparable
     {
         public static int pk;
         public readonly int id;
@@ -33,7 +33,7 @@ namespace Booking
         {
             Username = uName;
             Pass = encripted ? uPass : HashedPass(uPass);
-            this.id = pk;
+            this.id = id;
         }
 
         public bool ValidateCredentials(string uName, string uPass)
@@ -44,10 +44,6 @@ namespace Booking
         {
             sesionActual = new Sesion(this);
         }
-        public void MarcarEntrada(DateTime dt)
-        {
-            sesionActual = new Sesion(dt, this);
-        }
         public void MarcarSalida()
         {
             sesionActual.CerrarSesion();
@@ -55,21 +51,9 @@ namespace Booking
             sesiones.Add(guardar);
             sesionActual = null;
         }
-        public void MarcarSalida(DateTime dt)
-        {
-            sesionActual.CerrarSesion(dt);
-            sesiones.Add(sesionActual);
-        }
         public string HashedPass()
         {
-            var crypt = new SHA256Managed();
-            string hash = String.Empty;
-            byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(Pass));
-            foreach (byte theByte in crypto)
-            {
-                hash += theByte.ToString("x2");
-            }
-            return hash;
+            return Pass;
         }
         public string HashedPass(string uPass)
         {
@@ -81,6 +65,21 @@ namespace Booking
                 hash += theByte.ToString("x2");
             }
             return hash;
+        }
+        
+        public void ImportarSesion(Sesion s)
+        {
+            sesiones.Add(s);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+                Usuario user = obj as Usuario;
+            if (user != null)
+                return this.id.CompareTo(user.id);
+            else
+                throw new ArgumentException("El objeto no es una Propietario");
         }
     }
     

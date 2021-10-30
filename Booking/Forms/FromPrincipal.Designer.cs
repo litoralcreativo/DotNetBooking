@@ -45,6 +45,7 @@ namespace Booking
             this.añadirPropietarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarPropietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
+            this.ofd = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,6 +116,7 @@ namespace Booking
             this.importarSistemaToolStripMenuItem.Name = "importarSistemaToolStripMenuItem";
             this.importarSistemaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.importarSistemaToolStripMenuItem.Text = "Importar Sistema";
+            this.importarSistemaToolStripMenuItem.Click += new System.EventHandler(this.importarSistemaToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -172,6 +174,13 @@ namespace Booking
             // sfd
             // 
             this.sfd.Filter = "csv (*.csv) | *.csv";
+            this.sfd.InitialDirectory = ".";
+            this.sfd.Title = "EXPORTAR SISTEMA";
+            // 
+            // ofd
+            // 
+            this.ofd.InitialDirectory = ".";
+            this.ofd.Title = "IMPORTAR SISTEMA";
             // 
             // FromPrincipal
             // 
@@ -212,6 +221,7 @@ namespace Booking
         private System.Windows.Forms.ToolStripMenuItem exportarSistemaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importarSistemaToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog sfd;
+        private System.Windows.Forms.OpenFileDialog ofd;
     }
 }
 
