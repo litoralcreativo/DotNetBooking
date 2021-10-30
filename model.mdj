@@ -5886,7 +5886,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 400,
-									"top": 555,
+									"top": 643,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -5907,7 +5907,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 400,
-									"top": 540,
+									"top": 628,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -5928,7 +5928,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 400,
-									"top": 585,
+									"top": 673,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -6014,7 +6014,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 454,
-									"top": 555,
+									"top": 643,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -6034,7 +6034,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 451,
-									"top": 541,
+									"top": 629,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -6054,7 +6054,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 458,
-									"top": 582,
+									"top": 670,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -6098,7 +6098,7 @@
 							"tail": {
 								"$ref": "AAAAAAF8gR6Ro0ZgX6A="
 							},
-							"points": "400:824;400:576;480:576",
+							"points": "400:824;400:664;480:664",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF8gU+WtiC82i8="
@@ -10890,6 +10890,36 @@
 								},
 								"aggregation": "shared",
 								"multiplicity": "1"
+							}
+						},
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF8zK1LWFDNyMw=",
+							"_parent": {
+								"$ref": "AAAAAAF8g/FByifXabU="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF8zK1LWFDOQOE=",
+								"_parent": {
+									"$ref": "AAAAAAF8zK1LWFDNyMw="
+								},
+								"name": "sesiones",
+								"reference": {
+									"$ref": "AAAAAAF8g/FByifXabU="
+								},
+								"multiplicity": "0..*"
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF8zK1LWFDPq5U=",
+								"_parent": {
+									"$ref": "AAAAAAF8zK1LWFDNyMw="
+								},
+								"reference": {
+									"$ref": "AAAAAAF8gQ+x20HUcLQ="
+								},
+								"aggregation": "shared"
 							}
 						}
 					],

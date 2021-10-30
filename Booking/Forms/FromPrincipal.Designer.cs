@@ -35,6 +35,8 @@ namespace Booking
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportarSistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importarSistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +44,7 @@ namespace Booking
             this.propietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.añadirPropietarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarPropietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +68,8 @@ namespace Booking
             this.cerrarSesionToolStripMenuItem,
             this.registrarUsuarioToolStripMenuItem,
             this.toolStripSeparator1,
+            this.exportarSistemaToolStripMenuItem,
+            this.importarSistemaToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
@@ -73,7 +78,7 @@ namespace Booking
             // iniciarSesionToolStripMenuItem
             // 
             this.iniciarSesionToolStripMenuItem.Name = "iniciarSesionToolStripMenuItem";
-            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.iniciarSesionToolStripMenuItem.Text = "Iniciar Sesion";
             this.iniciarSesionToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesionToolStripMenuItem_Click);
             // 
@@ -81,7 +86,7 @@ namespace Booking
             // 
             this.cerrarSesionToolStripMenuItem.Enabled = false;
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
@@ -89,19 +94,32 @@ namespace Booking
             // 
             this.registrarUsuarioToolStripMenuItem.Enabled = false;
             this.registrarUsuarioToolStripMenuItem.Name = "registrarUsuarioToolStripMenuItem";
-            this.registrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.registrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.registrarUsuarioToolStripMenuItem.Text = "Registrar Usuario";
             this.registrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.registrarUsuarioToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
+            // 
+            // exportarSistemaToolStripMenuItem
+            // 
+            this.exportarSistemaToolStripMenuItem.Name = "exportarSistemaToolStripMenuItem";
+            this.exportarSistemaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.exportarSistemaToolStripMenuItem.Text = "Exportar Sistema";
+            this.exportarSistemaToolStripMenuItem.Click += new System.EventHandler(this.exportarSistemaToolStripMenuItem_Click);
+            // 
+            // importarSistemaToolStripMenuItem
+            // 
+            this.importarSistemaToolStripMenuItem.Name = "importarSistemaToolStripMenuItem";
+            this.importarSistemaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.importarSistemaToolStripMenuItem.Text = "Importar Sistema";
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -140,16 +158,20 @@ namespace Booking
             // añadirPropietarioToolStripMenuItem
             // 
             this.añadirPropietarioToolStripMenuItem.Name = "añadirPropietarioToolStripMenuItem";
-            this.añadirPropietarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.añadirPropietarioToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.añadirPropietarioToolStripMenuItem.Text = "Añadir Propietario";
             this.añadirPropietarioToolStripMenuItem.Click += new System.EventHandler(this.añadirPropietarioToolStripMenuItem_Click);
             // 
             // listarPropietariosToolStripMenuItem
             // 
             this.listarPropietariosToolStripMenuItem.Name = "listarPropietariosToolStripMenuItem";
-            this.listarPropietariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listarPropietariosToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.listarPropietariosToolStripMenuItem.Text = "Listar Propietarios";
             this.listarPropietariosToolStripMenuItem.Click += new System.EventHandler(this.listarPropietariosToolStripMenuItem_Click);
+            // 
+            // sfd
+            // 
+            this.sfd.Filter = "csv (*.csv) | *.csv";
             // 
             // FromPrincipal
             // 
@@ -187,6 +209,9 @@ namespace Booking
         private System.Windows.Forms.ToolStripMenuItem propietariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem añadirPropietarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarPropietariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportarSistemaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importarSistemaToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog sfd;
     }
 }
 

@@ -10,6 +10,8 @@ namespace Booking
     [Serializable]
     public class Propietario : IComparable
     {
+        public static int pk;
+        public readonly int id;
         public string Nombre { get; private set; }
         public string Apellido { get; private set; }
         public long Dni { get; private set; }
@@ -23,6 +25,17 @@ namespace Booking
             Dni = dni;
             Telefono = telefono;
             propiedades = new List<Propiedad>();
+            id = pk;
+            pk++;
+        }
+        public Propietario(string nombre, string apellido, long dni, long telefono, int id)
+        {
+            Nombre = nombre;
+            Apellido = apellido;
+            Dni = dni;
+            Telefono = telefono;
+            propiedades = new List<Propiedad>();
+            this.id = id;
         }
 
         public void AgregarPropiedad(Propiedad prop)
@@ -71,7 +84,7 @@ namespace Booking
 
             Propietario otherProp = obj as Propietario;
             if (otherProp != null)
-                return this.Dni.CompareTo(otherProp.Dni);
+                return this.id.CompareTo(otherProp.id);
             else
                 throw new ArgumentException("El objeto no es una Propietario");
         }

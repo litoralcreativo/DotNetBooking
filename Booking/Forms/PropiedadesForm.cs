@@ -51,7 +51,7 @@ namespace Booking
             for (int i = 0; i < propiedades.Count; i++)
             {
                 Propiedad prop = propiedades[i];
-                string _ref = prop._ref.ToString();
+                string _ref = prop.id.ToString();
                 string tipo = prop.Tipo();
                 string precio = $"${prop.Precio}";
                 int plazas = prop.Plazas;

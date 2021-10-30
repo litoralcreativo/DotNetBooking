@@ -10,7 +10,8 @@ namespace Booking
     [Serializable]
     public abstract class Propiedad : IComparable
     {
-        public readonly int _ref;
+        public static int pk;
+        public readonly int id;
         public string Nombre { get; set; }
         public int Plazas { get; set; }
         public string Direccion { get; set; }
@@ -21,19 +22,41 @@ namespace Booking
         private List<Servicio> servicios;
         private Propietario propietario;
         private List<Reserva> reservas;
+        public bool Eliminada { get; private set; }
 
-        public Propiedad(int _ref, string nombre, int plazas, string dir, string loc, double precio, string[] imagesPath)
+        public Propiedad(string nombre, int plazas, string dir, string loc, double precio, string[] imagesPath)
         {
-            this._ref = _ref;
             Nombre = nombre;
             Plazas = plazas;
             Direccion = dir;
             Localidad = loc;
             Precio = precio;
+            Eliminada = false;
             servicios = new List<Servicio>();
             reservas = new List<Reserva>();
             this.ImagesPath = imagesPath;
+            id = pk;
+            pk++;
         }
+        public Propiedad(string nombre, int plazas, string dir, string loc, double precio, string[] imagesPath, int id)
+        {
+            Nombre = nombre;
+            Plazas = plazas;
+            Direccion = dir;
+            Localidad = loc;
+            Precio = precio;
+            Eliminada = false;
+            servicios = new List<Servicio>();
+            reservas = new List<Reserva>();
+            this.ImagesPath = imagesPath;
+            this.id = pk;
+        }
+
+        public void Eliminar()
+        {
+            Eliminada = true;
+        }
+
         public void ActualizarServicios(List<Servicio> ser)
         {
             servicios = ser;
@@ -88,7 +111,7 @@ namespace Booking
             reservas.Sort();
             string s;
             sb.Add("________________________________________________________________________________________________________________");
-            s = String.Format("Codigo propiedad: {0}", _ref);
+            s = String.Format("Codigo propiedad: {0}", id);
             sb.Add(s);
             s = String.Format("Direccion: {0, -50} | plazas: {1}",Localidad +", "+ Direccion, Plazas);
             sb.Add(s);
@@ -116,7 +139,7 @@ namespace Booking
 
             Propiedad otherProp = obj as Propiedad;
             if (otherProp != null)
-                return this._ref.CompareTo(otherProp._ref);
+                return this.id.CompareTo(otherProp.id);
             else
                 throw new ArgumentException("El objeto no es una Propiedad");
         }
@@ -125,12 +148,12 @@ namespace Booking
     [Serializable]
     public enum Servicio
     {
-        Desayuno,
-        Piscina,
-        Wifi,
         Ac,
         Cochera,
-        Mascotas
+        Desayuno,
+        Mascotas,
+        Piscina,
+        Wifi
     }
     
     [Serializable]

@@ -11,7 +11,10 @@ namespace Booking
     [Serializable]
     public class Empresa
     {
-        public int _ref;
+        public int users_pk;
+        public int owners_pk;
+        public int properties_pk;
+
         public List<Usuario> usuarios;
         private List<Propietario> propietarios;
         private List<Propiedad> propiedades;
@@ -21,20 +24,49 @@ namespace Booking
 
         public Empresa()
         {
-            _ref = 0;
+            users_pk = 0;
+            owners_pk = 0;
+            properties_pk = 0;
+            Usuario.pk = users_pk;
+            Propietario.pk = owners_pk;
+            Propiedad.pk = properties_pk;
+
             usuarios = new List<Usuario>();
             propietarios = new List<Propietario>();
             propiedades = new List<Propiedad>();
             localidades = new List<string>();
             reservas = new List<Reserva>();
         }
-        
+        public Empresa(int users_pk, int owners_pk, int properties_pk)
+        {
+            this.users_pk = users_pk;
+            this.owners_pk = owners_pk;
+            this.properties_pk = properties_pk;
+            Usuario.pk = users_pk;
+            Propietario.pk = owners_pk;
+            Propiedad.pk = properties_pk;
+
+            usuarios = new List<Usuario>();
+            propietarios = new List<Propietario>();
+            propiedades = new List<Propiedad>();
+            localidades = new List<string>();
+            reservas = new List<Reserva>();
+        }
+
+        public void RefreshPk()
+        {
+            Usuario.pk = users_pk;
+            Propietario.pk = owners_pk;
+            Propiedad.pk = properties_pk;
+        }
+
         public bool AgregarPropietario(Propietario prop)
         {
             Propietario encontrado = propietarios.Find(x => x.Dni == prop.Dni);
             if (encontrado == null)
             {
                 propietarios.Add(prop);
+                owners_pk = Propietario.pk;
                 return true;
             }
             return false;
@@ -46,13 +78,26 @@ namespace Booking
         
         public void AgregarPropiedad(Propiedad prop, int propietarioIndex)
         {
-           prop.AgregarPropietario(propietarios[propietarioIndex]);
-           propietarios[propietarioIndex].AgregarPropiedad(prop);
-           propiedades.Add(prop);
+            prop.AgregarPropietario(propietarios[propietarioIndex]);
+            propietarios[propietarioIndex].AgregarPropiedad(prop);
+            propiedades.Add(prop);
+            properties_pk = Propiedad.pk;
         }
         public List<Propiedad> ListarPropiedades()
         {
             return propiedades;
+        }
+        public Propiedad GetPropiedad(int id)
+        {
+            propiedades.Sort();
+            string[] path = { "asd", "asdas" };
+            Propiedad otro = new Hotel("otro", 1, "dir", "loc", 0, path, 5, id);
+            int index = propiedades.BinarySearch(otro);
+            if (index >= 0)
+            {
+                return propiedades[index];
+            }
+            return null;
         }
         
         public void AgregarLocalidad(string loc)
@@ -66,43 +111,6 @@ namespace Booking
         {
             return localidades;
         }
-        
-        public bool AgregarUsuario(Usuario user)
-        {
-            Usuario encontrado = usuarios.Find(x => x.Username == user.Username);
-            if (encontrado == null)
-            {
-                usuarios.Add(user);
-                return true;
-            }
-            return false;
-        }
-
-        public Propiedad GetPropiedad(int _ref)
-        {
-            propiedades.Sort();
-            string[] path = { "asd", "asdas" };
-            Propiedad otro = new Hotel(_ref, "otro", 1, "dir", "loc", 0, path, 5);
-            int index = propiedades.BinarySearch(otro);
-            if (index >= 0)
-            {
-                return propiedades[index];
-            }
-            return null;
-        }
-        public Propietario GetPropietario(long dni)
-        {
-            propietarios.Sort();
-            Propietario otro = new Propietario("nombre", "apell", 123123, 123123);
-            int index = propietarios.BinarySearch(otro);
-            if (index >= 0)
-            {
-                return propietarios[index];
-            }
-            return null;
-        }
-
-
         public List<Propiedad> Filter(Query query)
         {
             List<Propiedad> propiedadesTipo = new List<Propiedad>();
@@ -138,7 +146,31 @@ namespace Booking
             }
             return resultado;
         }
+        
+        public bool AgregarUsuario(Usuario user)
+        {
+            Usuario encontrado = usuarios.Find(x => x.Username == user.Username);
+            if (encontrado == null)
+            {
+                usuarios.Add(user);
+                users_pk = Usuario.pk;
+                return true;
+            }
+            return false;
+        }
 
+        public Propietario GetPropietario(int id)
+        {
+            propietarios.Sort();
+            Propietario otro = new Propietario("nombre", "apell", 123123, 123123, id);
+            int index = propietarios.BinarySearch(otro);
+            if (index >= 0)
+            {
+                return propietarios[index];
+            }
+            return null;
+        }
+        
         public Usuario Login(string uName, string uPass)
         {
             Usuario encontrado = usuarios.Find(x => x.Username == uName);
@@ -150,15 +182,19 @@ namespace Booking
                 return encontrado;
             }
         }
+        public void Logout()
+        {
+            Sesion.MarcarSalida();
+            Sesion = null;
+        }
 
-        internal void Reservar(Cliente c, Propiedad p, DateTime e, DateTime s)
+        public void Reservar(Cliente c, Propiedad p, DateTime e, DateTime s)
         {
             Reserva nueva = new Reserva(c, e, s, p);
             reservas.Add(nueva);
             p.AgregarReserva(nueva);
         }
-
-        internal bool BorrarPropiedad(Propiedad propiedad)
+        public bool BorrarPropiedad(Propiedad propiedad)
         {
             bool result = false;
             if (propiedad.listarReservas().Count == 0)

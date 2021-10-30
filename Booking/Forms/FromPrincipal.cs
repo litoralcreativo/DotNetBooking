@@ -9,7 +9,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Booking
 {
@@ -38,18 +37,17 @@ namespace Booking
                 binaryFormatter = new BinaryFormatter();
                 empresa = (Empresa)binaryFormatter.Deserialize(archivo);
                 archivo.Close();
+                empresa.RefreshPk();
             }
             else
             {
                 empresa = new Empresa();
-            }
-            if (empresa.usuarios == null || empresa.usuarios.Count == 0)
-            {
                 Usuario u = new Usuario("admin", "admin");
                 u.Nombre = "administrador";
                 u.Apellido = "administrador";
                 u.Categoria = CategoriaUsuario.Administrador;
                 empresa.AgregarUsuario(u);
+                Console.WriteLine(u.HashedPass());
             }
             
             /****TEST****/
@@ -233,8 +231,7 @@ namespace Booking
         {
             if (empresa.Sesion != null)
             {
-                empresa.Sesion.MarcarSalida();
-                empresa.Sesion = null;
+                empresa.Logout();
                 for (int i = 0; i < MdiChildren.Length; i++) // borrar todos los mdi hijos
                 {
                     MdiChildren[i].Close();
@@ -291,14 +288,14 @@ namespace Booking
                 {
                     case TipoPropiedad.Hotel:
                         int categoria = Convert.ToInt32(regPropiedad.nudCategoriaHotel.Value);
-                        propiedad = new Hotel(++empresa._ref, nombre, plazas, direccion, localidad, precio, imagesPath, categoria);
+                        propiedad = new Hotel(nombre, plazas, direccion, localidad, precio, imagesPath, categoria);
                         break;
                     case TipoPropiedad.CasaPorDia:
                         int minimos = Convert.ToInt32(regPropiedad.nudDiasMinimos.Value);
-                        propiedad = new CasaPorDia(++empresa._ref, nombre, plazas, direccion, localidad, precio, imagesPath, minimos);
+                        propiedad = new CasaPorDia(nombre, plazas, direccion, localidad, precio, imagesPath, minimos);
                         break;
                     case TipoPropiedad.CasaFinDeSemana:
-                        propiedad = new CasaFinDeSemana(++empresa._ref, nombre, plazas, direccion, localidad, precio, imagesPath);
+                        propiedad = new CasaFinDeSemana(nombre, plazas, direccion, localidad, precio, imagesPath);
                         break;
                 }
                 propiedad.ActualizarServicios(regPropiedad.servicios);
@@ -326,6 +323,14 @@ namespace Booking
             ListarPropietariosForm lp = new ListarPropietariosForm();
             lp.propietarios = empresa.ListarPropietarios();
             lp.ShowDialog();
+        }
+
+        private void exportarSistemaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                bool resultado = ImportacionExportacion.Exportar(empresa, sfd.FileName);
+            }
         }
     }
 }

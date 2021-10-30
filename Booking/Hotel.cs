@@ -21,8 +21,13 @@ namespace Booking
             categoria = value;
         }
 
-        public Hotel(int _ref, string nombre, int plazas, string dir, string loc, double precio, string[] images, int categoria) 
-            : base(_ref, nombre, plazas, dir, loc, precio, images)
+        public Hotel(string nombre, int plazas, string dir, string loc, double precio, string[] images, int categoria, int id)
+            : base(nombre, plazas, dir, loc, precio, images, id)
+        {
+            this.categoria = categoria;
+        }
+        public Hotel(string nombre, int plazas, string dir, string loc, double precio, string[] images, int categoria) 
+            : base(nombre, plazas, dir, loc, precio, images)
         {
             this.categoria = categoria;
         }
