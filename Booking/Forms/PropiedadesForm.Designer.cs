@@ -46,9 +46,10 @@ namespace Booking
             this.columnCochera = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.columnPiscina = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.btnDisponibilidad = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.pbSegunda = new System.Windows.Forms.PictureBox();
             this.pbPrimera = new System.Windows.Forms.PictureBox();
@@ -56,7 +57,7 @@ namespace Booking
             this.rbPlazasMinimas = new System.Windows.Forms.RadioButton();
             this.lblPlazas = new System.Windows.Forms.Label();
             this.rbPlazasExactas = new System.Windows.Forms.RadioButton();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.tbPlazas = new System.Windows.Forms.TrackBar();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.nudMaxValue = new System.Windows.Forms.NumericUpDown();
             this.nudMinValue = new System.Windows.Forms.NumericUpDown();
@@ -75,7 +76,6 @@ namespace Booking
             this.ckbHotel = new System.Windows.Forms.CheckBox();
             this.ckbCasaFDS = new System.Windows.Forms.CheckBox();
             this.ckbCasaPorDia = new System.Windows.Forms.CheckBox();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
@@ -84,7 +84,7 @@ namespace Booking
             ((System.ComponentModel.ISupportInitialize)(this.pbSegunda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPrimera)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPlazas)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinValue)).BeginInit();
@@ -252,18 +252,18 @@ namespace Booking
             this.panel1.Size = new System.Drawing.Size(366, 498);
             this.panel1.TabIndex = 7;
             // 
-            // btnFiltrar
+            // btnEditar
             // 
-            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFiltrar.BackColor = System.Drawing.Color.OldLace;
-            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFiltrar.Location = new System.Drawing.Point(12, 411);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(320, 27);
-            this.btnFiltrar.TabIndex = 8;
-            this.btnFiltrar.Text = "Filtrar";
-            this.btnFiltrar.UseVisualStyleBackColor = false;
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditar.BackColor = System.Drawing.Color.OldLace;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Location = new System.Drawing.Point(12, 460);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(96, 26);
+            this.btnEditar.TabIndex = 8;
+            this.btnEditar.Text = "Editar Propiedad";
+            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnDisponibilidad
             // 
@@ -292,6 +292,19 @@ namespace Booking
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtrar Propiedad";
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFiltrar.BackColor = System.Drawing.Color.OldLace;
+            this.btnFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltrar.Location = new System.Drawing.Point(12, 411);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(320, 27);
+            this.btnFiltrar.TabIndex = 8;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = false;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // groupBox6
             // 
@@ -331,7 +344,7 @@ namespace Booking
             this.groupBox5.Controls.Add(this.rbPlazasMinimas);
             this.groupBox5.Controls.Add(this.lblPlazas);
             this.groupBox5.Controls.Add(this.rbPlazasExactas);
-            this.groupBox5.Controls.Add(this.trackBar2);
+            this.groupBox5.Controls.Add(this.tbPlazas);
             this.groupBox5.Location = new System.Drawing.Point(184, 160);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(148, 78);
@@ -374,16 +387,16 @@ namespace Booking
             this.rbPlazasExactas.UseVisualStyleBackColor = true;
             this.rbPlazasExactas.CheckedChanged += new System.EventHandler(this.rbPlazasExactas_CheckedChanged);
             // 
-            // trackBar2
+            // tbPlazas
             // 
-            this.trackBar2.LargeChange = 2;
-            this.trackBar2.Location = new System.Drawing.Point(6, 19);
-            this.trackBar2.Minimum = 1;
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(112, 45);
-            this.trackBar2.TabIndex = 12;
-            this.trackBar2.Value = 1;
-            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            this.tbPlazas.LargeChange = 2;
+            this.tbPlazas.Location = new System.Drawing.Point(6, 19);
+            this.tbPlazas.Minimum = 1;
+            this.tbPlazas.Name = "tbPlazas";
+            this.tbPlazas.Size = new System.Drawing.Size(112, 45);
+            this.tbPlazas.TabIndex = 12;
+            this.tbPlazas.Value = 1;
+            this.tbPlazas.Scroll += new System.EventHandler(this.tbPlazas_Scroll);
             // 
             // groupBox4
             // 
@@ -424,7 +437,7 @@ namespace Booking
             0,
             0,
             0});
-            this.nudMaxValue.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.nudMaxValue.ValueChanged += new System.EventHandler(this.nudMaxValue_ValueChanged);
             // 
             // nudMinValue
             // 
@@ -452,7 +465,7 @@ namespace Booking
             0,
             0,
             0});
-            this.nudMinValue.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.nudMinValue.ValueChanged += new System.EventHandler(this.nudMinValue_ValueChanged);
             // 
             // label2
             // 
@@ -626,19 +639,6 @@ namespace Booking
             this.ckbCasaPorDia.UseVisualStyleBackColor = true;
             this.ckbCasaPorDia.CheckedChanged += new System.EventHandler(this.ckbCasaPorDia_CheckedChanged);
             // 
-            // btnEditar
-            // 
-            this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.BackColor = System.Drawing.Color.OldLace;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Location = new System.Drawing.Point(12, 460);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(96, 26);
-            this.btnEditar.TabIndex = 8;
-            this.btnEditar.Text = "Editar Propiedad";
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // PropiedadesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -662,7 +662,7 @@ namespace Booking
             ((System.ComponentModel.ISupportInitialize)(this.pbPrimera)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPlazas)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxValue)).EndInit();
@@ -713,7 +713,7 @@ namespace Booking
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label lblPlazas;
-        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar tbPlazas;
         private System.Windows.Forms.RadioButton rbPlazasMinimas;
         private System.Windows.Forms.RadioButton rbPlazasExactas;
         private System.Windows.Forms.NumericUpDown nudMaxValue;

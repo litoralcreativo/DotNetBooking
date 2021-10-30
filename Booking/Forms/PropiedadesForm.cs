@@ -15,7 +15,6 @@ namespace Booking
     {
         private List<TipoPropiedad> filtroTipo;
         private List<Servicio> filtroServicio;
-        private int precioMaximo;
         private int plazas;
         bool plazasExactas;
         int minPrice;
@@ -39,11 +38,17 @@ namespace Booking
             plazasExactas = rbPlazasExactas.Checked;
             //filtrado = ((FromPrincipal)ParentForm).empresa.ListarPropiedades();
         }
-
+        
+        
+        private void PropiedadesForm_Load(object sender, EventArgs e)
+        {
+            ActualizarLista();
+        }
         private void PropiedadesForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.MdiParent != null) ((FromPrincipal)MdiParent).buscarToolStripMenuItem.Enabled = true;
         }
+
 
         public void ListarPropiedades(List<Propiedad> propiedades)
         {
@@ -78,13 +83,11 @@ namespace Booking
                 ShowImages(empty);
             }
         }
-
         private void ShowImages(string[] images)
         {
             pbPrimera.ImageLocation = images[0];
             pbSegunda.ImageLocation = images[1];
         }
-
         public void ActualizarLista()
         {
             query = new Query(filtroTipo,filtroServicio,minPrice,maxPrice,plazas,plazasExactas);
@@ -92,20 +95,20 @@ namespace Booking
             ListarPropiedades(filtrado);
         }
 
+        #region Eventos
+        // filtro x tipo propiedad
         private void ckbHotel_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked && !filtroTipo.Contains(TipoPropiedad.Hotel)) filtroTipo.Add(TipoPropiedad.Hotel);
             else if (!((CheckBox)sender).Checked && filtroTipo.Contains(TipoPropiedad.Hotel)) filtroTipo.Remove(TipoPropiedad.Hotel);
             //ActualizarLista();
         }
-
         private void ckbCasaFDS_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked && !filtroTipo.Contains(TipoPropiedad.CasaFinDeSemana)) filtroTipo.Add(TipoPropiedad.CasaFinDeSemana);
             else if (!((CheckBox)sender).Checked && filtroTipo.Contains(TipoPropiedad.CasaFinDeSemana)) filtroTipo.Remove(TipoPropiedad.CasaFinDeSemana);
             //ActualizarLista();
         }
-
         private void ckbCasaPorDia_CheckedChanged(object sender, EventArgs e)
         {
             if (((CheckBox)sender).Checked && !filtroTipo.Contains(TipoPropiedad.CasaPorDia)) filtroTipo.Add(TipoPropiedad.CasaPorDia);
@@ -113,6 +116,31 @@ namespace Booking
             //ActualizarLista();
         }
 
+        // filtro x servicios
+        private void ckbDesayuno_CheckedChanged(object sender, EventArgs e)
+        {
+            ToogleServicio(sender, Servicio.Desayuno);
+        }
+        private void ckbPiscina_CheckedChanged(object sender, EventArgs e)
+        {
+            ToogleServicio(sender, Servicio.Piscina);
+        }
+        private void ckbCochera_CheckedChanged(object sender, EventArgs e)
+        {
+            ToogleServicio(sender, Servicio.Cochera);
+        }
+        private void ckbWifi_CheckedChanged(object sender, EventArgs e)
+        {
+            ToogleServicio(sender, Servicio.Wifi);
+        }
+        private void ckbAC_CheckedChanged(object sender, EventArgs e)
+        {
+            ToogleServicio(sender, Servicio.Ac);
+        }
+        private void ckbMascotas_CheckedChanged(object sender, EventArgs e)
+        {
+            ToogleServicio(sender, Servicio.Mascotas);
+        }
         public void ToogleServicio(object sender, Servicio serv)
         {
             if (((CheckBox)sender).Checked && !filtroServicio.Contains(serv)) filtroServicio.Add(serv);
@@ -120,82 +148,38 @@ namespace Booking
             //ActualizarLista();
         }
 
-        private void ckbDesayuno_CheckedChanged(object sender, EventArgs e)
+        // filtro x plazas
+        private void tbPlazas_Scroll(object sender, EventArgs e)
         {
-            ToogleServicio(sender, Servicio.Desayuno);
-        }
-
-        private void ckbPiscina_CheckedChanged(object sender, EventArgs e)
-        {
-            ToogleServicio(sender, Servicio.Piscina);
-        }
-
-        private void ckbCochera_CheckedChanged(object sender, EventArgs e)
-        {
-            ToogleServicio(sender, Servicio.Cochera);
-        }
-
-        private void ckbWifi_CheckedChanged(object sender, EventArgs e)
-        {
-            ToogleServicio(sender, Servicio.Wifi);
-        }
-
-        private void ckbAC_CheckedChanged(object sender, EventArgs e)
-        {
-            ToogleServicio(sender, Servicio.Ac);
-        }
-
-        private void ckbMascotas_CheckedChanged(object sender, EventArgs e)
-        {
-            ToogleServicio(sender, Servicio.Mascotas);
-        }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            precioMaximo = 5000;
-            lblPrecioMaximo.Text = $"${precioMaximo}";
-        }
-
-        private void trackBar2_Scroll(object sender, EventArgs e)
-        {
-            plazas = trackBar2.Value;
+            plazas = tbPlazas.Value;
             lblPlazas.Text = $"{plazas}";
-            //ActualizarLista();
         }
-
         private void rbPlazasMinimas_CheckedChanged(object sender, EventArgs e)
         {
             plazasExactas = rbPlazasExactas.Checked;
             //ActualizarLista();
         }
-
         private void rbPlazasExactas_CheckedChanged(object sender, EventArgs e)
         {
             plazasExactas = rbPlazasExactas.Checked;
             //ActualizarLista();
         }
 
-        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
-        {
-            //precioMaximo = trackBar1.Value;
-            lblPrecioMaximo.Text = $"${precioMaximo}";
-            //ActualizarLista();
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        // filtro x rango de precios
+        private void nudMinValue_ValueChanged(object sender, EventArgs e)
         {
             minPrice = Convert.ToInt32(nudMinValue.Value);
             nudMaxValue.Minimum = minPrice;
             //ActualizarLista();
         }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        private void nudMaxValue_ValueChanged(object sender, EventArgs e)
         {
             maxPrice = Convert.ToInt32(nudMaxValue.Value);
             nudMinValue.Maximum = maxPrice;
             //ActualizarLista();
         }
 
+        // btns & clicks
         private void btnDisponibilidad_Click(object sender, EventArgs e)
         {
             try
@@ -210,6 +194,7 @@ namespace Booking
                     if (formMes.sr.selectedDates.Count > 0) // Hay dias por reservar
                     {
                         ClienteForm cf = new ClienteForm();
+                        cf.nudSeAlojan.Maximum = prop.Plazas;
                         if (cf.ShowDialog() == DialogResult.OK)
                         {
                             string nombre = cf.tbNombre.Text;
@@ -234,32 +219,10 @@ namespace Booking
                 MessageBox.Show("Error: No existen propiedades cargadas");
             }
         }
-
-        private void PropiedadesForm_Load(object sender, EventArgs e)
-        {
-            ActualizarLista();
-        }
-
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             ActualizarLista();
         }
-
-        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgv.SelectedCells.Count >= 1)
-            {
-                int index = dgv.SelectedCells[0].RowIndex;
-                Propiedad prop = filtrado[index];
-                ShowImages(prop.getImages());
-            }
-            else
-            {
-                string[] empty = { null, null };
-                ShowImages(empty);
-            }
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             if (dgv.Rows.Count >= 1)
@@ -361,5 +324,20 @@ namespace Booking
                 ActualizarLista();
             }
         }
+        private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv.SelectedCells.Count >= 1)
+            {
+                int index = dgv.SelectedCells[0].RowIndex;
+                Propiedad prop = filtrado[index];
+                ShowImages(prop.getImages());
+            }
+            else
+            {
+                string[] empty = { null, null };
+                ShowImages(empty);
+            }
+        }
+        #endregion
     }
 }

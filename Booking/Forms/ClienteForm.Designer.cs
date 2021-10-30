@@ -79,7 +79,7 @@ namespace Booking
             this.btnCancel.Location = new System.Drawing.Point(158, 219);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 26);
-            this.btnCancel.TabIndex = 25;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
@@ -91,7 +91,7 @@ namespace Booking
             this.btnOk.Location = new System.Drawing.Point(258, 219);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(94, 26);
-            this.btnOk.TabIndex = 24;
+            this.btnOk.TabIndex = 5;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -103,7 +103,7 @@ namespace Booking
             this.tbDni.MaxLength = 16;
             this.tbDni.Name = "tbDni";
             this.tbDni.Size = new System.Drawing.Size(245, 23);
-            this.tbDni.TabIndex = 22;
+            this.tbDni.TabIndex = 1;
             this.tbDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDni_KeyPress);
             // 
             // label5
@@ -123,7 +123,7 @@ namespace Booking
             this.tbNombre.MaxLength = 16;
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(245, 23);
-            this.tbNombre.TabIndex = 20;
+            this.tbNombre.TabIndex = 0;
             // 
             // label4
             // 
@@ -142,7 +142,7 @@ namespace Booking
             this.tbTelefono.MaxLength = 16;
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(245, 23);
-            this.tbTelefono.TabIndex = 23;
+            this.tbTelefono.TabIndex = 2;
             this.tbTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTelefono_KeyPress);
             // 
             // label2
@@ -162,7 +162,7 @@ namespace Booking
             this.tbDireccion.MaxLength = 16;
             this.tbDireccion.Name = "tbDireccion";
             this.tbDireccion.Size = new System.Drawing.Size(245, 23);
-            this.tbDireccion.TabIndex = 21;
+            this.tbDireccion.TabIndex = 3;
             // 
             // label3
             // 
@@ -199,7 +199,7 @@ namespace Booking
             0});
             this.nudSeAlojan.Name = "nudSeAlojan";
             this.nudSeAlojan.Size = new System.Drawing.Size(64, 20);
-            this.nudSeAlojan.TabIndex = 30;
+            this.nudSeAlojan.TabIndex = 4;
             this.nudSeAlojan.Value = new decimal(new int[] {
             1,
             0,
@@ -208,9 +208,11 @@ namespace Booking
             // 
             // ClienteForm
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Wheat;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(367, 257);
             this.Controls.Add(this.nudSeAlojan);
             this.Controls.Add(this.btnCancel);
@@ -227,6 +229,7 @@ namespace Booking
             this.Controls.Add(this.pnlEncabezado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClienteForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ClienteForm";
             this.pnlEncabezado.ResumeLayout(false);
             this.pnlEncabezado.PerformLayout();
