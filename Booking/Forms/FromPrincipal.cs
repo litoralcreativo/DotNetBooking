@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace Booking
 {
-    public partial class FromPrincipal : Form
+    public partial class FromPrincipal : Form, IPrintable
     {
         public Empresa empresa;
         FileStream archivo;
@@ -127,6 +129,8 @@ namespace Booking
                 añadirPropietarioToolStripMenuItem.Enabled = false;
                 añadirPropietarioToolStripMenuItem.Enabled = false;
                 listarPropietariosToolStripMenuItem.Enabled = false;
+                importarSistemaToolStripMenuItem.Enabled = false;
+                exportarSistemaToolStripMenuItem.Enabled = false;
             }
             else
             {
@@ -141,6 +145,8 @@ namespace Booking
                             crearToolStripMenuItem.Enabled = false;
                             añadirPropietarioToolStripMenuItem.Enabled = false;
                             listarPropietariosToolStripMenuItem.Enabled = true;
+                            importarSistemaToolStripMenuItem.Enabled = false;
+                            exportarSistemaToolStripMenuItem.Enabled = false;
                             break;
                         }
                     case CategoriaUsuario.Administrador:
@@ -152,6 +158,8 @@ namespace Booking
                             crearToolStripMenuItem.Enabled = true;
                             añadirPropietarioToolStripMenuItem.Enabled = true;
                             listarPropietariosToolStripMenuItem.Enabled = true;
+                            importarSistemaToolStripMenuItem.Enabled = true;
+                            exportarSistemaToolStripMenuItem.Enabled = true;
                             break;
                         }
                     default:
@@ -303,6 +311,7 @@ namespace Booking
             propForm.ListarPropiedades(empresa.ListarPropiedades());
             propForm.Show();
             buscarToolStripMenuItem.Enabled = false;
+            impresionToolStripMenuItem.Enabled = true;
         }
 
         private void listarPropietariosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -354,5 +363,120 @@ namespace Booking
             cerrarSesionToolStripMenuItem.PerformClick();
             this.empresa = empresa;
         }
+
+        #region Printer
+
+        private void vistaPreviaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog.ShowDialog();
+        }
+
+        private void configuracionDePaginaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pageSetupDialog.ShowDialog();
+        }
+
+        private void imprimirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (printDialog.ShowDialog() == DialogResult.OK)
+                printDocument.Print();
+        }
+        /*
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            List<Propiedad> propiedades = new List<Propiedad>();
+            if (MdiChildren.Length == 1 && MdiChildren[0] is PropiedadesForm)
+            {
+                propiedades = ((PropiedadesForm)MdiChildren[0]).filtrado;
+            }
+
+            string textoActual;
+            Font fuente = new Font("Giorgia", 20, FontStyle.Bold);
+            SolidBrush relleno = new SolidBrush(Color.Black);
+            Pen borde = new Pen(Color.Black);
+            SizeF tamañoLinea;
+
+            float posY = 10;
+            float posX = 10;
+
+            textoActual = "Propiedades: ";
+            tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+            e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+
+            int renglon = 0;
+            fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Bold);
+            textoActual = String.Format("| {0, -5}| {1, -30}| {2, -10}| {3, -5}| {4, -20}| {5, -20}| {6, -30}| {7, -30}|",
+    "ref", "Tipo", "Precio", "Plaz", "Localidad", "Nombre", "Direccion", "Servicios");
+            
+            posY = posY + tamañoLinea.Height*2;
+            tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+            posX = (e.MarginBounds.Width - tamañoLinea.Width) / 2;
+            e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+            e.Graphics.DrawRectangle(borde, posX - 5, posY - 5, tamañoLinea.Width + 10, tamañoLinea.Height + 10);
+            
+            fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Regular);
+            posY = posY + tamañoLinea.Height * 2;
+
+            foreach (Propiedad p in propiedades)
+            {
+                textoActual = String.Format("| {0, -5}| {1, -30}| {2, -10}| {3, -5}| {4, -20}| {5, -20}| {6, -30}| {7, -30}|",
+                                    p.id, p.Tipo(), p.Precio, p.Plazas, p.Localidad, p.Nombre, p.Direccion, p.serviciosToString());
+                
+                tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+                posX = (e.MarginBounds.Width - tamañoLinea.Width) / 2;
+                e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+                posY = posY + tamañoLinea.Height;
+                renglon++;
+            }
+        }
+        */
+        public void PrintPage(object sender, PrintPageEventArgs e)
+        {
+            List<Propiedad> propiedades = new List<Propiedad>();
+            if (MdiChildren.Length == 1 && MdiChildren[0] is PropiedadesForm)
+            {
+                propiedades = ((PropiedadesForm)MdiChildren[0]).filtrado;
+            }
+
+            string textoActual;
+            Font fuente = new Font("Giorgia", 20, FontStyle.Bold);
+            SolidBrush relleno = new SolidBrush(Color.Black);
+            Pen borde = new Pen(Color.Black);
+            SizeF tamañoLinea;
+
+            float posY = 10;
+            float posX = 10;
+
+            textoActual = "Propiedades: ";
+            tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+            e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+
+            int renglon = 0;
+            fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Bold);
+            textoActual = String.Format("| {0, -5}| {1, -30}| {2, -10}| {3, -5}| {4, -20}| {5, -20}| {6, -30}| {7, -30}|",
+    "ref", "Tipo", "Precio", "Plaz", "Localidad", "Nombre", "Direccion", "Servicios");
+
+            posY = posY + tamañoLinea.Height * 2;
+            tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+            posX = (e.MarginBounds.Width - tamañoLinea.Width) / 2;
+            e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+            e.Graphics.DrawRectangle(borde, posX - 5, posY - 5, tamañoLinea.Width + 10, tamañoLinea.Height + 10);
+
+            fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Regular);
+            posY = posY + tamañoLinea.Height * 2;
+
+            foreach (Propiedad p in propiedades)
+            {
+                textoActual = String.Format("| {0, -5}| {1, -30}| {2, -10}| {3, -5}| {4, -20}| {5, -20}| {6, -30}| {7, -30}|",
+                                    p.id, p.Tipo(), p.Precio, p.Plazas, p.Localidad, p.Nombre, p.Direccion, p.serviciosToString());
+
+                tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+                posX = (e.MarginBounds.Width - tamañoLinea.Width) / 2;
+                e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+                posY = posY + tamañoLinea.Height;
+                renglon++;
+            }
+        }
+        #endregion
     }
 }

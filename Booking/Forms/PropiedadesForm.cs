@@ -20,7 +20,7 @@ namespace Booking
         int minPrice;
         int maxPrice;
         Query query;
-        List<Propiedad> filtrado;
+        public List<Propiedad> filtrado;
 
         public PropiedadesForm()
         {
@@ -45,7 +45,11 @@ namespace Booking
         }
         private void PropiedadesForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.MdiParent != null) ((FromPrincipal)MdiParent).buscarToolStripMenuItem.Enabled = true;
+            if (this.MdiParent != null)
+            {
+                ((FromPrincipal)MdiParent).buscarToolStripMenuItem.Enabled = true;
+                ((FromPrincipal)MdiParent).impresionToolStripMenuItem.Enabled = false;
+            }
         }
 
 
@@ -197,7 +201,7 @@ namespace Booking
                         if (cf.ShowDialog() == DialogResult.OK)
                         {
                             string nombre = cf.tbNombre.Text;
-                            long dni = Convert.ToInt64(cf.tbDni.Text);
+                            long dni = Convert.ToInt64(cf.tbCuil.Text);
                             long tel = Convert.ToInt64(cf.tbTelefono.Text);
                             string direc = cf.tbDireccion.Text;
                             int personas = Convert.ToInt32(cf.nudSeAlojan.Value);
@@ -338,5 +342,10 @@ namespace Booking
             }
         }
         #endregion
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

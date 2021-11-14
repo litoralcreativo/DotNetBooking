@@ -49,6 +49,7 @@
     <Compile Include="CasaFinDeSemana.cs" />
     <Compile Include="CasaPorDia.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="CUILException.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Forms\AddLocationForm.cs">
       <SubType>Form</SubType>
@@ -106,6 +107,7 @@
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImportacionExportacion.cs" />
+    <Compile Include="IPrintable.cs" />
     <Compile Include="SistemaReservas.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="Reserva.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Forms\RegistroEdicionPropiedad.resx">
       <DependentUpon>RegistroEdicionPropiedad.cs</DependentUpon>
@@ -182,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CTU_BOOKINGSPLASH.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -76,6 +76,7 @@ namespace Booking
             this.ckbHotel = new System.Windows.Forms.CheckBox();
             this.ckbCasaFDS = new System.Windows.Forms.CheckBox();
             this.ckbCasaPorDia = new System.Windows.Forms.CheckBox();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.panel1.SuspendLayout();
@@ -257,7 +258,7 @@ namespace Booking
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditar.BackColor = System.Drawing.Color.OldLace;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Location = new System.Drawing.Point(12, 460);
+            this.btnEditar.Location = new System.Drawing.Point(141, 460);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(96, 26);
             this.btnEditar.TabIndex = 8;
@@ -270,9 +271,9 @@ namespace Booking
             this.btnDisponibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDisponibilidad.BackColor = System.Drawing.Color.OldLace;
             this.btnDisponibilidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisponibilidad.Location = new System.Drawing.Point(237, 460);
+            this.btnDisponibilidad.Location = new System.Drawing.Point(243, 460);
             this.btnDisponibilidad.Name = "btnDisponibilidad";
-            this.btnDisponibilidad.Size = new System.Drawing.Size(117, 26);
+            this.btnDisponibilidad.Size = new System.Drawing.Size(111, 26);
             this.btnDisponibilidad.TabIndex = 8;
             this.btnDisponibilidad.Text = "Ver Disponibilidad";
             this.btnDisponibilidad.UseVisualStyleBackColor = false;
@@ -726,5 +727,6 @@ namespace Booking
         public System.Windows.Forms.PictureBox pbPrimera;
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnEditar;
+        private System.Drawing.Printing.PrintDocument printDocument;
     }
 }

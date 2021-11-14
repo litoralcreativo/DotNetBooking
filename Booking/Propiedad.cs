@@ -84,6 +84,36 @@ namespace Booking
         {
             return servicios;
         }
+        public string serviciosToString()
+        {
+            string result = "";
+            foreach (Servicio s in servicios)
+            {
+                switch (s)
+                {
+                    case Servicio.Ac:
+                        result += "AC ";
+                        break;
+                    case Servicio.Cochera:
+                        result += "COCH ";
+                        break;
+                    case Servicio.Desayuno:
+                        result += "DES ";
+                        break;
+                    case Servicio.Mascotas:
+                        result += "MASC ";
+                        break;
+                    case Servicio.Piscina:
+                        result += "PISC ";
+                        break;
+                    case Servicio.Wifi:
+                        result += "WIFI ";
+                        break;
+                }
+
+            }
+            return result;
+        }
         public List<DateTime> FechasReservadas()
         {
             List<DateTime> dates = new List<DateTime>();

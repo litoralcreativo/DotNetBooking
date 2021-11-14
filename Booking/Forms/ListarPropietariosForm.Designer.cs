@@ -32,6 +32,8 @@ namespace Booking
             this.pnlEncabezado = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnMigrar = new System.Windows.Forms.Button();
             this.btnResumen = new System.Windows.Forms.Button();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +42,6 @@ namespace Booking
             this.telColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numPropiedadesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantReservas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.pnlEncabezado.SuspendLayout();
@@ -75,12 +76,39 @@ namespace Booking
             // 
             this.panel2.BackColor = System.Drawing.Color.Wheat;
             this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnMigrar);
             this.panel2.Controls.Add(this.btnResumen);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(655, 50);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(142, 397);
             this.panel2.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.OldLace;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(6, 359);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(124, 26);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Salir";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // btnMigrar
+            // 
+            this.btnMigrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMigrar.BackColor = System.Drawing.Color.OldLace;
+            this.btnMigrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMigrar.Location = new System.Drawing.Point(6, 295);
+            this.btnMigrar.Name = "btnMigrar";
+            this.btnMigrar.Size = new System.Drawing.Size(124, 26);
+            this.btnMigrar.TabIndex = 8;
+            this.btnMigrar.Text = "Migrar Reservas";
+            this.btnMigrar.UseVisualStyleBackColor = false;
+            this.btnMigrar.Click += new System.EventHandler(this.btnMigrar_Click);
             // 
             // btnResumen
             // 
@@ -160,23 +188,14 @@ namespace Booking
             this.cantReservas.Name = "cantReservas";
             this.cantReservas.ReadOnly = true;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.OldLace;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(6, 359);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 26);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Salir";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // sfd
             // 
-            this.sfd.Filter = "Text (*.txt) | *.txt";
+            this.sfd.Filter = "CSV (*.csv) | *.csv";
             this.sfd.InitialDirectory = ".";
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintPage);
             // 
             // ListarPropietariosForm
             // 
@@ -217,5 +236,6 @@ namespace Booking
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SaveFileDialog sfd;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button btnMigrar;
     }
 }

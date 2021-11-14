@@ -29,6 +29,7 @@ namespace Booking
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FromPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,8 +45,16 @@ namespace Booking
             this.propietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.añadirPropietarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarPropietariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impresionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vistaPreviaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuracionDePaginaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imprimirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.ofd = new System.Windows.Forms.OpenFileDialog();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +64,8 @@ namespace Booking
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
             this.propiedadesToolStripMenuItem,
-            this.propietariosToolStripMenuItem});
+            this.propietariosToolStripMenuItem,
+            this.impresionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1315, 24);
@@ -79,7 +89,7 @@ namespace Booking
             // iniciarSesionToolStripMenuItem
             // 
             this.iniciarSesionToolStripMenuItem.Name = "iniciarSesionToolStripMenuItem";
-            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iniciarSesionToolStripMenuItem.Text = "Iniciar Sesion";
             this.iniciarSesionToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesionToolStripMenuItem_Click);
             // 
@@ -87,7 +97,7 @@ namespace Booking
             // 
             this.cerrarSesionToolStripMenuItem.Enabled = false;
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
@@ -95,33 +105,33 @@ namespace Booking
             // 
             this.registrarUsuarioToolStripMenuItem.Enabled = false;
             this.registrarUsuarioToolStripMenuItem.Name = "registrarUsuarioToolStripMenuItem";
-            this.registrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.registrarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.registrarUsuarioToolStripMenuItem.Text = "Registrar Usuario";
             this.registrarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.registrarUsuarioToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exportarSistemaToolStripMenuItem
             // 
             this.exportarSistemaToolStripMenuItem.Name = "exportarSistemaToolStripMenuItem";
-            this.exportarSistemaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.exportarSistemaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportarSistemaToolStripMenuItem.Text = "Exportar Sistema";
             this.exportarSistemaToolStripMenuItem.Click += new System.EventHandler(this.exportarSistemaToolStripMenuItem_Click);
             // 
             // importarSistemaToolStripMenuItem
             // 
             this.importarSistemaToolStripMenuItem.Name = "importarSistemaToolStripMenuItem";
-            this.importarSistemaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.importarSistemaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importarSistemaToolStripMenuItem.Text = "Importar Sistema";
             this.importarSistemaToolStripMenuItem.Click += new System.EventHandler(this.importarSistemaToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -160,16 +170,48 @@ namespace Booking
             // añadirPropietarioToolStripMenuItem
             // 
             this.añadirPropietarioToolStripMenuItem.Name = "añadirPropietarioToolStripMenuItem";
-            this.añadirPropietarioToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.añadirPropietarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.añadirPropietarioToolStripMenuItem.Text = "Añadir Propietario";
             this.añadirPropietarioToolStripMenuItem.Click += new System.EventHandler(this.añadirPropietarioToolStripMenuItem_Click);
             // 
             // listarPropietariosToolStripMenuItem
             // 
             this.listarPropietariosToolStripMenuItem.Name = "listarPropietariosToolStripMenuItem";
-            this.listarPropietariosToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.listarPropietariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listarPropietariosToolStripMenuItem.Text = "Listar Propietarios";
             this.listarPropietariosToolStripMenuItem.Click += new System.EventHandler(this.listarPropietariosToolStripMenuItem_Click);
+            // 
+            // impresionToolStripMenuItem
+            // 
+            this.impresionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vistaPreviaToolStripMenuItem,
+            this.configuracionDePaginaToolStripMenuItem,
+            this.imprimirToolStripMenuItem});
+            this.impresionToolStripMenuItem.Enabled = false;
+            this.impresionToolStripMenuItem.Name = "impresionToolStripMenuItem";
+            this.impresionToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.impresionToolStripMenuItem.Text = "Impresion";
+            // 
+            // vistaPreviaToolStripMenuItem
+            // 
+            this.vistaPreviaToolStripMenuItem.Name = "vistaPreviaToolStripMenuItem";
+            this.vistaPreviaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vistaPreviaToolStripMenuItem.Text = "Vista Previa";
+            this.vistaPreviaToolStripMenuItem.Click += new System.EventHandler(this.vistaPreviaToolStripMenuItem_Click);
+            // 
+            // configuracionDePaginaToolStripMenuItem
+            // 
+            this.configuracionDePaginaToolStripMenuItem.Name = "configuracionDePaginaToolStripMenuItem";
+            this.configuracionDePaginaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.configuracionDePaginaToolStripMenuItem.Text = "Configurar Pagina";
+            this.configuracionDePaginaToolStripMenuItem.Click += new System.EventHandler(this.configuracionDePaginaToolStripMenuItem_Click);
+            // 
+            // imprimirToolStripMenuItem
+            // 
+            this.imprimirToolStripMenuItem.Name = "imprimirToolStripMenuItem";
+            this.imprimirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.imprimirToolStripMenuItem.Text = "Imprimir";
+            this.imprimirToolStripMenuItem.Click += new System.EventHandler(this.imprimirToolStripMenuItem_Click);
             // 
             // sfd
             // 
@@ -181,6 +223,30 @@ namespace Booking
             // 
             this.ofd.InitialDirectory = ".";
             this.ofd.Title = "IMPORTAR SISTEMA";
+            // 
+            // printDocument
+            // 
+            this.printDocument.OriginAtMargins = true;
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintPage);
+            // 
+            // printDialog
+            // 
+            this.printDialog.UseEXDialog = true;
+            // 
+            // printPreviewDialog
+            // 
+            this.printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog.Document = this.printDocument;
+            this.printPreviewDialog.Enabled = true;
+            this.printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog.Icon")));
+            this.printPreviewDialog.Name = "printPreviewDialog";
+            this.printPreviewDialog.Visible = false;
+            // 
+            // pageSetupDialog
+            // 
+            this.pageSetupDialog.Document = this.printDocument;
             // 
             // FromPrincipal
             // 
@@ -222,6 +288,14 @@ namespace Booking
         private System.Windows.Forms.ToolStripMenuItem importarSistemaToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog sfd;
         private System.Windows.Forms.OpenFileDialog ofd;
+        private System.Windows.Forms.ToolStripMenuItem vistaPreviaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configuracionDePaginaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imprimirToolStripMenuItem;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.PrintDialog printDialog;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
+        private System.Windows.Forms.PageSetupDialog pageSetupDialog;
+        public System.Windows.Forms.ToolStripMenuItem impresionToolStripMenuItem;
     }
 }
 

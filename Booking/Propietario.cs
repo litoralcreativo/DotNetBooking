@@ -78,6 +78,20 @@ namespace Booking
             return result;
         }
 
+        public List<Reserva> getReservas()
+        {
+            List<Reserva> result = new List<Reserva>();
+            for (int i = 0; i < propiedades.Count; i++)
+            {
+                List<Reserva> reservProps = propiedades[i].listarReservas();
+                for (int j = 0; j < reservProps.Count; j++)
+                {
+                    result.Add(reservProps[j]);
+                }
+            }
+            return result;
+        }
+
         public int CompareTo(object obj)
         {
             if (obj == null) return 1;

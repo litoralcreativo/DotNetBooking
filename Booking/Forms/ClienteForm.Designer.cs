@@ -33,7 +33,7 @@ namespace Booking
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.tbDni = new System.Windows.Forms.TextBox();
+            this.tbCuil = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -96,15 +96,15 @@ namespace Booking
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // tbDni
+            // tbCuil
             // 
-            this.tbDni.Font = new System.Drawing.Font("Segoe MDL2 Assets", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDni.Location = new System.Drawing.Point(107, 95);
-            this.tbDni.MaxLength = 16;
-            this.tbDni.Name = "tbDni";
-            this.tbDni.Size = new System.Drawing.Size(245, 23);
-            this.tbDni.TabIndex = 1;
-            this.tbDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDni_KeyPress);
+            this.tbCuil.Font = new System.Drawing.Font("Segoe MDL2 Assets", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCuil.Location = new System.Drawing.Point(107, 95);
+            this.tbCuil.MaxLength = 16;
+            this.tbCuil.Name = "tbCuil";
+            this.tbCuil.Size = new System.Drawing.Size(245, 23);
+            this.tbCuil.TabIndex = 1;
+            this.tbCuil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDni_KeyPress);
             // 
             // label5
             // 
@@ -112,9 +112,9 @@ namespace Booking
             this.label5.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(14, 93);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 21);
+            this.label5.Size = new System.Drawing.Size(81, 21);
             this.label5.TabIndex = 26;
-            this.label5.Text = "DNI";
+            this.label5.Text = "CUIT/CUIL";
             // 
             // tbNombre
             // 
@@ -178,7 +178,7 @@ namespace Booking
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe MDL2 Assets", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(195, 180);
+            this.label6.Location = new System.Drawing.Point(209, 179);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 21);
             this.label6.TabIndex = 27;
@@ -217,7 +217,7 @@ namespace Booking
             this.Controls.Add(this.nudSeAlojan);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.tbDni);
+            this.Controls.Add(this.tbCuil);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbDireccion);
@@ -245,7 +245,7 @@ namespace Booking
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
-        public System.Windows.Forms.TextBox tbDni;
+        public System.Windows.Forms.TextBox tbCuil;
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label label4;

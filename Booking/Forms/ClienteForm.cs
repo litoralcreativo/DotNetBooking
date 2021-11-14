@@ -57,18 +57,61 @@ namespace Booking
             try
             {
                 if (tbNombre.Text == "") throw new Exception("Debe indicar un nombre");
-                if (tbDni.Text == "") throw new Exception("Debe indicar un DNI");
+                if (tbCuil.Text == "") throw new Exception("Debe indicar un DNI");
                 if (tbTelefono.Text == "") throw new Exception("Debe indicar un telefono");
                 if (tbDireccion.Text == "") throw new Exception("Debe indicar la direccion");
+
+                long CUIL = Convert.ToInt64(tbCuil.Text);
+                bool control = VerificarCuil(CUIL);
+
+                if (control) throw new CUILException();
 
                 string message = "Desea confirmar la reserva?";
                 if (MessageBox.Show(message, "Confirmacion", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     DialogResult = DialogResult.OK;
             }
+            catch (CUILException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        public static bool VerificarCuil(long CUIL)
+        {
+            bool CuitIncorrecto;
+            short[] cuil = new short[11];
+            for (int i = cuil.Length - 1; i >= 0; i--)
+            {
+                cuil[i] = Convert.ToInt16(CUIL % 10);
+                CUIL = CUIL / 10;
+            }
+            short[] verificador = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+            int numero = 0;
+            for (int i = 0; i < verificador.Length; i++)
+            {
+                numero += cuil[i] * verificador[i];
+            }
+            int resto = numero % 11;
+            if (resto == cuil[10])
+            {
+                CuitIncorrecto = false;
+            }
+            else
+            {
+                int numVerificador = 11 - resto;
+                if (numVerificador == cuil[10])
+                {
+                    CuitIncorrecto = false;
+                }
+                else
+                {
+                    CuitIncorrecto = true;
+                }
+            }
+            return CuitIncorrecto;
         }
     }
 }
