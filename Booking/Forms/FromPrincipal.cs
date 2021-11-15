@@ -452,9 +452,12 @@ namespace Booking
             e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
 
             int renglon = 0;
-            fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Bold);
+            /*fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Bold);
             textoActual = String.Format("| {0, -5}| {1, -30}| {2, -10}| {3, -5}| {4, -20}| {5, -20}| {6, -30}| {7, -30}|",
-    "ref", "Tipo", "Precio", "Plaz", "Localidad", "Nombre", "Direccion", "Servicios");
+                "ref", "Tipo", "Precio", "Plaz", "Localidad", "Nombre", "Direccion", "Servicios");*/
+            fuente = new Font(FontFamily.GenericMonospace, 12, FontStyle.Bold);
+            textoActual = String.Format("| {0, -5}| {1, 15:C2}| {2, -30}|",
+                "ref", "Precio", "Servicios");
 
             posY = posY + tamañoLinea.Height * 2;
             tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
@@ -462,13 +465,15 @@ namespace Booking
             e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
             e.Graphics.DrawRectangle(borde, posX - 5, posY - 5, tamañoLinea.Width + 10, tamañoLinea.Height + 10);
 
-            fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Regular);
+            /*fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Regular);*/
+            fuente = new Font(FontFamily.GenericMonospace, 12, FontStyle.Regular);
+            
             posY = posY + tamañoLinea.Height * 2;
 
             foreach (Propiedad p in propiedades)
             {
-                textoActual = String.Format("| {0, -5}| {1, -30}| {2, -10}| {3, -5}| {4, -20}| {5, -20}| {6, -30}| {7, -30}|",
-                                    p.id, p.Tipo(), p.Precio, p.Plazas, p.Localidad, p.Nombre, p.Direccion, p.serviciosToString());
+                textoActual = String.Format("| {0, -5}| {1, 15:C2}| {2, -30}|",
+                    p.id, p.Precio,p.serviciosToString());
 
                 tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
                 posX = (e.MarginBounds.Width - tamañoLinea.Width) / 2;
@@ -478,5 +483,11 @@ namespace Booking
             }
         }
         #endregion
+
+        private void paginaDeAyudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WebBrowserForm wbf = new WebBrowserForm();
+            wbf.ShowDialog();
+        }
     }
 }

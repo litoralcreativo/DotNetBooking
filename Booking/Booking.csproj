@@ -106,6 +106,12 @@
     <Compile Include="Forms\PropiedadesForm.Designer.cs">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\WebBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WebBrowserForm.Designer.cs">
+      <DependentUpon>WebBrowserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImportacionExportacion.cs" />
     <Compile Include="IPrintable.cs" />
     <Compile Include="SistemaReservas.cs" />
@@ -157,6 +163,9 @@
     <EmbeddedResource Include="Forms\PropiedadesForm.resx">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WebBrowserForm.resx">
+      <DependentUpon>WebBrowserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -188,6 +197,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CTU_BOOKINGSPLASH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\b&amp;w1.png" />
+    <Content Include="Resources\b&amp;w2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
