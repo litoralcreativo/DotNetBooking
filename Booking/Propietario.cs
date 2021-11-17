@@ -53,7 +53,12 @@ namespace Booking
             int result = 0;
             for (int i = 0; i < propiedades.Count; i++)
             {
-                result += propiedades[i].listarReservas().Count;
+                List<Reserva> res = propiedades[i].listarReservas();
+                for (int j = 0; j < res.Count; j++)
+                {
+                    if (res[j].GetStatus())
+                        result += 1;
+                }
             }
             return result;
         }

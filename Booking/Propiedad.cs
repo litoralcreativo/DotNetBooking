@@ -150,15 +150,18 @@ namespace Booking
             sb.Add("\n");
             for (int i = 0; i < reservas.Count; i++)
             {
-                string entrada = reservas[i].entrada.ToShortDateString();
-                string salida = reservas[i].salida.ToShortDateString();
-                double monto = reservas[i].monto;
-                string cliente = reservas[i].cliente.ToString();
-                s = String.Format("   |Cliente| {0}", cliente);
-                sb.Add(s);
-                s = String.Format("   |Reserva| in: {0} - out: {1} - monto: $ {2}", entrada, salida, monto);
-                sb.Add(s);
-                sb.Add("\n");
+                if (reservas[i].GetStatus())
+                {
+                    string entrada = reservas[i].entrada.ToShortDateString();
+                    string salida = reservas[i].salida.ToShortDateString();
+                    double monto = reservas[i].monto;
+                    string cliente = reservas[i].cliente.ToString();
+                    s = String.Format("   |Cliente| {0}", cliente);
+                    sb.Add(s);
+                    s = String.Format("   |Reserva| in: {0} - out: {1} - monto: $ {2}", entrada, salida, monto);
+                    sb.Add(s);
+                    sb.Add("\n");
+                }
             }
 
             return sb;

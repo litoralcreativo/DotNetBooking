@@ -63,6 +63,26 @@ namespace Booking.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap b_w1 {
+            get {
+                object obj = ResourceManager.GetObject("b&w1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ctu_About {
+            get {
+                object obj = ResourceManager.GetObject("ctu_About", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CTU_BOOKINGSPLASH {
             get {
                 object obj = ResourceManager.GetObject("CTU_BOOKINGSPLASH", resourceCulture);

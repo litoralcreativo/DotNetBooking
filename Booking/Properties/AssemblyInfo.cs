@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Booking")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Aplicacion para la gestion de reserva de propiedades y hoteles")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("CTU Software")]
 [assembly: AssemblyProduct("Booking")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]

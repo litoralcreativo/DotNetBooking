@@ -25,8 +25,7 @@ namespace Booking
             InitializeComponent();
         }
 
-
-        private void btnResumen_Click(object sender, EventArgs e)
+        private void btnResumen_Click(object sender, EventArgs e)   
         {
             try
             {
@@ -38,6 +37,8 @@ namespace Booking
             }
 
         }
+
+
 
         public void PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -51,6 +52,8 @@ namespace Booking
                     p = propietarios.Find(x => x.Dni == dni);
                 }
                 if (p == null) throw new Exception("ningun propietario seleccionado");
+
+
                 ArrayList resumen = p.Resumen();
                 Font encabezado = new Font("Arial", 14, FontStyle.Bold, GraphicsUnit.Point);
                 Font cuerpo = new Font("Arial", 8, FontStyle.Regular, GraphicsUnit.Point);
@@ -164,13 +167,28 @@ namespace Booking
                 string linea = "";
                 file = new FileStream(path, FileMode.Create, FileAccess.Write);
                 streamWriter = new StreamWriter(file);
+
+                linea = String.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10}",
+                    "id_reserva",
+                    "id_propiedad",
+                    "entrada",
+                    "salida",
+                    "monto",
+                    "estado",
+                    "cuil",
+                    "nombre",
+                    "telefono",
+                    "direccion",
+                    "se alojan");
+                streamWriter.WriteLine(linea);
+
                 foreach (Reserva r in p.getReservas())
                 {
-                    linea = String.Format("reserva;{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10}",
+                    linea = String.Format("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10}",
                         r.id,
                         r.propiedad.id,
-                        r.entrada,
-                        r.salida,
+                        r.entrada.Date,
+                        r.salida.Date,
                         r.monto,
                         r.GetStatus() ? 1 : 0,
                         r.cliente.GetDni(),
@@ -192,5 +210,6 @@ namespace Booking
                 if (file != null) file.Dispose();
             }
         }
+
     }
 }

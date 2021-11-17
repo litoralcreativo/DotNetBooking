@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booking.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
@@ -131,6 +132,7 @@ namespace Booking
                 listarPropietariosToolStripMenuItem.Enabled = false;
                 importarSistemaToolStripMenuItem.Enabled = false;
                 exportarSistemaToolStripMenuItem.Enabled = false;
+                reservasToolStripMenuItem.Enabled = false;
             }
             else
             {
@@ -147,6 +149,7 @@ namespace Booking
                             listarPropietariosToolStripMenuItem.Enabled = true;
                             importarSistemaToolStripMenuItem.Enabled = false;
                             exportarSistemaToolStripMenuItem.Enabled = false;
+                            reservasToolStripMenuItem.Enabled = true;
                             break;
                         }
                     case CategoriaUsuario.Administrador:
@@ -160,6 +163,7 @@ namespace Booking
                             listarPropietariosToolStripMenuItem.Enabled = true;
                             importarSistemaToolStripMenuItem.Enabled = true;
                             exportarSistemaToolStripMenuItem.Enabled = true;
+                            reservasToolStripMenuItem.Enabled = true;
                             break;
                         }
                     default:
@@ -324,15 +328,11 @@ namespace Booking
         private void exportarSistemaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Now;
-            
-            sfd.FileName = "booking-bkp-"+dt.Day+dt.Month+dt.Year+dt.Hour+dt.Minute+dt.Second;
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                bool result = ImportacionExportacion.Exportar(empresa, sfd.FileName);
-                if (result) MessageBox.Show("El sistema se exporto con exito en la ruta: "+ sfd.FileName, "Exportacion", MessageBoxButtons.OK);
-                else MessageBox.Show("Hubo un problema en la exportacion", "Exportacion", MessageBoxButtons.OK);
-            } 
-            else MessageBox.Show("La exportacion fue cancelada", "Exportacion", MessageBoxButtons.OK);
+            string name = "ctubkp-"+dt.Day+dt.Month+dt.Year+dt.Hour+dt.Minute+dt.Second+".csv";
+            string bkpPath = Application.StartupPath + "\\bkp\\"+name;
+            bool result = ImportacionExportacion.Exportar(empresa, bkpPath);
+            if (result) MessageBox.Show("El sistema se exporto con exito en la ruta: "+ bkpPath, "Exportacion", MessageBoxButtons.OK);
+            else MessageBox.Show("Hubo un problema en la exportacion", "Exportacion", MessageBoxButtons.OK);
         }
 
         private void importarSistemaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -439,16 +439,30 @@ namespace Booking
             }
 
             string textoActual;
-            Font fuente = new Font("Giorgia", 20, FontStyle.Bold);
+            Font fuente = new Font("Giorgia", 10, FontStyle.Regular);
             SolidBrush relleno = new SolidBrush(Color.Black);
             Pen borde = new Pen(Color.Black);
             SizeF tamañoLinea;
 
             float posY = 10;
-            float posX = 10;
+            float posX = (e.MarginBounds.Width - 75);
+            Bitmap logo = Resources.b_w1;
+            e.Graphics.DrawImage(logo, posX, posY, 100, 75);
 
+            textoActual = "CTU Booking S.A.";
+            posX = 10;
+            e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+            tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+            posY = posY + tamañoLinea.Height;
+            textoActual = DateTime.Now.ToString();
+            e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
+
+
+            fuente = new Font("Giorgia", 20, FontStyle.Bold);
+            relleno = new SolidBrush(Color.Black);
             textoActual = "Propiedades: ";
             tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+            posY = posY + tamañoLinea.Height;
             e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
 
             int renglon = 0;
@@ -467,15 +481,14 @@ namespace Booking
 
             /*fuente = new Font(FontFamily.GenericMonospace, 5, FontStyle.Regular);*/
             fuente = new Font(FontFamily.GenericMonospace, 12, FontStyle.Regular);
-            
+            tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
+
             posY = posY + tamañoLinea.Height * 2;
 
             foreach (Propiedad p in propiedades)
             {
                 textoActual = String.Format("| {0, -5}| {1, 15:C2}| {2, -30}|",
                     p.id, p.Precio,p.serviciosToString());
-
-                tamañoLinea = e.Graphics.MeasureString(textoActual, fuente);
                 posX = (e.MarginBounds.Width - tamañoLinea.Width) / 2;
                 e.Graphics.DrawString(textoActual, fuente, relleno, new PointF(posX, posY));
                 posY = posY + tamañoLinea.Height;
@@ -488,6 +501,19 @@ namespace Booking
         {
             WebBrowserForm wbf = new WebBrowserForm();
             wbf.ShowDialog();
+        }
+
+        private void acercaDeCTUToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBooking ab = new AboutBooking();
+            ab.ShowDialog();
+        }
+
+        private void reservasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReservasForm rf = new ReservasForm();
+            rf.reservas = empresa.reservas;
+            rf.ShowDialog();
         }
     }
 }

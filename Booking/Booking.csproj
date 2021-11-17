@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +66,12 @@
     <Compile Include="Config.cs" />
     <Compile Include="CUILException.cs" />
     <Compile Include="Empresa.cs" />
+    <Compile Include="Forms\AboutBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutBooking.Designer.cs">
+      <DependentUpon>AboutBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddLocationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +127,12 @@
     <Compile Include="Forms\PropiedadesForm.Designer.cs">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ReservasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReservasForm.Designer.cs">
+      <DependentUpon>ReservasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\WebBrowserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +163,9 @@
     </Compile>
     <Compile Include="Sesion.cs" />
     <Compile Include="Usuario.cs" />
+    <EmbeddedResource Include="Forms\AboutBooking.resx">
+      <DependentUpon>AboutBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddLocationForm.resx">
       <DependentUpon>AddLocationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PropiedadesForm.resx">
       <DependentUpon>PropiedadesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReservasForm.resx">
+      <DependentUpon>ReservasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WebBrowserForm.resx">
       <DependentUpon>WebBrowserForm.cs</DependentUpon>
@@ -201,6 +234,19 @@
   <ItemGroup>
     <Content Include="Resources\b&amp;w1.png" />
     <Content Include="Resources\b&amp;w2.png" />
+    <None Include="Resources\ctu_About1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
