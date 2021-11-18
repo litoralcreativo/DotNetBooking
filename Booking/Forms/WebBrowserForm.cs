@@ -15,6 +15,7 @@ namespace Booking
         public WebBrowserForm()
         {
             InitializeComponent();
+            //wBrowser.Navigate("D:/DOCUMENTOS/TECNICATURA/Laboratorio ll/TP3/ctudocs/index.html");
             wBrowser.Navigate("https://litoralcreativo.github.io/ctudocs/");
         }
     }
