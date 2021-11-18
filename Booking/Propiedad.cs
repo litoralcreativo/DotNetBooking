@@ -120,9 +120,12 @@ namespace Booking
             
             foreach (Reserva r in reservas)
             {
-                for (int i = 0; i < r.DiasTotales(); i++)
+                if (r.GetStatus())
                 {
-                    dates.Add(r.entrada.AddDays(i));
+                    for (int i = 0; i < r.DiasTotales(); i++)
+                    {
+                        dates.Add(r.entrada.AddDays(i));
+                    }
                 }
             }
             return dates;
